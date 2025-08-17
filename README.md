@@ -21,7 +21,7 @@ Vide tutoriais do PI.
 ## Descrição
 
 <p align="center">
-<img src="https://i.ibb.co/B5cs3Vk1/acoplados.jpg" alt="acoplados" border="0">
+<img src="https://i.ibb.co/B5cs3Vk1/acoplados.jpg" alt="acoplados" border="0"><br>
   Feito por: <a href="https://github.com/2025-2-MCC2/Projeto4">Acoplados</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
 </p>
 
