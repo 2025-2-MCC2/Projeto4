@@ -1,0 +1,25 @@
+{
+  "name": "projeto4",
+  "version": "1.0.0",
+  "description": "<!-- ```sh\r Utilize o site <https://www.toptal.com/developers/gitignore> para gerar seu arquivo gitignore e apague este campo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2025-2-MCC2/Projeto4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2025-2-MCC2/Projeto4/issues"
+  },
+  "homepage": "https://github.com/2025-2-MCC2/Projeto4#readme",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "expressjs": "^1.0.1",
+    "uuid": "^11.1.0"
+  }
+}
