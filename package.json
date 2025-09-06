@@ -19,7 +19,7 @@
   "homepage": "https://github.com/2025-2-MCC2/Projeto4#readme",
   "dependencies": {
     "dotenv": "^17.2.2",
-    "expressjs": "^1.0.1",
+    "express": "^5.1.0",
     "uuid": "^11.1.0"
   }
 }
