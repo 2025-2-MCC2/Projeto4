@@ -26,11 +26,11 @@ const usersController = {
     },
     // POST para criar os usuários
     createUser: (req, res) => {
-        const { RA, name, email, password, idGroup } = req.body;
+        const { studentRegister, name, email, password, idGroup } = req.body;
 
         const user = {
             id: uuid.v4(),
-            RA: RA,
+            studentRegister: studentRegister,
             name: name,
             email: email,
             password: password,

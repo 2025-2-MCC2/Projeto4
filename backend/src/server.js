@@ -1,9 +1,11 @@
-const express = require("expressjs");
+const express = require("express");
 const groupsController = require("./controllers/groupsController");
 const usersController = require("./controllers/usersController");
 require("dotenv").config();
 
 const app = express();
+app.use(express.json())
+app.use(express.urlencoded({ extended: true}));
 
 // Rotas GET
 app.get("/allUsers", usersController.allUsers);
