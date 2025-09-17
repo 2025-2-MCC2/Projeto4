@@ -4,7 +4,7 @@
   "description": "<!-- ```sh\r Utilize o site <https://www.toptal.com/developers/gitignore> para gerar seu arquivo gitignore e apague este campo.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node src/server.js"
   },
   "repository": {
     "type": "git",
