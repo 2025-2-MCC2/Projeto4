@@ -1,6 +1,17 @@
 .nav {
     width: 3rem;
     height: 100vh;
-    border: solid #0dba38;
-    background-color: #0dba38;
+    border: solid #0e5c21;
+    background-color: #0e5c21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icons {
+    width: 1.4rem;
+    height: 1.4rem;
+    filter: brightness(0) invert(1);
+    margin: 10px;
+    cursor: pointer;
 }

@@ -1,5 +1,18 @@
+.box {
+    width: 13rem;
+    height: 8rem;
+    border: solid #D7FDD9;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-left: 1rem;
+    background-color: #D7FDD9;
+}
+
 .container {
-    width: 15rem;
-    height: 15rem;
-    border: solid #0dba38;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
