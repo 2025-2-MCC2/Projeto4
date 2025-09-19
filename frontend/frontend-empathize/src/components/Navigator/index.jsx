@@ -9,7 +9,7 @@ export default function Navigator() {
             <div className={styles.nav}>
                 <aside>
                     <nav>
-                        <img src={menuIcon} alt="" className={styles.icons}/>
+                        <img src={menuIcon} alt="" className={styles.icons} />
                         <img src={homeIcon} alt="" className={styles.icons} />
                         <img src={pranchetaIcon} alt="" className={styles.icons}/>
                     </nav>

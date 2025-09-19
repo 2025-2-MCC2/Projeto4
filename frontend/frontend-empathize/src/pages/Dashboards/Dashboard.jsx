@@ -1,6 +1,8 @@
 import "./globalStyle.css";
 import Navigator from "../../components/Navigator/index.jsx";
-import Ranking from "../../components/Ranking/index.jsx";
+import MainContainer from "../../components/MainContainer/index.jsx";
+import { useState } from "react";
+import Graphic from "../../components/Graphic/index.jsx";
 
 export default function DashboardStudent() {
     return (
@@ -11,7 +13,8 @@ export default function DashboardStudent() {
                 </div>
                 <div className="mainContainer">
                     <h3>Dashboard</h3>
-                    <Ranking />
+                    <MainContainer />
+                    <Graphic />
                 </div>
             </div>
         </>
