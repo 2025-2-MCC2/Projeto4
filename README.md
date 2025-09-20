@@ -10,7 +10,7 @@ Vide tutoriais do PI.
 <a href= "https://www.fecap.br/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhZPrRa89Kma0ZZogxm0pi-tCn_TLKeHGVxywp-LXAFGR3B1DPouAJYHgKZGV0XTEf4AE&usqp=CAU" alt="FECAP - Fundação de Comércio Álvares Penteado" border="0"></a>
 </p>
 
-# Nome do Projeto
+# Empathize System
 
 ## Acoplados
 
@@ -21,7 +21,7 @@ Vide tutoriais do PI.
 ## Descrição
 
 <p align="center">
-<img src="https://i.ibb.co/B5cs3Vk1/acoplados.jpg" alt="acoplados" border="0"><br>
+<img src="Downloads/Logo.jpg" alt="Empathize System"><br>
   Feito por: <a href="https://github.com/2025-2-MCC2/Projeto4">Acoplados</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
 </p>
 
@@ -36,10 +36,9 @@ May the force be with you!
 ## 🛠 Estrutura de pastas
 
 -Raiz<br>
-|<br>
 |-->documentos<br>
-  &emsp;|-->antigos<br>
-  &emsp;|Documentação.docx<br>
+  &emsp;|Entrega 1<br>
+  &emsp;|Entrega 2<br>
 |-->executáveis<br>
   &emsp;|-->HTML<br>
 |-->imagens<br>
@@ -69,18 +68,6 @@ Encontre o index.html na pasta executáveis e execute-o como uma página WEB (at
 
 ## 💻 Configuração para Desenvolvimento
 
-<!-- Descreva como instalar todas as dependências para desenvolvimento e como rodar um test-suite automatizado de algum tipo. Se necessário, faça isso para múltiplas plataformas.
-
-Para abrir este projeto você necessita das seguintes ferramentas:
-
--<a href="https://godotengine.org/download">GODOT</a>
-
-```sh
-make install
-npm test
-Coloque código do prompt de comnando se for necessário
-```
--->
 ## 📋 Licença/License
 Utilize o link <a href = "https://chooser-beta.creativecommons.org/">Licença </a> para fazer uma licença CC BY 4.0.
 
