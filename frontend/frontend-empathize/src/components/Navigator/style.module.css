@@ -38,7 +38,11 @@ ul {
     background-color: #03b825;
 }
 
-a {
+#logOut{
+    margin-top: 25rem;
+}
+
+.theLinks {
     color: #fff;
     text-decoration: none;
     font-size: 20px;

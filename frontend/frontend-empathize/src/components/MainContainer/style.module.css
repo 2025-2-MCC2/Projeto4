@@ -9,6 +9,13 @@
     margin-top: 2.5rem;
     margin-left: .5rem;
     background-color: #D7FDD9;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.box:hover {
+    background-color: #179e1e;
+    border: #179e1e;
 }
 
 .container {

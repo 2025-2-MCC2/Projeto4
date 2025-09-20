@@ -1,9 +1,10 @@
-import DashboardStudent from "./pages/Dashboards/Dashboard.jsx";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes.jsx";
 
 function App() {
   return (
     <>
-      <DashboardStudent />
+      <RouterProvider router={router} />
     </>
   )
 }
