@@ -26,9 +26,10 @@ Vide tutoriais do PI.
 </p>
 
 
-De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
-<br><br>
-Meu projeto ajuda estudantes FECAP a configurarem seus githubs.
+O sistema desenvolvido se trata de uma aplicação web direcionada para o projeto Lideranças Empáticas, as principais tecnologias utilizadas foram: HTML5, CSS3, React, Node.js e MySQL.<br>
+Focando principalmente em questoes de organização, praticidade e controle de arrecadações conquistadas durante todo o projeto. Facilitando a comunicação entre alunos e mentores, promovendo o autoaperfeiçoamento dos participantes. Podendo documentar todas as alterações que são feitas durante cada edição.
+O projeto também serve como ferramenta educacional, permitindo os alunos de receberem orientações de seus mentores, em conjunto com a total análise de um adminitrador sobre os grupos. 
+
 <br><br>
 May the force be with you!
 <br><br>
