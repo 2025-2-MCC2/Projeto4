@@ -14,14 +14,14 @@ Vide tutoriais do PI.
 
 ## Acoplados
 
-## Integrantes: <a href="https://github.com/GDiniz12">Gabriel Diniz </a>, <a href="https://github.com/GianLemes">Gian Lemes</a>, <a href="https://github.com/leticia19silva">Leticia Rodrigues</a>, <a href="https://github.com/saidsales">Said Sales</a>
+## Integrantes: <a href="https://github.com/GDiniz12">Gabriel Diniz</a>, <a href="https://github.com/GianLemes">Gian Lemes</a>, <a href="https://github.com/leticia19silva">Leticia Rodrigues</a>, <a href="https://github.com/saidsales">Said Sales</a>.
 
 ## Professores Orientadores:<br><a href="https://www.linkedin.com/">Francisco de Souza Escobar</a>,<br> <a href="https://www.linkedin.com/">Cristina Machado Correa Leite</a>,<br> <a href="https://www.linkedin.com/">Katia Milani Lara Bossi</a>,<br> <a href="https://www.linkedin.com/">Leonardo Fabris Lugoboni</a>,<br><a href="https://www.linkedin.com/in/dolemes/">David De Oliveira Lemes</a>.
 
 ## Descrição
 
 <p align="center">
-<img src="Downloads/Logo.jpg" alt="Empathize System"><br>
+<img src="imagens/Logo.jpg" alt="Empathize System"><br>
   Feito por: <a href="https://github.com/2025-2-MCC2/Projeto4">Acoplados</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
 </p>
 
