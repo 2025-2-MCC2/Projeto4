@@ -25,11 +25,10 @@ Vide tutoriais do PI.
   Feito por: <a href="https://github.com/2025-2-MCC2/Projeto4">Acoplados</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
 </p>
 
-
+<br>
 O sistema desenvolvido se trata de uma aplicação web direcionada para o projeto Lideranças Empáticas, as principais tecnologias utilizadas foram: HTML5, CSS3, React, Node.js e MySQL.<br>
 Focando principalmente em questoes de organização, praticidade e controle de arrecadações conquistadas durante todo o projeto. Facilitando a comunicação entre alunos e mentores, promovendo o autoaperfeiçoamento dos participantes. Podendo documentar todas as alterações que são feitas durante cada edição.
 O projeto também serve como ferramenta educacional, permitindo os alunos de receberem orientações de seus mentores, em conjunto com a total análise de um adminitrador sobre os grupos. 
-
 <br><br>
 May the force be with you!
 <br><br>
@@ -74,5 +73,5 @@ Encontre o index.html na pasta executáveis e execute-o como uma página WEB (at
 
 ## 🎓 Referências
 
-1. <a href="https://github.com/fecaphub/Template_PI">Template_PI<a/><br>.
+1. <a href="https://github.com/fecaphub/Template_PI">Template_PI<a/>.<br>
 2. <a href="https://creativecommons.org/chooser/">Creative Commons<a/>.
