@@ -69,8 +69,9 @@ Encontre o index.html na pasta executáveis e execute-o como uma página WEB (at
 ## 💻 Configuração para Desenvolvimento
 
 ## 📋 Licença/License
-Utilize o link <a href = "https://chooser-beta.creativecommons.org/">Licença </a> para fazer uma licença CC BY 4.0.
+<a href="https://creativecommons.org">Empathize</a> © 2025 by <a href="https://creativecommons.org">Gabriel Diniz, Gian Lemes, Leticia Rodrigues, Said Sales.</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
 
 ## 🎓 Referências
 
-Aqui estão as referências usadas no projeto.
+1. <a href="https://github.com/fecaphub/Template_PI">Template_PI<a/><br>.
+2. <a href="https://creativecommons.org/chooser/">Creative Commons<a/>.
