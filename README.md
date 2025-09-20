@@ -10,25 +10,25 @@ Vide tutoriais do PI.
 <a href= "https://www.fecap.br/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhZPrRa89Kma0ZZogxm0pi-tCn_TLKeHGVxywp-LXAFGR3B1DPouAJYHgKZGV0XTEf4AE&usqp=CAU" alt="FECAP - Fundação de Comércio Álvares Penteado" border="0"></a>
 </p>
 
-# Nome do Projeto
+# Empathize System
 
 ## Acoplados
 
-## Integrantes: <a href="https://github.com/GDiniz12">Gabriel Diniz </a>, <a href="https://github.com/GianLemes">Gian Lemes</a>, <a href="https://github.com/leticia19silva">Leticia Rodrigues</a>, <a href="https://github.com/saidsales">Said Sales</a>
+## Integrantes: <a href="https://github.com/GDiniz12">Gabriel Diniz</a>, <a href="https://github.com/GianLemes">Gian Lemes</a>, <a href="https://github.com/leticia19silva">Leticia Rodrigues</a>, <a href="https://github.com/saidsales">Said Sales</a>.
 
 ## Professores Orientadores:<br><a href="https://www.linkedin.com/">Francisco de Souza Escobar</a>,<br> <a href="https://www.linkedin.com/">Cristina Machado Correa Leite</a>,<br> <a href="https://www.linkedin.com/">Katia Milani Lara Bossi</a>,<br> <a href="https://www.linkedin.com/">Leonardo Fabris Lugoboni</a>,<br><a href="https://www.linkedin.com/in/dolemes/">David De Oliveira Lemes</a>.
 
 ## Descrição
 
 <p align="center">
-<img src="https://i.ibb.co/B5cs3Vk1/acoplados.jpg" alt="acoplados" border="0"><br>
+<img src="imagens/Logo.jpg" alt="Empathize System"><br>
   Feito por: <a href="https://github.com/2025-2-MCC2/Projeto4">Acoplados</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
 </p>
 
-
-De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
-<br><br>
-Meu projeto ajuda estudantes FECAP a configurarem seus githubs.
+<br>
+O sistema desenvolvido se trata de uma aplicação web direcionada para o projeto Lideranças Empáticas, as principais tecnologias utilizadas foram: HTML5, CSS3, React, Node.js e MySQL.<br>
+Focando principalmente em questoes de organização, praticidade e controle de arrecadações conquistadas durante todo o projeto. Facilitando a comunicação entre alunos e mentores, promovendo o autoaperfeiçoamento dos participantes. Podendo documentar todas as alterações que são feitas durante cada edição.
+O projeto também serve como ferramenta educacional, permitindo os alunos de receberem orientações de seus mentores, em conjunto com a total análise de um adminitrador sobre os grupos. 
 <br><br>
 May the force be with you!
 <br><br>
@@ -36,10 +36,9 @@ May the force be with you!
 ## 🛠 Estrutura de pastas
 
 -Raiz<br>
-|<br>
 |-->documentos<br>
-  &emsp;|-->antigos<br>
-  &emsp;|Documentação.docx<br>
+  &emsp;|Entrega 1<br>
+  &emsp;|Entrega 2<br>
 |-->executáveis<br>
   &emsp;|-->HTML<br>
 |-->imagens<br>
@@ -69,21 +68,10 @@ Encontre o index.html na pasta executáveis e execute-o como uma página WEB (at
 
 ## 💻 Configuração para Desenvolvimento
 
-<!-- Descreva como instalar todas as dependências para desenvolvimento e como rodar um test-suite automatizado de algum tipo. Se necessário, faça isso para múltiplas plataformas.
-
-Para abrir este projeto você necessita das seguintes ferramentas:
-
--<a href="https://godotengine.org/download">GODOT</a>
-
-```sh
-make install
-npm test
-Coloque código do prompt de comnando se for necessário
-```
--->
 ## 📋 Licença/License
-Utilize o link <a href = "https://chooser-beta.creativecommons.org/">Licença </a> para fazer uma licença CC BY 4.0.
+<a href="https://creativecommons.org">Empathize</a> © 2025 by <a href="https://creativecommons.org">Gabriel Diniz, Gian Lemes, Leticia Rodrigues, Said Sales.</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
 
 ## 🎓 Referências
 
-Aqui estão as referências usadas no projeto.
+1. <a href="https://github.com/fecaphub/Template_PI">Template_PI<a/>.<br>
+2. <a href="https://creativecommons.org/chooser/">Creative Commons<a/>.
