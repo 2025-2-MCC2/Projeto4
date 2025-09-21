@@ -46,19 +46,7 @@ May the force be with you!
   &emsp;|-->Backend<br>
   &emsp;|-->Frontend<br>
 |readme.md<br>
-<!--
-A pasta raiz contem dois arquivos que devem ser alterados:
 
-Há 4 pastas que seguem da seguinte forma:
-
-<b>documentos</b>: Toda a documentação estará nesta pasta.
-
-<b>executáveis</b>: Binários e executáveis do projeto devem estar nesta pasta.
-
-<b>imagens</b>: Imagens do sistema
-
-<b>src</b>: Pasta que contém o código fonte.
--->
 ## 🛠 Instalação
 
 <b>HTML:</b>
@@ -66,7 +54,6 @@ Há 4 pastas que seguem da seguinte forma:
 Não há instalação!
 Encontre o index.html na pasta executáveis e execute-o como uma página WEB (através de algum browser).
 
-## 💻 Configuração para Desenvolvimento
 
 ## 📋 Licença/License
 <a href="https://creativecommons.org">Empathize</a> © 2025 by <a href="https://creativecommons.org">Gabriel Diniz, Gian Lemes, Leticia Rodrigues, Said Sales.</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
