@@ -1,0 +1,14 @@
+#btnCreateProject {
+    width: 8rem;
+    height: 2.6rem;
+    background-color: #b6afaf59;
+    color: #1b1919;
+    font-size: 15px;
+    margin-top: 4rem;
+}
+
+.projectDescription {
+    width: 25rem;
+    height: 25rem;
+    border: solid #000;
+}
