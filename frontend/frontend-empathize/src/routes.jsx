@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Projects from "./pages/Dashboards/Projects/Projects";
 import DashboardStudent from "./pages/Dashboards/Dashboard";
-import FormInitial from "./pages/form/initial";
+import Form from "./pages/form/initial/Form";
 
 const router = createBrowserRouter([
     {
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
         element: <Projects />
     },
     {
-        path: "/form",
-        element: <FormInitial />
+        path: "/register",
+        element: <Form />
     }
 ])
 

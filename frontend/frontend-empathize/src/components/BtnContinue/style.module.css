@@ -1,0 +1,9 @@
+.btnContinue {
+    width: 15rem;
+    height: 2.5rem;
+    background-color: #0FAA75;
+    color: #fff;
+    border: #0FAA75;
+    border-radius: 5px;
+    cursor: pointer;
+}

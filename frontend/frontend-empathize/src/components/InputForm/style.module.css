@@ -1,0 +1,15 @@
+.inputs {
+    width: 25rem;
+    height: 2.2rem;
+    border: solid #0FAA75;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.designLabel {
+    color: #7e7575b1;
+}
+
+.colorMandatory {
+    color: red;
+}
