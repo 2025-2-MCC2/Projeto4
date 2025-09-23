@@ -1,5 +1,5 @@
-import CreateProject from "../../../components/CreateProject/CreateProject";
-import Navigator from "../../../components/Navigator";
+import CreateProject from "../../components/CreateProject/CreateProject";
+import Navigator from "../../components/Navigator";
 import styles from "./style.module.css";
 
 export default function Projects() {

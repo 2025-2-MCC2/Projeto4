@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import Projects from "./pages/Dashboards/Projects/Projects";
-import DashboardStudent from "./pages/Dashboards/Dashboard";
-import Form from "./pages/form/initial/Form";
+import Projects from "./pages/Projects/Projects.jsx";
+import DashboardStudent from "./pages/Dashboards/Dashboard.jsx";
+import Form from "./pages/form/initial/Form.jsx";
 
 const router = createBrowserRouter([
     {

@@ -1,7 +1,6 @@
 import "./globalStyle.css";
 import Navigator from "../../components/Navigator/index.jsx";
 import MainContainer from "../../components/MainContainer/index.jsx";
-import Graphic from "../../components/Graphic/index.jsx";
 
 export default function DashboardStudent() {
     return (
@@ -13,7 +12,6 @@ export default function DashboardStudent() {
                 <div className="mainContainer">
                     <h3>Dashboard</h3>
                     <MainContainer />
-                    <Graphic />
                 </div>
             </div>
         </>
