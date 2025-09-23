@@ -1,3 +1,8 @@
 .theBody {
     display: flex;
 }
+
+h2 {
+    margin-left: 4rem;
+    margin-top: .5rem;
+}

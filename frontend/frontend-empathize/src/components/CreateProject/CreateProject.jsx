@@ -16,9 +16,9 @@ export default function CreateProject({ onSave }) {
 
     if (isOpen) {
       document.addEventListener("keydown", onKey);
-      // prevent background scroll when modal is open
+     
       document.body.style.overflow = "hidden";
-      // focus first input
+
       setTimeout(() => {
         modalRef.current?.querySelector("input, textarea")?.focus();
       }, 0);
@@ -92,7 +92,7 @@ export default function CreateProject({ onSave }) {
                   className={styles.input}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Ex: Projeto Nova UI"
+                  placeholder="Ex: Projeto Liderança"
                   aria-required="true"
                 />
               </label>
