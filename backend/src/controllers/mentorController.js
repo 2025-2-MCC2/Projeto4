@@ -1,5 +1,5 @@
-const uuid = require("uuid");
-const mentors = require("../models/mentorModel");
+import { v4 as uuidv4} from "uuid";
+import mentors from "../models/mentorModel.js"
 
 const mentorController = {
     // GET para buscar todos os mentores
@@ -20,7 +20,7 @@ const mentorController = {
         const { nameMentor, email, password } = req.body;
 
         const mentor = {
-            id: uuid.v4(),
+            id: uuidv4(),
             nameMentor: nameMentor,
             email: email,
             password: password
@@ -56,4 +56,4 @@ const mentorController = {
     }
 }
 
-modules.exports = mentorController;
+export default mentorController;

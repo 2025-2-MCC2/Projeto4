@@ -1,4 +1,4 @@
-const editions = require("../models/editionsModel");
+import editions from "../models/editionsModel.js";
 
 const editionsController = {
     // GET para buscar todas as edições

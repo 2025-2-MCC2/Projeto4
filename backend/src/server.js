@@ -1,7 +1,7 @@
-const express = require("express");
-const groupsController = require("./controllers/groupsController");
-const usersController = require("./controllers/usersController");
-require("dotenv").config();
+import express from "express";
+import groupsController from "./controllers/groupsController.js";
+import usersController from "./controllers/usersController.js";
+import "dotenv/config";
 
 const app = express();
 app.use(express.json())

@@ -1,5 +1,5 @@
-const uuid = require("uuid");
-const projects = require("../models/projectModel");
+import { v4 as uuidv4} from "uuid";
+import projects from "../models/projectModel.js";
 
 const projectsController = {
     // GET para buscar todos os projetos
@@ -20,7 +20,7 @@ const projectsController = {
         const { idGroup, descriptionProject, projectType } = req.body;
 
         const project = {
-            idProject: uuid.v4(),
+            idProject: uuidv4(),
             idGroup: idGroup,
             descriptionProject: descriptionProject,
             projectType: projectType
@@ -56,4 +56,4 @@ const projectsController = {
     }
 }
 
-module.exports = projectsController;
+export default projectsController;

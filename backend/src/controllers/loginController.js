@@ -1,6 +1,6 @@
-const users = require("../models/userModel");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+import users from "../models/userModel.js";
+import jwt from "jsonwebtoken";
+import 'dotenv/config';
 
 const loginController = {
     // POST para logar

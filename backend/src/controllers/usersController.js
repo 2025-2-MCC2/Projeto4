@@ -1,10 +1,15 @@
-const uuid = require("uuid");
-const users = require("../models/userModel");
-
+import { v4 as uuidv4} from "uuid";
+import users from "../models/userModel.js"
+import { pool } from "../db.js";
 const usersController = {
     // GET para buscar todos os usuários registrados;
-    allUsers: (req, res) => {
-        return res.status(200).json(users);
+     allUsers: async (req, res) => {
+        try {
+            const [rows] = await pool.query('SELECT * FROM Alunos');
+            res.status(200).json({ rows });
+        } catch (err) {
+            res.status(500).json({ message: "Alguma coisa aconteceu"});
+        }
     },
     // GET para buscar determinado usuário pelo seu ID
     userByID: (req, res) => {
@@ -25,20 +30,17 @@ const usersController = {
         return res.status(200).json(users[indexUser]);
     },
     // POST para criar os usuários
-    createUser: (req, res) => {
-        const { studentRegister, name, email, password, idGroup } = req.body;
+    createUser: async (req, res) => {
+        const { course, name, idGroup, idMentor } = req.body;
 
-        const user = {
-            id: uuid.v4(),
-            studentRegister: studentRegister,
-            name: name,
-            email: email,
-            password: password,
-            idGroup: idGroup
+        try {
+            const [ins] = await pool.query("INSERT INTO Alunos (Curso, nome, id_grupo, id_mentores) VALUES (?, ?, ?, ?)", [course, name, idGroup, idMentor]);
+
+            const [rows] = await pool.query('SELECT * FROM Alunos WHERE id_alunos = ?', [ins.insertId]);
+            res.status(201).json(rows[0]);
+        } catch (err) {
+            res.status(500).json({ message: "Erro ao cadastrar usuário"});
         }
-
-        users.push(user);
-        return res.status(201).json(user);
     },
     // PUT para atualizar um usuário
     updateUser: (req, res) => {
@@ -67,4 +69,4 @@ const usersController = {
     }
 }
 
-module.exports = usersController;
+export default usersController;

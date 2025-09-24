@@ -1,5 +1,5 @@
-const uuid = require("uuid");
-const groups = require("../models/groupsModel");
+import { v4 as uuidv4} from "uuid";
+import groups from "../models/groupsModel.js";
 
 const groupsController = {
     // GET para buscar todos os grupos
@@ -20,7 +20,7 @@ const groupsController = {
         const { idMentor, edition, pontuation, nameGroup } = req.body;
 
         const group = {
-            id: uuid.v4(),
+            id: uuidv4(),
             idMentor: idMentor,
             edition: edition,
             pontuation: pontuation,
@@ -56,4 +56,4 @@ const groupsController = {
     }
 }
 
-module.exports = groupsController;
+export default groupsController;
