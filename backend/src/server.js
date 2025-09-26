@@ -18,7 +18,7 @@ app.post("/createUser", usersController.createUser);
 app.post("/createGroup", groupsController.createGroup);
 
 // Rotas PUT
-app.put("/updateUser/:id", usersController.updateUser);
+app.put("/updateUser", usersController.updateUser);
 app.put("/updateGroup/:idGroup", groupsController.updateGroup);
 
 // Rotas DELETE

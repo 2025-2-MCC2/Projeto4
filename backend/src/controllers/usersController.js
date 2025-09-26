@@ -12,13 +12,15 @@ const usersController = {
         }
     },
     // GET para buscar determinado usuário pelo seu ID
-    userByID: (req, res) => {
+    userByID: async (req, res) => {
         const { id } = req.params;
 
-        const indexUser = users.findIndex(user => user.id === id);
-        if (indexUser === -1) return res.status(404).json({ message: "User not found"});
-
-        return res.status(200).json(users[indexUser]);
+        try {
+            const [rows] = await pool.query('SELECT Curso, nome, id_grupo, id_mentores FROM Alunos WHERE id_alunos = ?', [id]);
+            res.status(200).json({ rows });
+        } catch(err) {
+            res.status(500).json({ message: "Fail"});
+        }
     },
     // GET para buscar determinado usuário pelo seu RA
     userByRA: (req, res) => {
@@ -43,19 +45,15 @@ const usersController = {
         }
     },
     // PUT para atualizar um usuário
-    updateUser: (req, res) => {
-        const { id } = req.params;
-        const { RA, name, email, password, idGroup } = req.body;
+    updateUser: async (req, res) => {
+        const { id, name, idGroup, idMentor } = req.body;
 
-        const indexUser = users.findIndex(user => user.id === id);
-        if (indexUser === -1) return res.status(404).json({ message: "User not found"});
-        if (RA !== null) users[indexUser].RA = RA;
-        if (name !== null) users[indexUser].name = name;
-        if (email !== null) users[indexUser].email = email;
-        if (password !== null) users[indexUser].password = password;
-        if (idGroup !== null) users[indexUser].idGroup = idGroup;
-
-        return res.status(201).json(users[indexUser]);
+        try {
+            const [rows] = pool.query('UPDATE Alunos SET nome, id_grupo, id_mentores = ?, ?, ? WHERE id = ?', [name, idGroup, idMentor, id]);
+            res.status(201).json({ rows });
+        } catch(err) {
+            res.status(500).json({ message: "Fail database"});
+        }
     },
     // DELETE para deletar um usuário
     deleteUser: (req, res) => {
