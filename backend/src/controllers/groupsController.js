@@ -1,10 +1,16 @@
 import { v4 as uuidv4} from "uuid";
 import groups from "../models/groupsModel.js";
+import { pool } from "../db.js";
 
 const groupsController = {
     // GET para buscar todos os grupos
-    allGroups: (req, res) => {
-        return res.status(200).json(groups);
+    allGroups: async (req, res) => {
+        try {
+            const [rows] = await pool.query("SELECT * FROM Grupo");
+            return res.status(200).json({ rows });
+        } catch(err) {
+            return res.status(500).json({ message: "Fail database"});
+        }
     },
     // GET para buscar um grupo por id
     groupByID: (req, res) => {
@@ -16,20 +22,17 @@ const groupsController = {
         return res.status(200).json(groups[indexGroup]);
     },
     // POST para criar um grupo
-    createGroup: (req, res) => {
-        const { idMentor, edition, pontuation, nameGroup } = req.body;
+    createGroup: async (req, res) => {
+        const { password, edition, pontuation, nameGroup } = req.body;
 
-        const group = {
-            id: uuidv4(),
-            idMentor: idMentor,
-            edition: edition,
-            pontuation: pontuation,
-            nameGroup: nameGroup
+        try {
+            await pool.query("INSERT INTO Grupo (Pontuacao, Nome_grupo, Senha_grupo, id_edicoes) VALUES(?, ?, ?, ?)", [pontuation, nameGroup, password, edition]);
+
+            const [rows] = await pool.query("SELECT * FROM Grupo WHERE Nome_grupo = ?", [nameGroup]);
+            return res.status(201).json(rows[0]);
+        } catch(err) {
+            return res.status(500).json({ message: "Fail database"});
         }
-
-        groups.push(group);
-
-        return res.status(201).json(group);
     },
     // PUT para atualizar um grupo
     updateGroup: (req, res) => {

@@ -8,7 +8,7 @@ const usersController = {
             const [rows] = await pool.query('SELECT * FROM Alunos');
             res.status(200).json({ rows });
         } catch (err) {
-            res.status(500).json({ message: "Alguma coisa aconteceu"});
+            res.status(500).json({ message: "Fail database"});
         }
     },
     // GET para buscar determinado usuário pelo seu ID
