@@ -1,8 +1,18 @@
 .theBody {
-    display: flex;
+    display: grid;
+    grid-template-areas: 
+        'navigator content'
+    ;
 }
 
-h2 {
-    margin-left: 4rem;
-    margin-top: .5rem;
+.navigatorContainer {
+    grid-area: navigator;
+}
+
+.projectContainer {
+    grid-area: content;
+}
+
+.projectContainer > h2 {
+    margin-top: 1rem;
 }

@@ -6,9 +6,13 @@ export default function Projects() {
     return (
         <>
             <div className={styles.theBody}>
-                <Navigator />
-                <h2>Projetos</h2>
-                <CreateProject />
+                <div className={styles.navigatorContainer}>
+                    <Navigator />
+                </div>
+                <div className={styles.projectContainer}>
+                    <h2>Projetos</h2>
+                    <CreateProject />
+                </div>
             </div>
         </>
     );

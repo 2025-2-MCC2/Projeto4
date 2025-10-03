@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./style.module.css";
 
+const savedProjects = [];
+
 export default function CreateProject({ onSave }) {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
@@ -8,6 +10,18 @@ export default function CreateProject({ onSave }) {
   const [error, setError] = useState("");
   const modalRef = useRef(null);
   const openButtonRef = useRef(null);
+  const [isSalved, setIsSalved] = useState(false);
+
+  function creatingProject() {
+    const result = savedProjects.map((value) => (
+      <>
+        <div className={styles.containerProject}>
+          <p>{value}</p>
+        </div>
+      </>
+    ));
+    return result;
+  }
 
   useEffect(() => {
     function onKey(e) {
@@ -45,6 +59,7 @@ export default function CreateProject({ onSave }) {
     if (typeof onSave === "function") onSave(payload);
     else console.log("Saving project:", payload);
 
+    savedProjects.push(payload.name);
     // reset
     setName("");
     setDescription("");
@@ -118,7 +133,7 @@ export default function CreateProject({ onSave }) {
                 >
                   Cancelar
                 </button>
-                <button type="submit" className={styles.save}>
+                <button type="submit" className={styles.save} onClick={() => setIsSalved(true)}>
                   Salvar
                 </button>
               </div>
@@ -126,6 +141,10 @@ export default function CreateProject({ onSave }) {
           </div>
         </div>
       )}
+
+      <div className={styles.mainContainerProject}>
+        {isSalved && creatingProject()}
+      </div>
     </>
   );
 }
