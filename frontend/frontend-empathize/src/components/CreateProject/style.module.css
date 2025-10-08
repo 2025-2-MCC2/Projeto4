@@ -14,19 +14,32 @@
 
 .containerProject {
   width: 100%;
-  height: 120%;
+  height: 8rem;
   border: solid #D7FDD9;
   color: #000;
   background-color: #D7FDD9;
   border-radius: 15px;
   margin-top: 3rem;
   transition: .5s;
+  display: flex;
+  position: relative;
+}
+
+#iconDelete > img{
+  width: 1rem;
+  height: auto;
+  transition: .3s;
+  position: absolute;
+}
+
+#iconDelete > img:hover {
+  transform: scale(1.5);
 }
 
 .containerProject > p {
-  padding: 10px;
   font-weight: bold;
   font-size: large;
+  margin: 5px;
 }
 
 .containerProject:hover {

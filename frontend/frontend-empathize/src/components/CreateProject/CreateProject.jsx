@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./style.module.css";
+import deleteIcon from "../../assets/excluir.png";
 
 const savedProjects = [];
 
@@ -17,10 +18,18 @@ export default function CreateProject({ onSave }) {
       <>
         <div className={styles.containerProject}>
           <p>{value}</p>
+          <span id={styles.iconDelete} onClick={(ev) => deleteProject(ev)}><img src={deleteIcon} alt="delete icon" /></span>
+          {console.log(savedProjects)}
         </div>
       </>
     ));
     return result;
+  }
+
+  function deleteProject(ev) {
+    const result = ev.target.parentNode;
+    result.parentNode.remove();
+    // after need make the database logic with fecth;
   }
 
   useEffect(() => {
