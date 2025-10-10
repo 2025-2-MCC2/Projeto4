@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./style.module.css";
 import deleteIcon from "../../assets/excluir.png";
+import { useNavigate } from "react-router-dom";
 
 const savedProjects = [];
 
@@ -12,6 +13,7 @@ export default function CreateProject({ onSave }) {
   const modalRef = useRef(null);
   const openButtonRef = useRef(null);
   const [isSalved, setIsSalved] = useState(false);
+  const navigate = useNavigate();
 
   function creatingProject() {
     const result = savedProjects.map((value) => (

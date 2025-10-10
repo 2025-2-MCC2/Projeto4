@@ -29,11 +29,17 @@
   width: 1rem;
   height: auto;
   transition: .3s;
-  position: absolute;
 }
 
 #iconDelete > img:hover {
   transform: scale(1.5);
+}
+
+#iconDelete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 5px;
 }
 
 .containerProject > p {
