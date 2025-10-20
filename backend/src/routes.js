@@ -1,6 +1,6 @@
 import express from "express";
-import usersController from "./controllers/usersController";
-import groupsController from "./controllers/groupsController";
+import usersController from "./controllers/usersController.js";
+import groupsController from "./controllers/groupsController.js";
 
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router.get("/group/:id", groupsController.groupByID);
 
 // Rotas POST
 router.post("/createUser", usersController.createUser);
+router.post("/signin", usersController.login);
 router.post("/createGroup", groupsController.createGroup);
 
 // Rotas PUT
