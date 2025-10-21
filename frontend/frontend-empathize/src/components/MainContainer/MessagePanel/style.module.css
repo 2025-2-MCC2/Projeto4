@@ -1,0 +1,43 @@
+.panelContainer {
+    height: 70vh; 
+    width: 300px; 
+    background-color: white; 
+    border: 1px solid #D7FDD9; 
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem;
+}
+
+.panelHeader {
+    padding-bottom: 0.8rem;
+}
+
+.panelHeader h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+}
+
+.panelContent {
+    flex-grow: 1; 
+    background-color: #D7FDD9; 
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.messageIcon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.emptyMessage {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4c564d; 
+}

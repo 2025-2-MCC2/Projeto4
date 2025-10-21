@@ -1,3 +1,26 @@
+.container {
+    display: flex; 
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 100vh; 
+    width: 100%; 
+    padding: 0 4rem; 
+}
+
+.cardsWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+    padding: 0; 
+    width: fit-content; 
+}
+
+.messagePanel {
+    align-self: flex-start; 
+}
+
 .box {
     width: 13rem;
     height: 8rem;
@@ -6,8 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 2.5rem;
-    margin-left: .5rem;
+    margin-bottom: 2rem;
     background-color: #D7FDD9;
     cursor: pointer;
     transition: .5s;
@@ -16,10 +38,4 @@
 .box:hover {
     background-color: #179e1e;
     border: #179e1e;
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

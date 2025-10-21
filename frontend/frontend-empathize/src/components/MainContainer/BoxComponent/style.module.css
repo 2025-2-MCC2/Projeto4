@@ -1,20 +1,63 @@
-.icons {
-    width: 2.6rem;
-    height: 2.6rem;
-    margin: 10px;
+.boxContent {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    width: 13rem; 
+    height: 8rem;
+    padding: 1.5rem; 
+    transition: width 0.4s ease-out, background-color 0.4s ease-out; 
+    background-color: #D7FDD9;
+    border-radius: 1.5rem;
+    border: solid #D7FDD9;
+}
+
+.boxContent:hover {
+    width: 18rem; 
+    background-color: #179e1e;
+    border-color: #179e1e; 
     cursor: pointer;
 }
 
+.textAndTitleWrapper {
+    display: flex;
+    flex-direction: column; 
+    width: 8rem; 
+}
+
 .numbers {
-    font-size: 3rem;
-    font-weight: 500;
+    font-size: 2.5rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateX(10px); 
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out; 
+    color: #179e1e; 
+}
+
+.boxContent:hover .numbers {
+    opacity: 1; 
+    transform: translateX(0); 
+    color: white; 
 }
 
 .title {
-    font-size: 13px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: -0.5rem; 
+    transition: color 0.4s ease-out;
 }
 
-.rigthSide {
-    margin-left: 2rem;
-    margin-bottom: 1.3rem;
+.boxContent:hover .title {
+    color: white; 
+}
+
+.iconWrapper {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icons {
+    width: 2.6rem;
+    height: 2.6rem;
 }
