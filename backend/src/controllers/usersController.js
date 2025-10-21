@@ -1,11 +1,11 @@
-import { v4 as uuidv4} from "uuid";
 import users from "../models/userModel.js"
 import { pool } from "../db.js";
+
 const usersController = {
     // GET para buscar todos os usuários registrados;
      allUsers: async (req, res) => {
         try {
-            const [rows] = await pool.query('SELECT * FROM Alunos');
+            const [rows] = await pool.query('SELECT RA, full_name, course FROM student');
             res.status(200).json({ rows });
         } catch (err) {
             res.status(500).json({ message: "Fail database"});
@@ -16,32 +16,49 @@ const usersController = {
         const { id } = req.params;
 
         try {
-            const [rows] = await pool.query('SELECT Curso, nome, id_grupo, id_mentores FROM Alunos WHERE id_alunos = ?', [id]);
+            const [rows] = await pool.query('SELECT RA, course, full_name FROM student WHERE id = ?', [id]);
             res.status(200).json({ rows });
         } catch(err) {
-            res.status(500).json({ message: "Fail"});
+            res.status(500).json({ message: "Fail database"});
         }
     },
     // GET para buscar determinado usuário pelo seu RA
-    userByRA: (req, res) => {
+    userByRA: async (req, res) => {
         const { RA } = req.params;
 
-        const indexUser = users.findIndex(user => user.RA === RA);
-        if (indexUser === -1) return res.status(404).json({ message: "User not found"});
-
-        return res.status(200).json(users[indexUser]);
+        try {
+            const [rows] = await pool.query("SELECT id, RA, course, full_name FROM student WHERE RA = ?", [RA]);
+            res.status(200).json({ rows });
+        } catch(err) {
+            res.status(500).json({ message: "Fail database"});
+        }
     },
     // POST para criar os usuários
     createUser: async (req, res) => {
-        const { course, name, idGroup, idMentor } = req.body;
+        const { RA, fullName, course, password } = req.body;
 
         try {
-            const [ins] = await pool.query("INSERT INTO Alunos (Curso, nome, id_grupo, id_mentores) VALUES (?, ?, ?, ?)", [course, name, idGroup, idMentor]);
+            await pool.query("INSERT INTO student (RA, full_name, course, password) VALUES (?, ?, ?, ?)", [RA, fullName, course, password]);
 
-            const [rows] = await pool.query('SELECT * FROM Alunos WHERE id_alunos = ?', [ins.insertId]);
-            res.status(201).json(rows[0]);
-        } catch (err) {
+            res.status(201).json({ message: "Criado com sucesso!"})
+        } catch(err) {
             res.status(500).json({ message: "Erro ao cadastrar usuário"});
+        }
+    },
+    // POST para logar:
+    login: async (req, res) => {
+        const { RA, password } = req.body;
+
+        try {
+            const [rows]  = await pool.query("SELECT RA, password FROM student WHERE RA = ?", [RA]);
+
+            if (password !== rows[0].password) {
+                res.json({ message: "Credentials Error"});
+            }
+            
+            res.status(201).json({ message: "Login efetuado!"});
+        } catch(err) {
+            res.status(500).json({ message: "Fail database"});
         }
     },
     // PUT para atualizar um usuário
