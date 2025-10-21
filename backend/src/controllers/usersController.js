@@ -1,4 +1,3 @@
-import users from "../models/userModel.js"
 import { pool } from "../db.js";
 
 const usersController = {
@@ -63,24 +62,64 @@ const usersController = {
     },
     // PUT para atualizar um usuário
     updateUser: async (req, res) => {
-        const { id, name, idGroup, idMentor } = req.body;
+        const { id } = req.params;
+        const { RA, fullName, course, password } = req.body;
 
         try {
-            const [rows] = pool.query('UPDATE Alunos SET nome, id_grupo, id_mentores = ?, ?, ? WHERE id = ?', [name, idGroup, idMentor, id]);
-            res.status(201).json({ rows });
-        } catch(err) {
-            res.status(500).json({ message: "Fail database"});
+            // Cria arrays dinâmicos para montar o UPDATE
+            const fields = [];
+            const values = [];
+
+            if (RA != null) {
+                fields.push("RA = ?");
+                values.push(RA);
+            }
+            if (fullName != null) {
+                fields.push("full_name = ?");
+                values.push(fullName);
+            }
+            if (course != null) {
+                fields.push("course = ?");
+                values.push(course);
+            }
+            if (password != null) {
+                fields.push("password = ?");
+                values.push(password);
+            }
+
+            if (fields.length === 0) {
+                return res.status(400).json({ message: "No fields provided to update" });
+            }
+
+            const sql = `UPDATE student SET ${fields.join(", ")} WHERE id = ?`;
+            values.push(id);
+
+            const [result] = await pool.query(sql, values);
+
+            res.status(200).json({ message: "User updated successfully", result });
+
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ message: "Database error" });
         }
     },
     // DELETE para deletar um usuário
-    deleteUser: (req, res) => {
+    deleteUser: async (req, res) => {
         const { id } = req.params;
 
-        const indexUser = users.findIndex(user => user.id === id);
-        if (indexUser === -1) return res.status(404).json({ message: "User not found"});
+        try {
+            const [user] = await pool.query("SELECT RA FROM student WHERE id = ?", [id]);
+            if (user.length === 0) {
+                res.status(404).json({ message: "Usuário não encontrado"});
+            }
 
-        const result = users.splice(indexUser, 1);
-        return res.status(201).json(result);
+            await pool.query("DELETE FROM student WHERE id = ?", [id]);
+
+           res.status(200).json({ message: "Usuário deletado com sucesso"})
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database error" });
+        }
     }
 }
 

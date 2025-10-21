@@ -4,7 +4,7 @@
   "description": "<!-- ```sh\r Utilize o site <https://www.toptal.com/developers/gitignore> para gerar seu arquivo gitignore e apague este campo.",
   "main": "index.js",
   "scripts": {
-    "dev": "node src/server.js"
+    "dev": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
     "mysql2": "^3.15.0",
     "uuid": "^11.1.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
