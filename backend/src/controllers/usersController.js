@@ -37,6 +37,11 @@ const usersController = {
         const { RA, fullName, course, password } = req.body;
 
         try {
+            const [user] = await pool.query("SELECT RA FROM student WHERE RA = ?", [RA]);
+            if (user.length !== 0) {
+                res.status(409).json({ message: "O usuário já existe"})
+            }
+
             await pool.query("INSERT INTO student (RA, full_name, course, password) VALUES (?, ?, ?, ?)", [RA, fullName, course, password]);
 
             res.status(201).json({ message: "Criado com sucesso!"})
@@ -55,7 +60,7 @@ const usersController = {
                 res.json({ message: "Credentials Error"});
             }
             
-            res.status(201).json({ message: "Login efetuado!"});
+            res.status(200).json({ message: "Login efetuado!"});
         } catch(err) {
             res.status(500).json({ message: "Fail database"});
         }
@@ -94,9 +99,9 @@ const usersController = {
             const sql = `UPDATE student SET ${fields.join(", ")} WHERE id = ?`;
             values.push(id);
 
-            const [result] = await pool.query(sql, values);
+            await pool.query(sql, values);
 
-            res.status(200).json({ message: "User updated successfully", result });
+            res.status(200).json({ message: "Usuário atualizado com sucesso" });
 
         } catch (err) {
             console.error(err);
