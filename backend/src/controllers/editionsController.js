@@ -1,56 +1,94 @@
-import editions from "../models/editionsModel.js";
+import { pool } from "../db.js";
 
-const editionsController = {
-    // GET para buscar todas as edições
-    allEditions: (req, res) => {
-        return res.status(200).json(editions);
-    },
-    // GET para buscar por número de edição
-    editionByNumber: (req, res) => {
-        const { numberEdition } = req.params;
+export const editionsController = {
+    // POST para criar edição
+    createEdition: async (req, res) => {
+        const { startDate, endDate } = req.body;
 
-        const indexEdition = editions.findIndex(edition => edition.editionNumber === parseInt(numberEdition));
-        if (indexEdition === -1) return res.status(404).json({ message: "Edition not found"});
+        try {
+            await pool.query("INSERT INTO edition(start_date, end_date) VALUES (?, ?)", [startDate, endDate]);
 
-        return res.status(200).json(editions[indexEdition]);
-    },
-    // POST para criar uma edição
-    createEdition: (req, res) => {
-        const { numberEdition, startDate, endDate } = req.body;
-
-        const edition = {
-            editionNumber: numberEdition,
-            startDate: startDate,
-            endDate: endDate
+            res.status(201).json({ message: "Edição criada com sucesso!"});
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
         }
+    },
+    // GET para buscar todas as edições
+    allEditions: async (req, res) => {
+        try {
+            const [editions] = await pool.query("SELECT * FROM edition");
 
-        editions.push(edition);
+            res.status(200).json({ editions });
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
+    },
+    // GET para buscar edição por id
+    editionByID: async (req, res) => {
+        const { id } = req.params;
 
-        return res.status(201).json(edition);
+        try {
+            const [edition] = await pool.query("SELECT * FROM edition WHERE id = ?", [id]);
+            if (edition.length === 0) {
+                res.status(404).json({ message: "Edição não encontrada"});
+            }
+
+            res.status(200).json({ edition });
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
     },
     // PUT para atualizar uma edição
-    updateEdition: (req, res) => {
-        const { edition } = req.params;
-        const { numberEdition, startDate, endDate } = req.body;
+    updateEdition: async (req, res) => {
+        const { id } = req.params;
+        const { startDate, endDate } = req.body;
 
-        const indexEdition = editions.findIndex(editionIndex => editionIndex.editionNumber === parseInt(edition));
-        if (indexEdition === -1) return res.status(404).json({ message: "Edition not found"});
+        try {
+            const [edition] = await pool.query("SELECT * FROM edition WHERE id = ?", [id]);
+            if (edition.length === 0) {
+                res.status(404).json({ message: "Edição não encontrada"});
+            }
 
-        if (numberEdition !== null) editions[indexEdition].editionNumber = numberEdition;
-        if (startDate !== null) editions[indexEdition].startDate = startDate;
-        if (endDate !== null) editions[indexEdition].endDate = endDate;
+            const fields = [];
+            const values = [];
 
-        return res.status(201).json(editions[indexEdition]);
+            if (startDate !== undefined) {
+                fields.push("start_date = ?");
+                values.push(startDate);
+            }
+            if (endDate !== undefined) {
+                fields.push("end_date = ?");
+                values.push(endDate);
+            }
+
+            const sql = `UPDATE edition SET ${fields.join(", ")} WHERE id = ?`;
+            values.push(id);
+
+            await pool.query(sql, values);
+
+            res.status(200).json({ message: "Atualizado com sucesso!"})
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
     },
     // DELETE para deletar uma edição
-    deleteEdition: (req, res) => {
-        const { numberEdition } = req.params;
+    deleteEdition: async (req, res) => {
+        const { id } = req.params;
 
-        const indexEdition = editions.findIndex(edition => edition.editionNumber === parseInt(numberEdition));
-        if (indexEdition === -1) return res.status(404).json({ message: "Edition not found"});
+        try {
+            const [edition] = await pool.query("SELECT * FROM edition WHERE id = ?", [id]);
+            if (edition.length === 0) {
+                res.status(404).json({ message: "Edição não encontrada"});
+            }
 
-        const deleted = editions.splice(indexEdition, 1);
-
-        return res.status(201).json(deleted);
+            await pool.query("DELETE FROM edition WHERE id = ?", [id]);
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
     }
 }
