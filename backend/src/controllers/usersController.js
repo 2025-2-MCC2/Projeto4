@@ -1,10 +1,11 @@
 import { pool } from "../db.js";
+import bcrypt from "bcrypt";
 
 const usersController = {
     // GET para buscar todos os usuários registrados;
      allUsers: async (req, res) => {
         try {
-            const [rows] = await pool.query('SELECT RA, full_name, course FROM student');
+            const [rows] = await pool.query('SELECT RA, full_name, course, password FROM student');
             res.status(200).json({ rows });
         } catch (err) {
             res.status(500).json({ message: "Fail database"});
@@ -42,7 +43,9 @@ const usersController = {
                 res.status(409).json({ message: "O usuário já existe"})
             }
 
-            await pool.query("INSERT INTO student (RA, full_name, course, password) VALUES (?, ?, ?, ?)", [RA, fullName, course, password]);
+            const hashPassword = bcrypt.hashSync(password, 10);
+
+            await pool.query("INSERT INTO student (RA, full_name, course, password) VALUES (?, ?, ?, ?)", [RA, fullName, course, hashPassword]);
 
             res.status(201).json({ message: "Criado com sucesso!"})
         } catch(err) {
@@ -54,10 +57,16 @@ const usersController = {
         const { RA, password } = req.body;
 
         try {
-            const [rows]  = await pool.query("SELECT RA, password FROM student WHERE RA = ?", [RA]);
+            const [user]  = await pool.query("SELECT RA, password FROM student WHERE RA = ?", [RA]);
 
-            if (password !== rows[0].password) {
-                res.json({ message: "Credentials Error"});
+            if (user.length === 0) {
+                res.status(401).json({ message: "Credenciais erradas!"});
+            }
+
+            const isValidPassword = bcrypt.compareSync(password, user[0].password);
+            
+            if (!isValidPassword) {
+                res.status(401).json({ message: "Credenciais erradas!"});
             }
             
             res.status(200).json({ message: "Login efetuado!"});

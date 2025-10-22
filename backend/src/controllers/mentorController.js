@@ -1,4 +1,5 @@
 import { pool } from "../db.js";
+import bcrypt from "bcrypt";
 
 const mentorController = {
     // POST para criar um mentor
@@ -11,7 +12,9 @@ const mentorController = {
                 res.status(409).json({ message: "O mentor já existe"});
             }
 
-            await pool.query("INSERT INTO mentor(name_mentor, email, password) VALUES (?, ?, ?)", [name, email, password]);
+            const hashPassword = bcrypt.hashSync(password, 10);
+
+            await pool.query("INSERT INTO mentor(name_mentor, email, password) VALUES (?, ?, ?)", [name, email, hashPassword]);
 
             res.status(201).json({ message: "Mentor criado com sucesso!"});
         } catch(err) {
@@ -23,10 +26,16 @@ const mentorController = {
         const { email, password } = req.body;
 
         try {
-            const [user] = await pool.query("SELECT email, password FROM mentor WHERE email = ?", [email]);
+            const [mentor] = await pool.query("SELECT email, password FROM mentor WHERE email = ?", [email]);
 
-            if (password !== user[0].password) {
-                res.json({ message: "Credentials Error"});
+            if (mentor.length === 0) {
+                res.status(401).json({ message: "Credenciais erradas!"});
+            }
+
+            const isValidPassword = bcrypt.compareSync(password, mentor[0].password);
+            
+            if (!isValidPassword) {
+                res.status(401).json({ message: "Credenciais erradas!"});
             }
 
             res.status(201).json({ message: "Login efetuado!"});
