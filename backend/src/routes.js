@@ -2,6 +2,7 @@ import express from "express";
 import usersController from "./controllers/usersController.js";
 import groupsController from "./controllers/groupsController.js";
 import mentorController from "./controllers/mentorController.js";
+import { editionsController } from "./controllers/editionsController.js";
 
 const router = express.Router();
 
@@ -9,6 +10,12 @@ const router = express.Router();
 router.get("/allUsers", usersController.allUsers);
 router.get("/user/:id", usersController.userByID);
 router.get("/userRA/:RA", usersController.userByRA);
+
+router.get("/allMentors", mentorController.allMentors);
+router.get("/mentorByID/:id", mentorController.mentorByID);
+
+router.get("/allEditions", editionsController.allEditions);
+router.get("/editionByID/:id", editionsController.editionByID);
 
 router.get("/allGroups", groupsController.allGroups);
 router.get("/group/:id", groupsController.groupByID);
@@ -22,10 +29,14 @@ router.post("/createGroup", groupsController.createGroup);
 router.post("/createMentor", mentorController.createMentor);
 router.post("/loginMentor", mentorController.loginMentor);
 
+router.post("/createEdition", editionsController.createEdition);
+
 // Rotas PUT
 router.put("/updateUser/:id", usersController.updateUser);
 
 router.put("updateMentor/:id", mentorController.updateMentor);
+
+router.put("/updateEdition/:id", editionsController.editionByID);
 
 router.put("/updateGroup/:idGroup", groupsController.updateGroup);
 
@@ -33,6 +44,8 @@ router.put("/updateGroup/:idGroup", groupsController.updateGroup);
 router.delete("/deleteUser/:id", usersController.deleteUser);
 
 router.delete("/deleteMentor/:id", mentorController.deleteMentor);
+
+router.delete("/deleteEdition/:id", editionsController.deleteEdition);
 
 router.delete("/deleteGroup/:id", groupsController.deleteGroup);
 
