@@ -4,6 +4,7 @@ import menuIcon from "../../assets/menu-hamburguer.svg";
 import homeIcon from "../../assets/casa.svg";
 import pranchetaIcon from "../../assets/prancheta.svg";
 import logOut from "../../assets/exit.svg";
+import Integrantes from "../../assets/users-alt.svg";
 import { Link } from "react-router-dom";
 
 export default function Navigator() {
@@ -26,6 +27,13 @@ export default function Navigator() {
                             <Link to="/projects" className={styles.theLinks}>
                                 <span className="icon"><img src={pranchetaIcon} alt="" className={styles.icons}/></span>
                                 <span className={styles.txtLink}>Projetos</span>
+                            </Link>
+                        </li>
+
+                        <li className={styles.itemMenu}>
+                            <Link to="/Integrantes" className={styles.theLinks}>
+                                <span className="icon"><img src={Integrantes} alt="" className={styles.icons}/></span>
+                                <span className={styles.txtLink}>Integrantes</span>
                             </Link>
                         </li>
                         <li className={styles.itemMenu} id={styles.logOut}>

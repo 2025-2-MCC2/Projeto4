@@ -3,6 +3,7 @@ import Projects from "./pages/Projects/Projects.jsx";
 import DashboardStudent from "./pages/Dashboards/Dashboard.jsx";
 import Form from "./pages/form/initial/Form.jsx";
 import ProjectPage from "./pages/Projects/ProjectPage/ProjectPage.jsx";
+import Integrantes from "./pages/Integrantes/Integrantes.jsx";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
     {
         path: "/product/:id",
         element: <ProjectPage />
+    },
+
+    {
+        path: "/integrantes",
+        element: <Integrantes />
     }
 ])
 

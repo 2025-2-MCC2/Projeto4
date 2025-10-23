@@ -10,7 +10,7 @@ export default function DashboardStudent() {
                     <Navigator />
                 </div>
                 <div className={styles.mainContainer}>
-                    <h3>Dashboard</h3>
+                    <h3>#DASHBOARD</h3>
                     <MainContainer />
                 </div>
             </div>
