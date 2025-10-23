@@ -1,61 +1,152 @@
-import { v4 as uuidv4} from "uuid";
-import groups from "../models/groupsModel.js";
 import { pool } from "../db.js";
 
 const groupsController = {
-    // GET para buscar todos os grupos
-    allGroups: async (req, res) => {
+    // POST para criar um grupo
+    createGroup: async (req, res) => {
+        const { groupName, idMentor, idStudent, idEdition} = req.body;
+
         try {
-            const [rows] = await pool.query("SELECT * FROM Grupo");
-            return res.status(200).json({ rows });
+            await pool.query("INSERT INTO team(group_name, id_mentor) VALUES(?, ?)", [groupName, idMentor]);
+            // buscar o id do grupo criado
+            const [group] = await pool.query("SELECT id FROM team WHERE id_mentor = ?", [idMentor]);
+            for (let i = 0; i < idStudent.length; i++) {
+                await pool.query("INSERT INTO team_student(id_student, id_edition, id_group)", [idStudent[i], idEdition, group[0].id]);
+            }
         } catch(err) {
-            return res.status(500).json({ message: "Fail database"});
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
+    },
+    // POST para adicionar pontuação ao grupo
+    addPontuation: async (req, res) => {
+        const { groupName, pontuation } = req.body;
+
+        try {
+            const [group] = await pool.query("SELECT group_name FROM team WHERE group_name = ?", [groupName]);
+
+            if (group.length === 0) {
+                res.status(404).json({ message: "Grupo não encontrado"});
+            }
+
+            await pool.query("INSERT INTO team(pontuation) VALUES(?) WHERE group_name = ?", [pontuation, groupName]);
+
+            res.status(201).json({ message: "Pontuação adicionada com sucesso!"});
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
         }
     },
     // GET para buscar um grupo por id
-    groupByID: (req, res) => {
+    groupByID: async (req, res) => {
         const { id } = req.params;
-
-        const indexGroup = groups.findIndex(group => group.id === id);
-        if (indexGroup === -1) return res.status(404).json({ message: "Group not found"});
-
-        return res.status(200).json(groups[indexGroup]);
-    },
-    // POST para criar um grupo
-    createGroup: async (req, res) => {
-        const { password, edition, pontuation, nameGroup } = req.body;
 
         try {
-            await pool.query("INSERT INTO Grupo (Pontuacao, Nome_grupo, Senha_grupo, id_edicoes) VALUES(?, ?, ?, ?)", [pontuation, nameGroup, password, edition]);
+            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?;", [parseInt(id)]);
 
-            const [rows] = await pool.query("SELECT * FROM Grupo WHERE Nome_grupo = ?", [nameGroup]);
-            return res.status(201).json(rows[0]);
+            if (group.length === 0) {
+                res.status(404).json({ message: "Grupo não encontrado"});
+            }
+
+            const students = [];
+            for (let i = 0; i < group.length; i++) {
+                students.push(group[i].full_name);
+            }
+
+            const formatGroup = {
+                "groupName": group[0].group_name,
+                "students": students,
+                "mentor": group[0].name_mentor
+            }
+
+            res.status(200).json(formatGroup);
         } catch(err) {
-            return res.status(500).json({ message: "Fail database"});
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
         }
     },
-    // PUT para atualizar um grupo
-    updateGroup: (req, res) => {
-        const { idGroup } = req.params;
-        const { idMentor, edition, pontuation, groupName } = req.body;
+    groupByName: async (req, res) => {
+        const { name } = req.body;
 
-        const indexGroup = groups.findIndex(group => group.id === idGroup);
-        if (indexGroup === -1) return res.status(404).json({ message: "Group not found"});
+        try {
+            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name, t.pontuation FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.group_name = ?;", [name]);
 
-        if (idMentor !== null) groups[indexGroup].idMentor = idMentor;
-        if (edition !== null) groups[indexGroup].edition = edition;
-        if (pontuation !== null) groups[indexGroup].pontuation = pontuation;
-        if (groupName !== null) groups[indexGroup].groupName = groupName;
+            if (group.length === 0) {
+                res.status(404).json({ message: "Grupo não encontrado"});
+            }
+
+            const students = [];
+            for (let i = 0; i < group.length; i++) {
+                students.push(group[i].full_name);
+            }
+
+            const formatGroup = {
+                "groupName": group[0].group_name,
+                "students": students,
+                "mentor": group[0].name_mentor,
+                "pontuation": group[0].pontuation
+            }
+
+            res.status(200).json(formatGroup);
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
     },
-    // DELETE para deletar um grupo
-    deleteGroup: (req, res) => {
+    updateGroup: async (req, res) => {
+        const { id } = req.params;
+        const { groupName, idMentor, pontuation } = req.body;
+
+        try {
+            const fields = [];
+            const values = [];
+
+            const [group] = await pool.query("SELECT group_name FROM team WHERE id = ?", [id]);
+
+            if (group.length === 0) {
+                res.status(404).json({ message: "Grupo não encontrado"});
+            }
+
+            if (groupName !== undefined) {
+                fields.push("group_name = ?");
+                values.push(groupName);
+            }
+            if (idMentor !== undefined) {
+                fields.push("id_mentor = ?");
+                values.push(idMentor);
+            }
+            if (pontuation !== undefined) {
+                fields.push("pontuation = ?");
+                values.push(pontuation)
+            }
+
+            const sql = `UPDATE team SET ${fields.join(", ")} WHERE id = ?`;
+            values.push(id);
+
+            await pool.query(sql, values);
+            
+            res.status(200).json({ message: "Atualizado com sucesso!"});
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
+    },
+    deleteGroup: async (req, res) => {
         const { id } = req.params;
 
-        const indexGroup = groups.findIndex(group => group.id === id);
-        if (indexGroup === -1) return res.status(404).json({ message: "Group not found"});
+        try {
+            const [group] = await pool.query("SELECT group_name FROM team WHERE id = ?", [id]);
 
-        const deleted = groups.splice(indexGroup, 1);
-        return res.status(201).json(deleted);
+            if (group.length === 0) {
+                res.status(404).json({ message: "Grupo não encontrado"});
+            }
+
+            await pool.query("DELETE FROM team WHERE id = ?", [id]);
+
+            res.status(200).json({ message: "Deletado com sucesso!"});
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
     }
 }
 

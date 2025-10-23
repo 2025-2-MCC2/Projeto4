@@ -21,14 +21,15 @@ router.get("/editionByID/:id", editionsController.editionByID);
 router.get("/allAdmins", adminController.allAdmins);
 router.get("/adminByID/:id", adminController.adminByID);
 
-router.get("/allGroups", groupsController.allGroups);
 router.get("/group/:id", groupsController.groupByID);
+router.get("/groupName", groupsController.groupByName);
 
 // Rotas POST
 router.post("/createUser", usersController.createUser);
 router.post("/signin", usersController.login);
 
 router.post("/createGroup", groupsController.createGroup);
+router.post("/addPontuation", groupsController.addPontuation);
 
 router.post("/createAdmin", adminController.createAdmin);
 router.post("/signin/admin", adminController.loginAdmin);
@@ -47,7 +48,9 @@ router.put("/updateAdmin/:id", adminController.updateAdmin);
 
 router.put("/updateEdition/:id", editionsController.editionByID);
 
-router.put("/updateGroup/:idGroup", groupsController.updateGroup);
+router.put("/updateGroup/:id", groupsController.updateGroup);
+
+
 
 // Rotas DELETE
 router.delete("/deleteUser/:id", usersController.deleteUser);
@@ -59,5 +62,7 @@ router.delete("/deleteAdmin/:id", adminController.deleteAdmin);
 router.delete("/deleteEdition/:id", editionsController.deleteEdition);
 
 router.delete("/deleteGroup/:id", groupsController.deleteGroup);
+
+
 
 export default router;
