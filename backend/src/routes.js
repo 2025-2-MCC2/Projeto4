@@ -5,6 +5,7 @@ import mentorController from "./controllers/mentorController.js";
 import { editionsController } from "./controllers/editionsController.js";
 import { adminController } from "./controllers/adminController.js";
 import { collectionController } from "./controllers/collectionsController.js";
+import projectsController from "./controllers/projectController.js";
 
 const router = express.Router();
 
@@ -28,6 +29,9 @@ router.get("/groupName", groupsController.groupByName);
 router.get("/allCollections", collectionController.allCollections);
 router.get("/collectionByGroup", collectionController.collectionByGroup);
 
+router.get("/allProjects", projectsController.allProjects);
+router.get("/projectByGroupID/:id", projectsController.projectByGroupID);
+
 // Rotas POST
 router.post("/createUser", usersController.createUser);
 router.post("/signin", usersController.login);
@@ -46,6 +50,8 @@ router.post("/createEdition", editionsController.createEdition);
 router.post("/createCollection", collectionController.createCollection);
 router.post("/evaluateCollection", collectionController.evaluateCollection);
 
+router.post("/createProject", projectsController.crateProject);
+
 // Rotas PUT
 router.put("/updateUser/:id", usersController.updateUser);
 
@@ -57,6 +63,7 @@ router.put("/updateEdition/:id", editionsController.editionByID);
 
 router.put("/updateGroup/:id", groupsController.updateGroup);
 
+router.put("/updateProject/:id", projectsController.updateProject);
 // Rotas DELETE
 router.delete("/deleteUser/:id", usersController.deleteUser);
 
@@ -69,5 +76,7 @@ router.delete("/deleteEdition/:id", editionsController.deleteEdition);
 router.delete("/deleteGroup/:id", groupsController.deleteGroup);
 
 router.delete("/deleteCollection/:id", collectionController.deleteCollection);
+
+router.delete("/deleteProject/:id", projectsController.deleteProject);
 
 export default router;
