@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+}
+
+.imgEmpathize {
+    width: 30rem;
+    height: 100%;
+}
+
+.rigthSide {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15rem;
+    margin-top: 2rem;
+}
+
+.rigthSide > h3 {
+    color: #0FAA75;
+    margin-left: 5rem;
+}
+
+.rigthSide > label {
+    margin-top: 1rem;
+}
+
+.rigthSide > button {
+    margin-top: 2rem;
+    margin-left: 2.8rem;
+}
+
+.rigthSide > input label {
+    margin-left: -3rem;
+}

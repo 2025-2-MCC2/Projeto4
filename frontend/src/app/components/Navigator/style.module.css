@@ -1,0 +1,49 @@
+.icons {
+    width: 1.4rem;
+    height: 1.4rem;
+    filter: brightness(0) invert(1);
+    margin: 10px;
+    cursor: pointer;
+}
+
+.menuLateral {
+    width: 55px;
+    height: 100vh;
+    background-color: #0e5c21;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.menuLateral:hover {
+    width: 180px;
+}
+
+.btnExpandir {
+    width: 100%;
+    margin-left: 3px;
+}
+
+.itemMenu {
+    transition: .5s;
+}
+
+.itemMenu:hover {
+    background-color: #03b825;
+}
+
+#logOut{
+    margin-top: 25rem;
+}
+
+.theLinks {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 5px 4%;
+    display: flex;
+    line-height: 42px;
+}
+
+.txtLink {
+    margin-left: 10px;
+}
