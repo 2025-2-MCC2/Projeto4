@@ -1,4 +1,4 @@
-import { pool } from "../db";
+import { pool } from "../db.js";
 
 const projectsController = {
     // POST para criar um projeto

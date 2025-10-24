@@ -1,4 +1,4 @@
-import { pool } from "../db";
+import { pool } from "../db.js";
 
 export const collectionController = {
     //POST para criar uma arrecadação
