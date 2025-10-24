@@ -1,60 +1,66 @@
-create database Empathize;
-use Empathize;
+CREATE DATABASE db_empathize;
+USE db_empathize;
 
-create table Mentores(
-id_mentores int primary key auto_increment, 
-Nome_Mentor varchar(100) not null,
-Email varchar(50) unique not null,
-Senha_mentor varchar(50) not null
+CREATE TABLE student(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    RA INT NOT NULL UNIQUE,
+    full_name VARCHAR(100) NOT NULL,
+    course VARCHAR(60) NOT NULL,
+    password VARCHAR(255) NOT NULL
 );
 
-create table ADM(
-id_adm int primary key auto_increment,
-Email varchar(50) unique not null,
-Senha_adm varchar(50) not null
+CREATE TABLE mentor(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name_mentor VARCHAR(150) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    password VARCHAR(255)
 );
 
-create table Edicoes(
-id_edicoes int primary key auto_increment,
-data_inicio date,
-data_termino date
+CREATE TABLE edition(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL
 );
 
-create table Grupo(
-id_grupo int primary key auto_increment,
-Pontuacao int,
-Nome_grupo varchar(25) not null,
-Senha_grupo varchar(50) not null,
-id_edicoes int,
-foreign key (id_edicoes) references Edicoes(id_edicoes)
+CREATE TABLE team(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    group_name VARCHAR(100) NOT NULL,
+	id_mentor INT,
+    pontuation INT DEFAULT 0,
+	FOREIGN KEY(id_mentor) REFERENCES mentor(id)
 );
 
-create table Alunos(
-id_alunos int primary key auto_increment,
-Nota int check (Nota between 0 and 10),
-Curso varchar(50) not null,
-Nome varchar(100) not null,
-id_grupo int,
-id_mentores int,
-foreign key (id_grupo) references Grupo(id_grupo),
-foreign key (id_mentores) references Mentores(id_mentores) 
+CREATE TABLE team_student(
+	id_student INT,
+    id_edition INT,
+    id_group INT,
+    FOREIGN KEY(id_student) REFERENCES student(id),
+    FOREIGN KEY(id_edition) REFERENCES edition(id),
+    FOREIGN KEY(id_group) REFERENCES team(id)
 );
 
-create table Arrecadacoes(
-id_arrecadacoes int primary key auto_increment,
-Validade varchar(50),
-Alimentos varchar(50),
-quant_kg int,
-Comprovante varchar(50) not null,
-Just_rejeicao varchar(100),
-status_arrecadacao varchar(15),
-id_grupo int,
-foreign key (id_grupo) references Grupo(id_grupo) 
+CREATE TABLE adm(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name_adm VARCHAR(150) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
 );
 
-create table Projetos(
-id_projetos int primary key auto_increment,
-descricao_projeto varchar(100),
-id_grupo int,
-foreign key (id_grupo) references Grupo(id_grupo)
+CREATE TABLE collection(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    food VARCHAR(255) NOT NULL,
+    quantity_kg FLOAT NOT NULL,
+    proof VARCHAR(255) NOT NULL,
+    jus_reject VARCHAR(255),
+    status VARCHAR(100) NOT NULL,
+    id_group INT,
+    FOREIGN KEY(id_group) REFERENCES team(id)
+);
+
+CREATE TABLE project(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name_project VARCHAR(100) NOT NULL,
+    description_project VARCHAR(255),
+    id_group INT,
+    FOREIGN KEY(id_group) REFERENCES team(id)
 );
