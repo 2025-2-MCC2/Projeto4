@@ -1,11 +1,9 @@
-/* Este componente ocupa 100% da largura disponível no .mainContainer do DashboardStudent */
 .integrantesContent {
     width: 100%;
 }
 
 .linesContainer {
     width: 70%;
-    /* Centraliza o container de linhas dentro do IntegrantesContainer */
     margin: 0 auto; 
     display: flex;
     flex-direction: column;

@@ -1,0 +1,44 @@
+.integrantesContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px; 
+}
+
+.linesContainer {
+    width: 70%; 
+}
+
+.integranteBlock {
+    margin-bottom: 30px;
+}
+
+.integranteBlock p {
+    padding-bottom: 5px; 
+    margin: 0; 
+    font-size: 1.1em;
+    padding-left: 5px;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #149f53; 
+}
+
+.mentorName {
+    color: #1a73e8; 
+    font-weight: bold;
+}
+
+.studentName {
+    color: #333; 
+    font-weight: normal;
+}
+
+.emptyMessage {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    margin-top: 50px;
+}
