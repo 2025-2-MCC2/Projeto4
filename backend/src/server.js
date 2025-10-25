@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true}));
 app.use(routes);
 app.use(cors({
-    origin: "https://empathize-system.vercel.app/",
+    origin: "https://empathize-system.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
