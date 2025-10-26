@@ -7,11 +7,7 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}));
 app.use(routes);
-app.use(cors({
-    origin: "https://empathize-system.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}));
+app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor está rodando na porta http://localhost:${PORT}`));
