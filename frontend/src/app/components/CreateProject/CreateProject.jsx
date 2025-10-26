@@ -5,28 +5,31 @@ import styles from "./style.module.css";
 import deleteIcon from "../../assets/excluir.png";
 import Image from "next/image";
 
-const savedProjects = [];
-
-export default function CreateProject({ onSave }) {
+export default function CreateProject() {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
   const modalRef = useRef(null);
   const openButtonRef = useRef(null);
-  const [isSalved, setIsSalved] = useState(false);
+  const [projects, setProject] = useState([]);
 
-  function creatingProject() {
-    const result = savedProjects.map((value) => (
-      <>
-        <div className={styles.containerProject}>
-          <p>{value}</p>
-          <span id={styles.iconDelete} onClick={(ev) => deleteProject(ev)}><Image src={deleteIcon} alt="delete icon" /></span>
-          {console.log(savedProjects)}
-        </div>
-      </>
-    ));
-    return result;
+  async function handleSaveProject() {
+    try {
+      const res = await fetch("https://empathizesystem-production.up.railway.app/createProject", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "name": name,
+          "description": description
+          //falta o idgroup
+        })
+      })
+    } catch(err) {
+      console.error("Erro: ", err);
+    }
   }
 
   function deleteProject(ev) {
@@ -67,11 +70,8 @@ export default function CreateProject({ onSave }) {
       return;
     }
 
-    const payload = { name: name.trim(), description: description.trim() };
-    if (typeof onSave === "function") onSave(payload);
-    else console.log("Saving project:", payload);
-
-    savedProjects.push(payload.name);
+    const newProject = { name: name.trim(), description: description.trim() };
+    setProjects(prev => [...prev, newProject]);
     // reset
     setName("");
     setDescription("");
@@ -145,7 +145,7 @@ export default function CreateProject({ onSave }) {
                 >
                   Cancelar
                 </button>
-                <button type="submit" className={styles.save} onClick={() => setIsSalved(true)}>
+                <button type="submit" className={styles.save}>
                   Salvar
                 </button>
               </div>
@@ -155,7 +155,13 @@ export default function CreateProject({ onSave }) {
       )}
 
       <div className={styles.mainContainerProject}>
-        {isSalved && creatingProject()}
+        {projects.map((value) => (
+            <div className={styles.containerProject}>
+              <p>{value}</p>
+              <span id={styles.iconDelete} onClick={(ev) => deleteProject(ev)}><Image src={deleteIcon} alt="delete icon" /></span>
+              {console.log(projects)}
+            </div>
+        ))}
       </div>
     </>
   );
