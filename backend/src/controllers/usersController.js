@@ -1,5 +1,7 @@
 import { pool } from "../db.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 const usersController = {
     // GET para buscar todos os usuários registrados;
@@ -49,7 +51,7 @@ const usersController = {
 
             res.status(201).json({ message: "Criado com sucesso!"})
         } catch(err) {
-            res.status(500).json({ message: "Erro ao cadastrar usuário"});
+            res.status(500).json({ message: "Erro ao cadastrar usuário", erro: err});
         }
     },
     // POST para logar:
@@ -57,17 +59,15 @@ const usersController = {
         const { RA, password } = req.body;
 
         try {
-            const [user]  = await pool.query("SELECT RA, password FROM student WHERE RA = ?", [RA]);
-
-            if (user.length === 0) {
-                res.status(401).json({ message: "Credenciais erradas!"});
-            }
-
+            const [user]  = await pool.query("SELECT id, RA, password FROM student WHERE RA = ?", [RA]);
             const isValidPassword = bcrypt.compareSync(password, user[0].password);
-            
-            if (!isValidPassword) {
+            if (user.length === 0 || !isValidPassword) {
                 res.status(401).json({ message: "Credenciais erradas!"});
             }
+            
+            const[userGroup] = await pool.query("SELECT id_group FROM team_student WHERE id_student = ?", [user[0].id]);
+            const payload = { id: user[0].id, ra: user[0].RA, idGroup: userGroup[0].id_group};
+            jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d'});
             
             res.status(200).json({ message: "Login efetuado!"});
         } catch(err) {
