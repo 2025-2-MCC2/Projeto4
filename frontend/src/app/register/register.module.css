@@ -21,6 +21,16 @@
     margin-left: 5rem;
 }
 
+.rigthSide > button {
+    margin-top: 1rem;
+    width: 8rem;
+    height: 2rem;
+    margin-left: -10rem;
+    background-color: #0FAA75;
+    border: solid transparent;
+    border-radius: 5px;
+}
+
 .leftSide {
     width: 50%;
 }

@@ -16,7 +16,8 @@ export default function AddStudent() {
 
                 <div className={styles.inpCurso}>
                     <label htmlFor="inpCurso" className={styles.designLabel}>Curso<span className={styles.colorMandatory}>*</span></label>
-                    <select name="inpCurso" id="inpCurso" >
+                    <select name="inpCurso" id="inpCurso">
+                        <option value="">Selecione</option>
                         <option value="ECONOMIA">Economia</option>
                         <option value="CONTABILIDADE">Contabilidade</option>
                         <option value="ADMINISTRAÇÃO">Administração</option>
