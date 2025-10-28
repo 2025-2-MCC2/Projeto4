@@ -47,7 +47,7 @@ const mentorController = {
     // GET para buscar todos os mentores
     allMentors: async (req, res) => {
         try {
-            const [mentors] = await pool.query("SELECT name_mentor, email FROM mentor");
+            const [mentors] = await pool.query("SELECT id, name_mentor, email FROM mentor");
 
             res.status(200).json({ mentors });
         } catch(err) {

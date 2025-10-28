@@ -10,8 +10,10 @@ const groupsController = {
             // buscar o id do grupo criado
             const [group] = await pool.query("SELECT id FROM team WHERE id_mentor = ?", [idMentor]);
             for (let i = 0; i < idStudent.length; i++) {
-                await pool.query("INSERT INTO team_student(id_student, id_edition, id_group)", [idStudent[i], idEdition, group[0].id]);
+                await pool.query("INSERT INTO team_student(id_student, id_edition, id_group) VALUES(?, ?, ?)", [idStudent[i], idEdition, group[0].id]);
             }
+
+            res.status(201).json({ message: "Grupo criado com sucesso!"})
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});
@@ -41,7 +43,7 @@ const groupsController = {
         const { id } = req.params;
 
         try {
-            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?;", [parseInt(id)]);
+            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?", [parseInt(id)]);
 
             if (group.length === 0) {
                 res.status(404).json({ message: "Grupo não encontrado"});
