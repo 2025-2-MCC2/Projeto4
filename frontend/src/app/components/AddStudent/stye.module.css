@@ -13,6 +13,7 @@
     border: solid #0FAA75;
     border-radius: 5px;
     padding: 8px;
+    font-size: 1rem;
 }
 
 .containerInput {
@@ -35,6 +36,7 @@
     border: solid #0FAA75;
     border-radius: 5px;
     padding: 8px;
+    font-size: 1rem;
 }
 
 .inpCurso {
@@ -47,5 +49,5 @@
     height: 2.2rem;
     border: solid #0FAA75;
     border-radius: 5px;
-    padding: 8px;
+    font-size: 1rem;
 }

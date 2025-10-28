@@ -21,14 +21,57 @@
     margin-left: 5rem;
 }
 
-.rigthSide > button {
+.buttons {
+    display: flex;
+    gap: 11rem;
+    width: 30rem;
+}
+
+.buttons > button {
     margin-top: 1rem;
-    width: 8rem;
-    height: 2rem;
+    width: 18.5rem;
+    height: 2.5rem;
     margin-left: -10rem;
     background-color: #0FAA75;
     border: solid transparent;
     border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+.groupName, .selectMentor, .inpPassword {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-left: -10rem;
+}
+
+.groupName > input {
+    width: 37rem;
+    height: 1.5rem;
+    padding: 5px;
+    border: solid #0FAA75;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.inpPassword > input {
+    width: 37rem;
+    height: 1.5rem;
+    padding: 5px;
+    border: solid #0FAA75;
+    border-radius: 5px;
+    font-size: 2rem;
+}
+
+.selectMentor > select {
+    width: 10rem;
+    height: 2.5rem;
+    border: #0FAA75 solid;
+    border-radius: 5px;
+}
+
+.colorMandatory {
+    color: red;
 }
 
 .leftSide {
