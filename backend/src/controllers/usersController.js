@@ -29,7 +29,7 @@ const usersController = {
         const { RA } = req.params;
 
         try {
-            const [user] = await pool.query("SELECT id, RA, course, full_name FROM student WHERE RA = ?", [RA]);
+            const [user] = await pool.query("SELECT id, RA, course, full_name FROM student WHERE RA = ?", [parseInt(RA)]);
             res.status(200).json({ user });
         } catch(err) {
             res.status(500).json({ message: "Fail database"});

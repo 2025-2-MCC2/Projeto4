@@ -26,6 +26,7 @@ router.get("/adminByID/:id", adminController.adminByID);
 
 router.get("/group/:id", authMiddlare, groupsController.groupByID);
 router.get("/groupName", authMiddlare, groupsController.groupByName);
+router.get("/allGroups", groupsController.allGroups);
 
 router.get("/allCollections", authMiddlare, collectionController.allCollections);
 router.get("/collectionByGroup", authMiddlare, collectionController.collectionByGroup);

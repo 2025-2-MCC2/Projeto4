@@ -4,6 +4,7 @@ import { useState } from "react";
 import formImg from "../assets/formImg1.png";
 import styles from "./register.module.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Form() {
     const [students, setStudents] = useState([
@@ -14,6 +15,7 @@ export default function Form() {
     const [password, setPassword] = useState("");
     const [allMentors, setAllMentors] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const router = useRouter();
 
     function handleAddStudent() {
         setStudents([...students, { fullName: "", ra: "", curso: "" }]);
@@ -39,7 +41,7 @@ export default function Form() {
         if (allMentors.length > 0) return; 
         
         try {
-            const res = await fetch("http://localhost:3001/allMentors", {
+            const res = await fetch("https://empathizesystem-production.up.railway.app/allMentors", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -81,7 +83,7 @@ export default function Form() {
         try {
             // 1. Buscar edição atual
             console.log("1. Buscando edição atual...");
-            const resEdition = await fetch("http://localhost:3001/allEditions");
+            const resEdition = await fetch("https://empathizesystem-production.up.railway.app/allEditions");
             
             if (!resEdition.ok) {
                 throw new Error(`Erro ao buscar edições: ${resEdition.status}`);
@@ -104,7 +106,7 @@ export default function Form() {
             for (let i = 0; i < students.length; i++) {
                 console.log(`2.${i + 1}. Criando estudante:`, students[i]);
 
-                const resCreateStudent = await fetch("http://localhost:3001/createUser", {
+                const resCreateStudent = await fetch("https://empathizesystem-production.up.railway.app/createUser", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -126,20 +128,22 @@ export default function Form() {
                 console.log(`3.${i + 1}. Buscando ID do estudante com RA: ${students[i].ra}`);
                 console.log(students)
                 console.log(students[i])
-                const resIdStudent = await fetch(`http://localhost:3001/userRA/${students[i].ra}`);
+                const resIdStudent = await fetch(`https://empathizesystem-production.up.railway.app/userRA/${students[i].ra}`);
                 
                 if (!resIdStudent.ok) {
                     throw new Error(`Erro ao buscar estudante com RA ${students[i].ra}`);
                 }
 
                 const idStudent = await resIdStudent.json();
-                console.log("ID do estudante:", idStudent);
-                idsStudents.push(idStudent.user.id);
+                console.log("ID do estudante:", idStudent.user[0].id);
+                idsStudents.push(idStudent.user[0].id);
             }
+
+            console.log(idsStudents)
 
             // 4. Criar grupo
             console.log("4. Criando grupo...");
-            const resCreateTeam = await fetch("http://localhost:3001/createGroup", {
+            const resCreateTeam = await fetch("https://empathizesystem-production.up.railway.app/createGroup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -162,6 +166,8 @@ export default function Form() {
 
             // Sucesso!
             alert("Grupo registrado com sucesso!");
+
+            router.push("/login");
             
             // Limpar formulário
             setStudents([{ fullName: "", ra: "", curso: "" }]);
