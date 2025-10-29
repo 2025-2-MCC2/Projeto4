@@ -1,33 +1,259 @@
 .container {
     display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.leftSide {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .imgEmpathize {
-    width: 30rem;
-    height: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .rigthSide {
+    width: 60%;
     display: flex;
     flex-direction: column;
-    margin-left: 15rem;
-    margin-top: 2rem;
+    padding: 2rem 4rem;
+    overflow-y: auto;
 }
 
 .rigthSide > h3 {
     color: #0FAA75;
-    margin-left: 5rem;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
 }
 
-.rigthSide > label {
-    margin-top: 1rem;
+/* Container de cada aluno */
+.containerInput {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #F9F9F9;
+    align-items: flex-end;
+    flex-wrap: wrap;
 }
 
-.rigthSide > button {
+/* Campos do formulário */
+.inpFullName,
+.inpRA,
+.inpCurso {
+    display: flex;
+    flex-direction: column;
+}
+
+.inpFullName {
+    flex: 1;
+    min-width: 200px;
+}
+
+.inpRA {
+    flex: 0.5;
+    min-width: 120px;
+}
+
+.inpCurso {
+    flex: 0.5;
+    min-width: 150px;
+}
+
+.designLabel {
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.colorMandatory {
+    color: #FF4444;
+    margin-left: 2px;
+}
+
+/* Inputs */
+.inpFullName > input,
+.inpRA > input {
+    height: 2.5rem;
+    border: 2px solid #0FAA75;
+    border-radius: 5px;
+    padding: 0 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.inpFullName > input:focus,
+.inpRA > input:focus {
+    outline: none;
+    border-color: #0D8C5E;
+    box-shadow: 0 0 0 3px rgba(15, 170, 117, 0.1);
+}
+
+/* Select */
+.inpCurso > select,
+.selectMentor > select {
+    height: 2.5rem;
+    border: 2px solid #0FAA75;
+    border-radius: 5px;
+    padding: 0 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.inpCurso > select:focus,
+.selectMentor > select:focus {
+    outline: none;
+    border-color: #0D8C5E;
+    box-shadow: 0 0 0 3px rgba(15, 170, 117, 0.1);
+}
+
+/* Botão remover aluno */
+.removeBtn {
+    height: 2.5rem;
+    padding: 0 1rem;
+    background-color: #FF4444;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.removeBtn:hover {
+    background-color: #E63939;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+}
+
+.removeBtn:active {
+    transform: translateY(0);
+}
+
+/* Campos do grupo */
+.groupName,
+.selectMentor,
+.inpPassword {
+    display: flex;
+    flex-direction: column;
     margin-top: 2rem;
-    margin-left: 2.8rem;
 }
 
-.rigthSide > input label {
-    margin-left: -3rem;
+.groupName > input,
+.inpPassword > input {
+    height: 2.5rem;
+    padding: 0 12px;
+    border: 2px solid #0FAA75;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.groupName > input:focus,
+.inpPassword > input:focus {
+    outline: none;
+    border-color: #0D8C5E;
+    box-shadow: 0 0 0 3px rgba(15, 170, 117, 0.1);
+}
+
+.selectMentor > select {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Botões de ação */
+.buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.buttons > button {
+    flex: 1;
+    min-width: 200px;
+    height: 3rem;
+    background-color: #0FAA75;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.buttons > button:hover {
+    background-color: #0D8C5E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 170, 117, 0.3);
+}
+
+.buttons > button:active {
+    transform: translateY(0);
+}
+
+.buttons > button[type="button"] {
+    background-color: #6C757D;
+}
+
+.buttons > button[type="button"]:hover {
+    background-color: #5A6268;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .leftSide,
+    .rigthSide {
+        width: 100%;
+    }
+
+    .leftSide {
+        max-height: 300px;
+    }
+
+    .rigthSide {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .containerInput {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .inpFullName,
+    .inpRA,
+    .inpCurso {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .buttons > button {
+        width: 100%;
+    }
 }

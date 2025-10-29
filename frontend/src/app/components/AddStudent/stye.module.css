@@ -1,0 +1,53 @@
+.colorMandatory {
+    color: red;
+}
+
+.inpFullName {
+    display: flex;
+    flex-direction: column;
+}
+
+.inpFullName > input{
+    width: 15rem;
+    height: 1rem;
+    border: solid #0FAA75;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.containerInput {
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap: 2rem;
+    margin-left: -10rem;
+    margin-top: 1rem;
+}
+
+.inpRA {
+    display: flex;
+    flex-direction: column;
+}
+
+.inpRA > input{
+    width: 8rem;
+    height: 1rem;
+    border: solid #0FAA75;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.inpCurso {
+    display: flex;
+    flex-direction: column;
+}
+
+.inpCurso > select{
+    width: 8rem;
+    height: 2.2rem;
+    border: solid #0FAA75;
+    border-radius: 5px;
+    font-size: 1rem;
+}

@@ -18,8 +18,8 @@ const usersController = {
         const { id } = req.params;
 
         try {
-            const [rows] = await pool.query('SELECT RA, course, full_name FROM student WHERE id = ?', [id]);
-            res.status(200).json({ rows });
+            const [user] = await pool.query('SELECT RA, course, full_name FROM student WHERE id = ?', [id]);
+            res.status(200).json({ user });
         } catch(err) {
             res.status(500).json({ message: "Fail database"});
         }
@@ -29,8 +29,8 @@ const usersController = {
         const { RA } = req.params;
 
         try {
-            const [rows] = await pool.query("SELECT id, RA, course, full_name FROM student WHERE RA = ?", [RA]);
-            res.status(200).json({ rows });
+            const [user] = await pool.query("SELECT id, RA, course, full_name FROM student WHERE RA = ?", [RA]);
+            res.status(200).json({ user });
         } catch(err) {
             res.status(500).json({ message: "Fail database"});
         }
