@@ -59,19 +59,13 @@ export const collectionController = {
         }
     },
     // GET para buscar arrecadações por grupo
-    collectionByGroup: async (req, res) => {
-        const { groupName } = req.body;
+    collectionByGroup: async (groupId) => {
 
         try {
-            const [group] = await pool.query("SELECT id FROM team WHERE group_name = ?", [groupName]);
 
-            if (group.length === 0) {
-                res.status(404).json({ message: "Grupo não encontrado"});
-            }
+            const [collection] = await pool.query("SELECT * FROM collection WHERE id_group = ?", [groupId]);
 
-            const [collection] = await pool.query("SELECT * FROM collection WHERE id_group = ?", [group[0].id]);
-
-            res.status(200).json({ collection });
+            return collection;
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});

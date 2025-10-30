@@ -2,11 +2,11 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { pool } from "../db.js";
 
-export default async function authMiddlare(req, res, next) {
+export default async function authMiddleware(req, res, next) {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        res.status(409).json({ message: "Você não tem permissão para acessar esse site"});
+        return res.status(409).json({ message: "Você não tem permissão para acessar esse site"});
     }
     
     
@@ -17,10 +17,10 @@ export default async function authMiddlare(req, res, next) {
 
         const [user] = await pool.query("SELECT id FROM student WHERE id = ?", [decoded.id]);
         if (user.length === 0) {
-            res.status(404).json({ message: "Usuário não encontrado"});
+            return res.status(404).json({ message: "Usuário não encontrado"});
         }
 
-        req.authenticatedUser = decoded;
+        req.user = decoded;
         next();
     } catch(err) {
         return res.status(401).json({ message: 'Invalid token!' })

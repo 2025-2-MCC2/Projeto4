@@ -6,7 +6,9 @@ import { editionsController } from "./controllers/editionsController.js";
 import { adminController } from "./controllers/adminController.js";
 import { collectionController } from "./controllers/collectionsController.js";
 import projectsController from "./controllers/projectController.js";
-import authMiddlare from "./middlewares/authMiddleware.js";
+import authMiddleware from "./middlewares/authMiddleware.js";
+import { getDashboardData } from "./controllers/dashboardStudentController.js";
+import { validateToken } from "./validateToken.js";
 
 const router = express.Router();
 
@@ -21,22 +23,22 @@ router.get("/mentorByID/:id", mentorController.mentorByID);
 router.get("/allEditions", editionsController.allEditions);
 router.get("/editionByID/:id", editionsController.editionByID);
 
+router.get("/dashboardStudent", authMiddleware, getDashboardData);
+router.get("/validate", authMiddleware, validateToken);
+
 router.get("/allAdmins", adminController.allAdmins);
 router.get("/adminByID/:id", adminController.adminByID);
 
-router.get("/group/:id", authMiddlare, groupsController.groupByID);
-router.get("/groupName", authMiddlare, groupsController.groupByName);
+router.get("/groupName", groupsController.groupByName);
 router.get("/allGroups", groupsController.allGroups);
 
-router.get("/allCollections", authMiddlare, collectionController.allCollections);
-router.get("/collectionByGroup", authMiddlare, collectionController.collectionByGroup);
+router.get("/allCollections", collectionController.allCollections);
 
 router.get("/allProjects", projectsController.allProjects);
-router.get("/projectByGroupID/:id", authMiddlare, projectsController.projectByGroupID);
 
 // Rotas POST
 router.post("/createUser", usersController.createUser);
-router.post("/signin", authMiddlare ,usersController.login);
+router.post("/signin", usersController.login);
 
 router.post("/createGroup", groupsController.createGroup);
 router.post("/addPontuation", groupsController.addPontuation);

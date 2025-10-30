@@ -5,6 +5,7 @@ import Image from "next/image";
 import empathizeLogo from "../assets/empathizeLogo-removebg-preview.png";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { setToken } from "./auth.js";
 
 export default function Login() {
     const [registerStudent, setRegisterStudent] = useState(0);
@@ -15,7 +16,7 @@ export default function Login() {
         ev.preventDefault();
 
         try {
-            const res = await fetch("https://empathizesystem-production.up.railway.app/signin", {
+            const res = await fetch("http://localhost:3001/signin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -33,6 +34,8 @@ export default function Login() {
                 return;
             }
 
+            const data = await res.json();
+            setToken(data.token)
             router.push("/dashboardStudent");
         } catch(err) {
             console.error("Erro: ", err);

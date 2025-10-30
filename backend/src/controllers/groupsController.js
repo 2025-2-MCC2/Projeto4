@@ -39,11 +39,10 @@ const groupsController = {
         }
     },
     // GET para buscar um grupo por id
-    groupByID: async (req, res) => {
-        const { id } = req.params;
+    groupByID: async (groupId) => {
 
         try {
-            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?", [parseInt(id)]);
+            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?", [groupId]);
 
             if (group.length === 0) {
                 res.status(404).json({ message: "Grupo não encontrado"});
@@ -60,7 +59,7 @@ const groupsController = {
                 "mentor": group[0].name_mentor
             }
 
-            res.status(200).json(formatGroup);
+            return formatGroup;
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});
