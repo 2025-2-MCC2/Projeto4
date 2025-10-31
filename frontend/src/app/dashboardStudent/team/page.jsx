@@ -5,8 +5,10 @@ import styles from "./team.module.css";
 import layoutStyles from "../dashboard.module.css";
 import Navigator from "../../components/Navigator/index.jsx"; 
 import IntegrantesContainer from "../../components/IntegrantesContainer/index.jsx"; 
-import ProtectedRoute from "@/app/components/ProtectedRoute.js";
+import ProtectedRoute from "../../components/ProtectedRoute.js";
 import { getToken } from "../../login/auth.js";
+import iconTeam from "../../assets/users-alt.svg";
+import Image from "next/image";
 
 function Integrantes() {
     const [data, setData] = useState(null);
@@ -51,7 +53,9 @@ function Integrantes() {
             <div className={layoutStyles.mainContainer}> 
                 <div className={layoutStyles.headerSection}>
                     <div className={layoutStyles.breadcrumb}>
-                        <span className={layoutStyles.breadcrumbIcon}>👥</span>
+                        <span className={layoutStyles.breadcrumbIcon}>
+                            <Image src={iconTeam} alt="Icon team"/>
+                        </span>
                         <span className={layoutStyles.breadcrumbText}>Integrantes</span>
                     </div>
                     <div className={layoutStyles.pageTitle}>
@@ -70,7 +74,9 @@ function Integrantes() {
                         <>
                             <div className={styles.teamHeader}>
                                 <div className={styles.statsCard}>
-                                    <div className={styles.statsIcon}>👥</div>
+                                    <div className={styles.statsIcon}>
+                                        <Image src={iconTeam} alt="Icon Team"/>
+                                    </div>
                                     <div className={styles.statsInfo}>
                                         <span className={styles.statsNumber}>{studentsCount}</span>
                                         <span className={styles.statsLabel}>Integrantes</span>

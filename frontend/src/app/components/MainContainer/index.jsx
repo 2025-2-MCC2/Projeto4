@@ -2,7 +2,7 @@ import BoxComponent from "./BoxComponent";
 import MessagePanel from "./MessagePanel";
 import styles from "./style.module.css";
 import iconRanking from "../../assets/estrelas-do-ranking.svg";
-import iconFood from "../../assets/tigela-de-macarrao-com-pauzinhos.svg";
+import iconFood from "../../assets/comida-dietetica.png";
 import iconMentor from "../../assets/pessoaMentor.png";
 import iconPrancheta from "../../assets/prancheta.svg";
 
@@ -12,7 +12,13 @@ export default function MainContainer(props) {
     const pontuation = informations?.informationsGroup?.pontuation ?? '-';
     const mentor = informations?.informationsGroup?.mentor ?? '-';
     const groupName = informations?.informationsGroup?.groupName ?? 'Seu Grupo';
-
+    const collections = informations?.informationsCollections;
+    const projects = informations?.informationsProjects.length;
+    let quantityKG = 0;
+    for (let i = 0; i < collections.length; i++) {
+        quantityKG += collections[i].quantity_kg;
+    }
+ 
     return (
         <div className={styles.container}> 
             <div className={styles.mainContent}>
@@ -32,7 +38,7 @@ export default function MainContainer(props) {
                         color="purple"
                     />
                     <BoxComponent 
-                        pontuation="3kg" 
+                        pontuation={`${quantityKG}kg`} 
                         title="Arrecadação" 
                         subtitle="Alimentos coletados"
                         icon={iconFood}
@@ -46,7 +52,7 @@ export default function MainContainer(props) {
                         color="blue"
                     />     
                     <BoxComponent 
-                        pontuation="3"
+                        pontuation={projects}
                         title="Projetos"
                         subtitle="Projetos criados"
                         icon={iconPrancheta}

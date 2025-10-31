@@ -7,6 +7,8 @@ import styles from "./projects.module.css";
 import layoutStyles from "../dashboard.module.css";
 import ProtectedRoute from "../../components/ProtectedRoute.js";
 import { getToken } from "../../login/auth.js";
+import Image from "next/image";
+import iconPrancheta from "../../assets/prancheta.svg";
 
 function ProjectsModel() {
     const [data, setData] = useState(null);
@@ -17,7 +19,7 @@ function ProjectsModel() {
         const fetchDashboard = async () => {
             try {
                 const token = getToken();
-                const res = await fetch("http://localhost:3001/dashboardStudent", {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboardStudent`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -67,7 +69,9 @@ function ProjectsModel() {
             <div className={layoutStyles.mainContainer}>
                 <div className={layoutStyles.headerSection}>
                     <div className={layoutStyles.breadcrumb}>
-                        <span className={layoutStyles.breadcrumbIcon}>📋</span>
+                        <span className={layoutStyles.breadcrumbIcon}>
+                            <Image src={iconPrancheta} alt="Icon projects" className={styles.iconPrancheta}/>
+                        </span>
                         <span className={layoutStyles.breadcrumbText}>Projetos</span>
                     </div>
                     <div className={layoutStyles.pageTitle}>

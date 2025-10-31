@@ -6,6 +6,8 @@ import MainContainer from "../components/MainContainer/index.jsx";
 import { useEffect, useState } from "react";
 import { getToken } from "../login/auth.js";
 import ProtectedRoute from "../components/ProtectedRoute.js";
+import Image from "next/image";
+import iconDashboard from "../assets/painel-de-controle.png";
 
 function DashboardStudentContent() {
     const [data, setData] = useState(null);
@@ -46,7 +48,9 @@ function DashboardStudentContent() {
             <div className={styles.mainContainer}>
                 <div className={styles.headerSection}>
                     <div className={styles.breadcrumb}>
-                        <span className={styles.breadcrumbIcon}>🏠</span>
+                        <span className={styles.breadcrumbIcon}>
+                            <Image src={iconDashboard} alt="Icon dashboard" className={styles.iconDashboard}/>
+                        </span>
                         <span className={styles.breadcrumbText}>Dashboard</span>
                     </div>
                     <div className={styles.pageTitle}>
