@@ -6,6 +6,8 @@ import styles from "./register.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Form() {
     const [students, setStudents] = useState([
         { fullName: "", ra: "", curso: "" }
@@ -43,7 +45,7 @@ export default function Form() {
         if (allMentors.length > 0) return; 
         
         try {
-            const res = await fetch(`${process.env.API_URL}/allMentors`, {
+            const res = await fetch(`${apiUrl}/allMentors`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

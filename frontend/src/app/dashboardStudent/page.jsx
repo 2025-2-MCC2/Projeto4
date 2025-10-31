@@ -15,7 +15,7 @@ function DashboardStudentContent() {
         const fetchDashboard = async () => {
             try {
                 const token = getToken();
-                const res = await fetch("http://localhost:3001/dashboardStudent", {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboardStudent`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
