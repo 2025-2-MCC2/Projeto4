@@ -9,6 +9,7 @@ import logOut from "../../assets/exit.svg";
 import Integrantes from "../../assets/users-alt.svg";
 import Link from "next/link";
 import Image from "next/image";
+import iconAccount from "../../assets/do-utilizador.png";
 
 export default function Navigator() {
     const [isOpen, setIsOpen] = useState(false);
@@ -57,6 +58,14 @@ export default function Navigator() {
                                     <Image src={logOut} alt="Sair icon" className={styles.icons}/>
                                 </span>
                                 <span className={styles.txtLink}>Sair</span>
+                            </Link>
+                        </li>
+                        <li className={styles.itemMenu} >
+                            <Link href={"/dashboardStudent/account"} className={styles.theLinks}>
+                                <span className="icon">
+                                    <Image src={iconAccount} alt="Sair icon" className={styles.icons}/>
+                                </span>
+                                <span className={styles.txtLink}>Conta</span>
                             </Link>
                         </li>
                     </ul>

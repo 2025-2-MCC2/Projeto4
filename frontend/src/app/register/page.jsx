@@ -89,7 +89,7 @@ export default function Form() {
 
         try {
             console.log("1. Buscando edição atual...");
-            const resEdition = await fetch("https://empathizesystem-production.up.railway.app/allEditions");
+            const resEdition = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allEditions`);
             
             if (!resEdition.ok) {
                 throw new Error(`Erro ao buscar edições: ${resEdition.status}`);
@@ -110,7 +110,7 @@ export default function Form() {
             for (let i = 0; i < students.length; i++) {
                 console.log(`2.${i + 1}. Criando estudante:`, students[i]);
 
-                const resCreateStudent = await fetch("https://empathizesystem-production.up.railway.app/createUser", {
+                const resCreateStudent = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createUser`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -129,7 +129,7 @@ export default function Form() {
                 }
 
                 console.log(`3.${i + 1}. Buscando ID do estudante com RA: ${students[i].ra}`);
-                const resIdStudent = await fetch(`https://empathizesystem-production.up.railway.app/userRA/${students[i].ra}`);
+                const resIdStudent = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/userRA/${students[i].ra}`);
                 
                 if (!resIdStudent.ok) {
                     throw new Error(`Erro ao buscar estudante com RA ${students[i].ra}`);
@@ -141,7 +141,7 @@ export default function Form() {
             }
 
             console.log("4. Criando grupo...");
-            const resCreateTeam = await fetch("https://empathizesystem-production.up.railway.app/createGroup", {
+            const resCreateTeam = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createGroup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
