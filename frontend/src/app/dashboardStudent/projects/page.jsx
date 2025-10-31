@@ -129,16 +129,21 @@ function ProjectsModel() {
     );
 }
 
+import Link from "next/link";
+
 function ProjectCard({ project, onDelete, onUpdate }) {
     const [isEditing, setIsEditing] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
 
-    const handleDelete = async () => {
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
         if (!confirm('Tem certeza que deseja excluir este projeto?')) return;
         
         setIsDeleting(true);
         try {
-            const res = await fetch(`http://localhost:3001/deleteProject/${project.id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/deleteProject/${project.id}`, {
                 method: 'DELETE'
             });
 
@@ -155,36 +160,46 @@ function ProjectCard({ project, onDelete, onUpdate }) {
         }
     };
 
-    return (
-        <div className={styles.projectCard}>
-            <div className={styles.cardHeader}>
-                <h3 className={styles.projectTitle}>{project.name_project || project.name}</h3>
-                <div className={styles.cardActions}>
-                    <button
-                        className={styles.editBtn}
-                        onClick={() => setIsEditing(true)}
-                        title="Editar projeto"
-                    >
-                        ✏️
-                    </button>
-                    <button
-                        className={styles.deleteBtn}
-                        onClick={handleDelete}
-                        disabled={isDeleting}
-                        title="Excluir projeto"
-                    >
-                        {isDeleting ? '⏳' : '🗑️'}
-                    </button>
-                </div>
-            </div>
-            
-            <p className={styles.projectDescription}>
-                {project.description_project || project.description || 'Sem descrição'}
-            </p>
+    const handleEdit = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsEditing(true);
+    };
 
-            <div className={styles.cardFooter}>
-                <span className={styles.projectBadge}>Em andamento</span>
-            </div>
+    return (
+        <>
+            <Link href={`/dashboardStudent/projects/${project.id}`} className={styles.projectCardLink}>
+                <div className={styles.projectCard}>
+                    <div className={styles.cardHeader}>
+                        <h3 className={styles.projectTitle}>{project.name_project || project.name}</h3>
+                        <div className={styles.cardActions}>
+                            <button
+                                className={styles.editBtn}
+                                onClick={handleEdit}
+                                title="Editar projeto"
+                            >
+                                ✏️
+                            </button>
+                            <button
+                                className={styles.deleteBtn}
+                                onClick={handleDelete}
+                                disabled={isDeleting}
+                                title="Excluir projeto"
+                            >
+                                {isDeleting ? '⏳' : '🗑️'}
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <p className={styles.projectDescription}>
+                        {project.description_project || project.description || 'Sem descrição'}
+                    </p>
+
+                    <div className={styles.cardFooter}>
+                        <span className={styles.projectBadge}>Em andamento</span>
+                    </div>
+                </div>
+            </Link>
 
             {isEditing && (
                 <EditProjectModal
@@ -193,7 +208,7 @@ function ProjectCard({ project, onDelete, onUpdate }) {
                     onUpdate={onUpdate}
                 />
             )}
-        </div>
+        </>
     );
 }
 

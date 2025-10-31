@@ -80,6 +80,11 @@
     line-height: 1.5;
 }
 
+.imgMessages {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 /* Responsividade */
 @media (max-width: 1200px) {
     .panelContainer {

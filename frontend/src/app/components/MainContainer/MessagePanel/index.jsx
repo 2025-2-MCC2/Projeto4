@@ -1,11 +1,14 @@
 import styles from './style.module.css'; 
+import iconMessages from "../../../assets/messages.png";
+import Image from "next/image";
 
 export default function MessagePanel({ className }) {
     return (
         <div className={`${styles.panelContainer} ${className}`}> 
             <header className={styles.panelHeader}>
                 <div className={styles.headerContent}>
-                    <h3>💬 Mensagens</h3>
+                    <Image src={iconMessages} alt='Icon messages'className={styles.imgMessages}/>
+                    <h3>Mensagens</h3>
                     <span className={styles.badge}>0</span>
                 </div>
             </header>

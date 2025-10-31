@@ -199,7 +199,7 @@ export default function Form() {
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.studentsSection}>
                         <div className={styles.sectionHeader}>
-                            <h3>👥 Integrantes do Grupo</h3>
+                            <h3>Integrantes do Grupo</h3>
                             <span className={styles.badge}>{students.length} {students.length === 1 ? 'aluno' : 'alunos'}</span>
                         </div>
 
@@ -284,7 +284,7 @@ export default function Form() {
 
                     <div className={styles.groupSection}>
                         <div className={styles.sectionHeader}>
-                            <h3>🎯 Informações do Grupo</h3>
+                            <h3>Informações do Grupo</h3>
                         </div>
 
                         <div className={styles.inputGroup}>
