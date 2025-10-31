@@ -1,43 +1,104 @@
 .panelContainer {
-    height: 70vh; 
-    width: 300px; 
-    background-color: white; 
-    border: 1px solid #D7FDD9; 
-    border-radius: 10px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
-    padding: 1.2rem;
+    overflow: hidden;
+    height: calc(100vh - 4rem);
+    max-height: 700px;
 }
 
 .panelHeader {
-    padding-bottom: 0.8rem;
+    padding: 1.5rem;
+    border-bottom: 2px solid #f3f4f6;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
 }
 
-.panelHeader h4 {
-    font-size: 1.2rem;
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerContent h3 {
+    font-size: 1.3rem;
     font-weight: 700;
-    color: #000;
+    color: #065f46;
     margin: 0;
 }
 
+.badge {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
 .panelContent {
-    flex-grow: 1; 
-    background-color: #D7FDD9; 
-    border-radius: 0.8rem;
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.emptyState {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 1rem;
+    text-align: center;
+    gap: 1rem;
 }
 
-.messageIcon {
-    font-size: 2.5rem;
+.emptyIcon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 0.5rem;
 }
 
-.emptyMessage {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #4c564d; 
+.emptyState h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.emptyState p {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin: 0;
+    max-width: 250px;
+    line-height: 1.5;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .panelContainer {
+        max-height: none;
+        height: auto;
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .panelHeader {
+        padding: 1.25rem;
+    }
+
+    .headerContent h3 {
+        font-size: 1.1rem;
+    }
+
+    .panelContent {
+        padding: 1.5rem;
+    }
 }

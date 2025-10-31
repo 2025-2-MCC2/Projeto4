@@ -9,6 +9,7 @@ import ProtectedRoute from "../components/ProtectedRoute.js";
 
 function DashboardStudentContent() {
     const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchDashboard = async () => {
@@ -26,9 +27,11 @@ function DashboardStudentContent() {
 
                 const result = await res.json();
                 setData(result);
-                console.log("Dados do grupo: " + data);
+                console.log("Dados do grupo:", result);
             } catch(err) {
                 console.error(err);
+            } finally {
+                setIsLoading(false);
             }
         }
 
@@ -36,17 +39,32 @@ function DashboardStudentContent() {
     }, []);
 
     return (
-        <>
-            <div className={styles.dashboard}>
-                <div className={styles.nav}>
-                    <Navigator />
-                </div>
-                <div className={styles.mainContainer}>
-                    <h3>#DASHBOARD</h3>
-                    <MainContainer />
-                </div>
+        <div className={styles.dashboard}>
+            <div className={styles.nav}>
+                <Navigator />
             </div>
-        </>
+            <div className={styles.mainContainer}>
+                <div className={styles.headerSection}>
+                    <div className={styles.breadcrumb}>
+                        <span className={styles.breadcrumbIcon}>🏠</span>
+                        <span className={styles.breadcrumbText}>Dashboard</span>
+                    </div>
+                    <div className={styles.pageTitle}>
+                        <h1>Dashboard</h1>
+                        <p>Acompanhe o progresso do seu grupo</p>
+                    </div>
+                </div>
+
+                {isLoading ? (
+                    <div className={styles.loadingState}>
+                        <div className={styles.loadingSpinner}></div>
+                        <p>Carregando dados...</p>
+                    </div>
+                ) : (
+                    <MainContainer data={data} />
+                )}
+            </div>
+        </div>
     );
 }
 

@@ -42,7 +42,7 @@ const groupsController = {
     groupByID: async (groupId) => {
 
         try {
-            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?", [groupId]);
+            const [group] = await pool.query("SELECT ts.id_student, t.pontuation, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?", [groupId]);
 
             if (group.length === 0) {
                 res.status(404).json({ message: "Grupo não encontrado"});
@@ -56,7 +56,9 @@ const groupsController = {
             const formatGroup = {
                 "groupName": group[0].group_name,
                 "students": students,
-                "mentor": group[0].name_mentor
+                "mentor": group[0].name_mentor,
+                "groupId": groupId,
+                "pontuation": group[0].pontuation
             }
 
             return formatGroup;

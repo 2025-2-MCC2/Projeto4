@@ -54,7 +54,7 @@ router.post("/createEdition", editionsController.createEdition);
 router.post("/createCollection", collectionController.createCollection);
 router.post("/evaluateCollection", collectionController.evaluateCollection);
 
-router.post("/createProject", projectsController.crateProject);
+router.post("/createProject", projectsController.createProject);
 
 // Rotas PUT
 router.put("/updateUser/:id", usersController.updateUser);

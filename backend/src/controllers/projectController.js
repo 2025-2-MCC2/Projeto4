@@ -2,7 +2,7 @@ import { pool } from "../db.js";
 
 const projectsController = {
     // POST para criar um projeto
-    crateProject: async (req, res) => {
+    createProject: async (req, res) => {
         const { name, description, idGroup } = req.body;
 
         try {

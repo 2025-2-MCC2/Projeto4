@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { validateToken } from "../login/auth.js";
+import styles from "./ProtectedRoute.module.css";
 
 export default function ProtectedRoute({ children }) {
     const router = useRouter();
@@ -19,7 +20,6 @@ export default function ProtectedRoute({ children }) {
                     setIsAuthenticated(true);
                 }
             } catch (err) {
-                // Em caso de erro, redireciona para login
                 router.push("/login");
             } finally {
                 setIsLoading(false);
@@ -31,8 +31,18 @@ export default function ProtectedRoute({ children }) {
 
     if (isLoading) {
         return (
-            <div>
-                <p>Carregando...</p>
+            <div className={styles.loadingContainer}>
+                <div className={styles.loadingContent}>
+                    <div className={styles.spinnerWrapper}>
+                        <div className={styles.spinner}></div>
+                        <div className={styles.spinnerGlow}></div>
+                    </div>
+                    <h2 className={styles.loadingTitle}>Empathize</h2>
+                    <p className={styles.loadingText}>Validando suas credenciais...</p>
+                    <div className={styles.progressBar}>
+                        <div className={styles.progressFill}></div>
+                    </div>
+                </div>
             </div>
         );
     }

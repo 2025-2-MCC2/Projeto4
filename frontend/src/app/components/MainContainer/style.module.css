@@ -1,41 +1,89 @@
 .container {
-    display: flex; 
-    justify-content: space-around;
-    align-items: flex-start;
-    height: 100vh; 
-    width: 100%; 
-    padding: 0 4rem; 
+    display: flex;
+    gap: 2rem;
+    min-height: 100vh;
+    width: 100%;
+    padding: 2rem 3rem;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 
-.cardsWrapper {
+.mainContent {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    
-    padding: 0; 
-    width: fit-content; 
+    gap: 2rem;
 }
 
-.messagePanel {
-    align-self: flex-start; 
+.welcomeSection {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
-.box {
-    width: 13rem;
-    height: 8rem;
-    border: solid #D7FDD9;
-    border-radius: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-    background-color: #D7FDD9;
-    cursor: pointer;
-    transition: .5s;
+.welcomeText h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #065f46;
+    margin: 0 0 0.5rem 0;
 }
 
-.box:hover {
-    background-color: #179e1e;
-    border: #179e1e;
+.highlight {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.welcomeText p {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.sidebar {
+    width: 380px;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+    }
+
+    .cardsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .welcomeSection {
+        padding: 1.5rem;
+    }
+
+    .welcomeText h1 {
+        font-size: 1.5rem;
+    }
+
+    .cardsGrid {
+        grid-template-columns: 1fr;
+    }
 }
