@@ -124,7 +124,8 @@ export default function Login() {
                 </form>
 
                 <div className={styles.footer}>
-                    <p>Esqueceu sua senha? <a href="#">Recuperar</a></p>
+                    <p><a href="#">Sou mentor</a></p>
+                    <p><a href="#">Sou admin</a></p>
                 </div>
             </div>
         </div>

@@ -246,6 +246,9 @@
 .footer {
     margin-top: 1.5rem;
     text-align: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .footer p {

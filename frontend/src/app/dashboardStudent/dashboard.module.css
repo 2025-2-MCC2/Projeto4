@@ -19,7 +19,8 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 0;
+    width: calc(100vw - 70px);
+    max-width: calc(100vw - 70px);
     overflow-x: hidden;
 }
 
@@ -35,6 +36,10 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
+}
+
+.breadcrumbIcon {
+    font-size: 1rem;
 }
 
 .iconDashboard {
@@ -121,6 +126,8 @@
 
     .mainContainer {
         margin-left: 60px;
+        width: calc(100vw - 60px);
+        max-width: calc(100vw - 60px);
     }
 
     .headerSection {
@@ -142,12 +149,13 @@
 
 @media (max-width: 480px) {
     .nav {
-        width: 0;
-        opacity: 0;
+        width: 70px;
     }
 
     .mainContainer {
-        margin-left: 0;
+        margin-left: 70px;
+        width: calc(100vw - 70px);
+        max-width: calc(100vw - 70px);
     }
 
     .headerSection {

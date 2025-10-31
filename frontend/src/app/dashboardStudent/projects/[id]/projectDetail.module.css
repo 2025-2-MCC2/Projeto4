@@ -1,9 +1,25 @@
-.projectsContent {
+.breadcrumbLink {
+    color: #059669;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+    color: #10b981;
+    text-decoration: underline;
+}
+
+.breadcrumbSeparator {
+    color: #9ca3af;
+    margin: 0 0.5rem;
+}
+
+.projectContent {
     padding: 2rem 3rem;
     flex: 1;
 }
 
-.projectsHeader {
+.contentHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,14 +77,40 @@
     font-weight: 500;
 }
 
-/* Projects Grid */
-.projectsGrid {
+.btnCreateCollection {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btnCreateCollection:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btnIcon {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Collections Grid */
+.collectionsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
 }
 
-.projectCard {
+.collectionCard {
     background: white;
     border-radius: 16px;
     padding: 1.75rem;
@@ -82,7 +124,7 @@
     animation: fadeIn 0.5s ease-out;
 }
 
-.projectCard::before {
+.collectionCard::before {
     content: '';
     position: absolute;
     top: 0;
@@ -92,7 +134,7 @@
     background: linear-gradient(90deg, #10b981, #059669);
 }
 
-.projectCard:hover {
+.collectionCard:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 30px rgba(16, 185, 129, 0.2);
 }
@@ -104,7 +146,7 @@
     gap: 1rem;
 }
 
-.projectTitle {
+.collectionTitle {
     font-size: 1.25rem;
     font-weight: 700;
     color: #065f46;
@@ -112,12 +154,6 @@
     flex: 1;
 }
 
-.cardActions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.editBtn,
 .deleteBtn {
     width: 36px;
     height: 36px;
@@ -129,19 +165,6 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-}
-
-.editBtn {
-    background: #eff6ff;
-    color: #2563eb;
-}
-
-.editBtn:hover {
-    background: #dbeafe;
-    transform: scale(1.1);
-}
-
-.deleteBtn {
     background: #fef2f2;
     color: #dc2626;
 }
@@ -156,11 +179,40 @@
     cursor: not-allowed;
 }
 
-.projectDescription {
+.collectionInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.infoLabel {
+    font-size: 0.85rem;
+    font-weight: 600;
     color: #6b7280;
-    line-height: 1.6;
-    margin: 0;
-    flex: 1;
+}
+
+.infoValue {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.proofLink {
+    color: #059669;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.proofLink:hover {
+    color: #10b981;
+    text-decoration: underline;
 }
 
 .cardFooter {
@@ -171,13 +223,35 @@
     border-top: 1px solid #f3f4f6;
 }
 
-.projectBadge {
-    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-    color: #059669;
+.statusBadge {
     padding: 0.4rem 0.9rem;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
+}
+
+.statusApproved {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+}
+
+.statusPending {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+}
+
+.statusRejected {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+}
+
+.rejectionReason {
+    background: #fef2f2;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #991b1b;
+    border-left: 4px solid #dc2626;
 }
 
 /* Empty State */
@@ -353,6 +427,7 @@
     font-size: 1rem;
     color: #1f2937;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .inputGroup input:focus,
@@ -362,16 +437,21 @@
     box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
 }
 
-.inputGroup textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
 .inputGroup input:disabled,
 .inputGroup textarea:disabled {
     background: #f3f4f6;
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+.error {
+    color: #dc2626;
+    font-size: 0.9rem;
+    margin: 0;
+    padding: 0.75rem;
+    background: #fef2f2;
+    border-radius: 8px;
+    border-left: 4px solid #dc2626;
 }
 
 .modalActions {
@@ -420,9 +500,77 @@
     cursor: not-allowed;
 }
 
-.iconPrancheta {
-    width: 1.5rem;
-    height: 1.5rem;
+/* Responsividade */
+@media (max-width: 1024px) {
+    .projectContent {
+        padding: 1.5rem 2rem;
+    }
+
+    .collectionsGrid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .projectContent {
+padding: 1.25rem 1.5rem;
+}
+.contentHeader {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.btnCreateCollection {
+    width: 100%;
+    justify-content: center;
+}
+
+.collectionsGrid {
+    grid-template-columns: 1fr;
+}
+
+.modal {
+    padding: 1.5rem;
+}
+}
+@media (max-width: 480px) {
+.projectContent {
+padding: 1rem;
+}
+.statsCard {
+    padding: 1.5rem;
+}
+
+.statsIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+}
+
+.statsNumber {
+    font-size: 1.5rem;
+}
+
+.collectionCard {
+    padding: 1.5rem;
+}
+
+.collectionTitle {
+    font-size: 1.1rem;
+}
+
+.modal {
+    padding: 1.25rem;
+}
+
+.modalActions {
+    flex-direction: column;
+}
+
+.cancelBtn,
+.saveBtn {
+    width: 100%;
+}
 }
 
 .projectCardLink {
@@ -435,32 +583,7 @@
     cursor: pointer;
 }
 
-/* Responsividade */
-@media (max-width: 1024px) {
-    .projectsContent {
-        padding: 1.5rem 2rem;
-    }
-
-    .projectsGrid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    .projectsContent {
-        padding: 1.25rem 1.5rem;
-    }
-
-    .projectsHeader {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .projectsGrid {
-        grid-template-columns: 1fr;
-    }
-
-    .modal {
-        padding: 1.5rem;
-    }
+.iconPrancheta {
+    width: 1.5rem;
+    height: 1.5rem;
 }
