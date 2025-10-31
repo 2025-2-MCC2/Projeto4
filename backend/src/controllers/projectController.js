@@ -2,7 +2,7 @@ import { pool } from "../db.js";
 
 const projectsController = {
     // POST para criar um projeto
-    crateProject: async (req, res) => {
+    createProject: async (req, res) => {
         const { name, description, idGroup } = req.body;
 
         try {
@@ -32,19 +32,13 @@ const projectsController = {
         }
     },
     // GET para buscar um projeto pelo grupo
-    projectByGroupID: async (req, res) => {
-        const { id } = req.params;
+    projectByGroupID: async (groupId) => {
 
         try {
-            const [group] = await pool.query("SELECT id FROM team WHERE id = ?", [id]);
 
-            if (group.length === 0) {
-                res.status(404).json({ message: "Grupo não encontrado"});
-            }
+            const [project] = await pool.query("SELECT * FROM project WHERE id_group = ?", [groupId]);
 
-            const [project] = await pool.query("SELECT * FROM project WHERE id_group = ?", [id]);
-
-            res.status(200).json(project);
+            return project;
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});

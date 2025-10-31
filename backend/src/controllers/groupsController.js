@@ -8,7 +8,7 @@ const groupsController = {
         try {
             await pool.query("INSERT INTO team(group_name, id_mentor) VALUES(?, ?)", [groupName, idMentor]);
             // buscar o id do grupo criado
-            const [group] = await pool.query("SELECT id FROM team WHERE id_mentor = ?", [idMentor]);
+            const [group] = await pool.query("SELECT id FROM team WHERE group_name = ?", [groupName]);
             for (let i = 0; i < idStudent.length; i++) {
                 await pool.query("INSERT INTO team_student(id_student, id_edition, id_group) VALUES(?, ?, ?)", [idStudent[i], idEdition, group[0].id]);
             }
@@ -39,11 +39,10 @@ const groupsController = {
         }
     },
     // GET para buscar um grupo por id
-    groupByID: async (req, res) => {
-        const { id } = req.params;
+    groupByID: async (groupId) => {
 
         try {
-            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?", [parseInt(id)]);
+            const [group] = await pool.query("SELECT ts.id_student, t.pontuation, s.full_name, m.name_mentor, t.group_name FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.id = ?", [groupId]);
 
             if (group.length === 0) {
                 res.status(404).json({ message: "Grupo não encontrado"});
@@ -57,10 +56,12 @@ const groupsController = {
             const formatGroup = {
                 "groupName": group[0].group_name,
                 "students": students,
-                "mentor": group[0].name_mentor
+                "mentor": group[0].name_mentor,
+                "groupId": groupId,
+                "pontuation": group[0].pontuation
             }
 
-            res.status(200).json(formatGroup);
+            return formatGroup;
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});
@@ -70,7 +71,7 @@ const groupsController = {
         const { name } = req.body;
 
         try {
-            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name, t.pontuation FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.group_name = ?;", [name]);
+            const [group] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name, t.pontuation FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor WHERE t.group_name = ?", [name]);
 
             if (group.length === 0) {
                 res.status(404).json({ message: "Grupo não encontrado"});
@@ -89,6 +90,16 @@ const groupsController = {
             }
 
             res.status(200).json(formatGroup);
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({ message: "Database Error"});
+        }
+    },
+    allGroups: async (req, res) => {
+        try {
+            const [groups] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name, t.pontuation FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor");
+
+            res.status(200).json({ groups })
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});

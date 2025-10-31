@@ -3,44 +3,15 @@
 import React from 'react';
 import styles from './style.module.css';
 
-export default function IntegrantesContainer({ students, mentor }) {
-    
-    const integrantes = [];
+export default function IntegrantesContainer(props) {
+    const informations = props.data;
 
-    if (mentor) {
-        integrantes.push({ name: mentor, role: 'mentor' });
-    }
-
-    if (students && students.length > 0) {
-        students.forEach(studentName => {
-            integrantes.push({ name: studentName, role: 'student' });
-        });
-    }
-    
+    const students = informations?.informationsGroup.students || [];
     return (
-        <div className={styles.integrantesContent}> 
-            <div className={styles.linesContainer}> 
-                
-                {integrantes.map((integrante, index) => (
-                    <div 
-                        key={index} 
-                        className={styles.integranteBlock} 
-                    >
-                        <p className={
-                            integrante.role === 'mentor' ? styles.mentorName : styles.studentName
-                        }>
-                            {integrante.name} 
-                            {integrante.role === 'mentor' && " (Mentor)"} 
-                        </p>
-                        
-                        <div className={styles.line}></div> 
-                    </div>
-                ))}
-                
-                {integrantes.length === 0 && (
-                    <p className={styles.emptyMessage}>Nenhum integrante cadastrado neste grupo.</p>
-                )}
-            </div>
+        <div className={styles.container}>
+            {students.map((student) => (
+                <p>{student}</p>
+            ))}
         </div>
     );
 }
