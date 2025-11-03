@@ -7,8 +7,7 @@ import styles from "./projectDetail.module.css";
 import layoutStyles from "../../dashboard.module.css";
 import ProtectedRoute from "../../../components/ProtectedRoute.js";
 import { getToken } from "../../../login/auth.js";
-import Image from "next/image";
-import iconPrancheta from "../../../assets/prancheta.svg";
+
 
 function ProjectDetailContent() {
     const params = useParams();
@@ -272,7 +271,15 @@ function CreateCollectionModal({ projectId, onClose, onCollectionCreated }) {
         setError('');
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createCollection`, {
+            const token = getToken();
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboardStudent`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const resultToken = await res.json();
+
+            const resCreateCollection = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createCollection`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -282,15 +289,15 @@ function CreateCollectionModal({ projectId, onClose, onCollectionCreated }) {
                     quantityKG: parseFloat(quantityKg),
                     proof: proof.trim(),
                     status: 'Pendente',
-                    idGroup: parseInt(projectId)
+                    idGroup: resultToken?.informationsGroup.groupId
                 })
             });
 
-            if (!res.ok) {
+            if (!resCreateCollection.ok) {
                 throw new Error('Erro ao criar arrecadação');
             }
 
-            const result = await res.json();
+            const result = await resCreateCollection.json();
 
             onCollectionCreated({
                 id: result.id || Date.now(),

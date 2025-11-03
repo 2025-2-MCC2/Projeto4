@@ -1,4 +1,4 @@
-import { collectionController } from "./collectionsController.js";
+import collectionController from "./collectionsController.js"
 import groupsController from "./groupsController.js";
 import projectsController from "./projectController.js";
 
@@ -15,7 +15,6 @@ export async function getDashboardData(req, res) {
         const informationsGroup = await groupsController.groupByID(groupId);
         const informationsCollections = await collectionController.collectionByGroup(groupId);
         const informationsProjects = await projectsController.projectByGroupID(groupId);
-
         res.json({
             informationsGroup,
             informationsCollections,

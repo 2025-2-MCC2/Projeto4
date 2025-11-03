@@ -227,7 +227,7 @@ function EditProjectModal({ project, onClose, onUpdate }) {
 
         setIsSubmitting(true);
         try {
-            const res = await fetch(`http://localhost:3001/updateProject/${project.id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/updateProject/${project.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

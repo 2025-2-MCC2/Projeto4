@@ -1,6 +1,6 @@
 import { pool } from "../db.js";
 
-export const collectionController = {
+const collectionController = {
     //POST para criar uma arrecadação
     createCollection: async (req, res) => {
         const { food, quantityKG, proof, status, idGroup } = req.body;
@@ -91,3 +91,5 @@ export const collectionController = {
         }
     }
 }
+
+export default collectionController;
