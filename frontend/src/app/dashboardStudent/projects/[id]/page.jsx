@@ -7,8 +7,35 @@ import styles from "./projectDetail.module.css";
 import layoutStyles from "../../dashboard.module.css";
 import ProtectedRoute from "../../../components/ProtectedRoute.js";
 import { getToken } from "../../../login/auth.js";
-import Image from "next/image";
-import iconPrancheta from "../../../assets/prancheta.svg";
+
+function calculatePontuation(food, quantity) {
+    const pointsRice = 4;
+    const pointsMilk = 37;
+    const pointsBean = 5.5;
+    const pointsOil = 7;
+    const pointsSugar = 4;
+    const pointsCornMeal = 1.25;
+    const pointsNoodle = 1.25;
+
+    switch(food) {
+        case "ARROZ":
+            return pointsRice * quantity
+        case "FEIJÃO":
+            return pointsBean * quantity
+        case "LEITE EM PÓ":
+            return pointsMilk * quantity
+        case "MACARRÃO":
+            return pointsNoodle * quantity
+        case "ÓLEO":
+            return pointsOil * quantity
+        case "FUBÁ":
+            return pointsCornMeal * quantity
+        case "AÇÚCAR":
+            return pointsSugar * quantity
+        default:
+            return null
+    }
+}
 
 function ProjectDetailContent() {
     const params = useParams();
@@ -272,7 +299,15 @@ function CreateCollectionModal({ projectId, onClose, onCollectionCreated }) {
         setError('');
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createCollection`, {
+            const token = getToken();
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboardStudent`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const resultToken = await res.json();
+
+            const resCreateCollection = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createCollection`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -282,20 +317,31 @@ function CreateCollectionModal({ projectId, onClose, onCollectionCreated }) {
                     quantityKG: parseFloat(quantityKg),
                     proof: proof.trim(),
                     status: 'Pendente',
-                    idGroup: parseInt(projectId)
+                    idGroup: resultToken?.informationsGroup.groupId
                 })
             });
 
-            if (!res.ok) {
+            const resPontuation = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/addPontuation`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "groupName": resultToken?.informationsGroup?.groupName,
+                    "pontuation": calculatePontuation(food, quantityKg)
+                })
+            })
+
+            if (!resCreateCollection.ok) {
                 throw new Error('Erro ao criar arrecadação');
             }
 
-            const result = await res.json();
+            const result = await resCreateCollection.json();
 
             onCollectionCreated({
                 id: result.id || Date.now(),
                 food: food.trim(),
-                quantityKG: parseFloat(quantityKg),
+                quantity_kg: parseFloat(quantityKg),
                 proof: proof.trim(),
                 status: 'Pendente'
             });
@@ -324,14 +370,21 @@ function CreateCollectionModal({ projectId, onClose, onCollectionCreated }) {
                         <label>
                             Alimento <span className={styles.required}>*</span>
                         </label>
-                        <input
-                            type="text"
+                        <select
                             value={food}
                             onChange={(e) => setFood(e.target.value)}
-                            placeholder="Ex: Arroz, Feijão, Macarrão..."
                             disabled={isSubmitting}
                             required
-                        />
+                        >
+                            <option value="" disabled>Selecione um alimento</option>
+                            <option value="ARROZ">Arroz</option>
+                            <option value="FEIJÃO">Feijão</option>
+                            <option value="ÓLEO">Óleo de Soja</option>
+                            <option value="AÇÚCAR">Açúcar</option>
+                            <option value="FUBÁ">Fubá</option>
+                            <option value="LEITE EM PÓ">Leite em Pó</option>
+                            <option value="MACARRÃO">Macarrão</option>
+                        </select>
                     </div>
 
                     <div className={styles.inputGroup}>

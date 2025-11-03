@@ -4,7 +4,7 @@ import groupsController from "./controllers/groupsController.js";
 import mentorController from "./controllers/mentorController.js";
 import { editionsController } from "./controllers/editionsController.js";
 import { adminController } from "./controllers/adminController.js";
-import { collectionController } from "./controllers/collectionsController.js";
+import collectionController from "./controllers/collectionsController.js";
 import projectsController from "./controllers/projectController.js";
 import authMiddleware from "./middlewares/authMiddleware.js";
 import { getDashboardData } from "./controllers/dashboardStudentController.js";

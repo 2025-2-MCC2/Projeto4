@@ -30,7 +30,7 @@ const groupsController = {
                 res.status(404).json({ message: "Grupo não encontrado"});
             }
 
-            await pool.query("INSERT INTO team(pontuation) VALUES(?) WHERE group_name = ?", [pontuation, groupName]);
+            await pool.query("UPDATE team SET pontuation = pontuation + ? WHERE group_name = ?", [pontuation, groupName]);
 
             res.status(201).json({ message: "Pontuação adicionada com sucesso!"});
         } catch(err) {
