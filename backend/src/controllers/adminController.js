@@ -4,7 +4,7 @@ import { pool } from "../db.js";
 export const adminController = {
     // POST para criar um admin
     createAdmin: async (req, res) => {
-        const { name, email, password } = req.body;
+        const { name_adm, email, password } = req.body;
 
         try {
             const [adm] = await pool.query("SELECT email FROM adm WHERE email = ?", [email]);
