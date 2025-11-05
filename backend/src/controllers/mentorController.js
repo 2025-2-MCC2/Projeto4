@@ -1,5 +1,7 @@
 import { pool } from "../db.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import "mysql2/promise";
 
 const mentorController = {
     // POST para criar um mentor
@@ -26,19 +28,17 @@ const mentorController = {
         const { email, password } = req.body;
 
         try {
-            const [mentor] = await pool.query("SELECT email, password FROM mentor WHERE email = ?", [email]);
-
-            if (mentor.length === 0) {
-                res.status(401).json({ message: "Credenciais erradas!"});
-            }
-
+            const [mentor] = await pool.query("SELECT id, email, password FROM mentor WHERE email = ?", [email]);
             const isValidPassword = bcrypt.compareSync(password, mentor[0].password);
-            
-            if (!isValidPassword) {
+            if (mentor.length === 0 || !isValidPassword) {
                 res.status(401).json({ message: "Credenciais erradas!"});
             }
 
-            res.status(201).json({ message: "Login efetuado!"});
+            const [team] = await pool.query("SELECT id_mentor FROM team WHERE id_mentor = ?", [mentor[0].id]);
+            const payload = {idMentor: mentor[0].id, idGroup: team[0].id_mentor};
+
+            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d"});
+            res.status(201).json({ token });
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});
@@ -56,11 +56,9 @@ const mentorController = {
         }
     },
     // GET para buscar mentor por id
-    mentorByID: async (req, res) => {
-        const { id } = req.params;
-
+    mentorByID: async (idMentor) => {
         try {
-            const [mentor] = await pool.query("SELECT name_mentor, email FROM mentor WHERE id = ?", [id]);
+            const [mentor] = await pool.query("SELECT id, name_mentor FROM mentor WHERE id = ?", [idMentor]);
 
             res.status(200).json({mentor});
         } catch(err) {
