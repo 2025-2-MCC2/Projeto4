@@ -39,6 +39,9 @@ May the force be with you!
 |-->documentos<br>
   &emsp;|Entrega 1<br>
   &emsp;|Entrega 2<br>
+  &emsp;&emsp;|--> Read.me Banco de dados<br>
+  &emsp;|Banner Acoplados <br>
+  &emsp;|Documento Projeto de Extensão <br>
 |-->executáveis<br>
   &emsp;|-->HTML<br>
 |-->imagens<br>
@@ -47,6 +50,17 @@ May the force be with you!
   &emsp;|-->Frontend<br>
 |readme.md<br>
 
+# Entregas
+
+| Disciplina | Entrega 1 | Entrega 2 |  
+| :-------: | :------: | :-------: |
+| Web FullStack | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Web%20Full%20Stack/Deploy">Deploy</a> | x |   
+| Cálculo II | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/C%C3%A1lculo%202/Projeto%20Polin%C3%B4mio%20de%20Taylor%202025-2.pdf">Polinômio de Taylor</a> | x |    
+| Banco de Dados | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Banco%20de%20Dados/Entrega%20Banco%20de%20Dados%20DER.pdf">DER</a> | x |  
+| Gestão Empresarial | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Gest%C3%A3o%20Empresarial%20e%20Din%C3%A2micas%20das%20Organiza%C3%A7%C3%B5es/Entrega%20de%20Gest%C3%A3o%20Empresarial.pdf">Missão, Visão, Valores</a>| x |  
+| Projeto Interdisciplinar | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Interdisciplinar%20Programa%C3%A7%C3%A3o%20Web/Figma%20Empathize">Figma</a>| <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Interdisciplinar%20Programa%C3%A7%C3%A3o%20Web/Figma%20Empathize">Especificação de Requisitos</a> |   
+| Extras | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Acoplados.pdf">Banner</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Documento%20projeto%20de%20Extens%C3%A3o%20-%20COM%20EMPRESA.pdf"> Projeto de Extensão
+<br/>
 ## 🛠 Instalação
 
 <b>HTML:</b>
