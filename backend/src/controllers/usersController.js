@@ -66,7 +66,7 @@ const usersController = {
             }
             
             const[userGroup] = await pool.query("SELECT id_group FROM team_student WHERE id_student = ?", [user[0].id]);
-            const payload = { id: user[0].id, ra: user[0].RA, idGroup: userGroup[0].id_group};
+            const payload = { id: user[0].id, ra: user[0].RA, idGroup: userGroup[0].id_group, role: "student"};
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d'});
             
             res.status(200).json({ token });

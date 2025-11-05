@@ -35,7 +35,7 @@ const mentorController = {
             }
 
             const [team] = await pool.query("SELECT id_mentor FROM team WHERE id_mentor = ?", [mentor[0].id]);
-            const payload = {idMentor: mentor[0].id, idGroup: team[0].id_mentor};
+            const payload = {idMentor: mentor[0].id, idGroup: team[0].id_mentor, role: "mentor"};
 
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d"});
             res.status(201).json({ token });

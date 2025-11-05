@@ -31,7 +31,12 @@ export const validateToken = async () => {
         const data = await res.json();
         // O endpoint /validate retorna { valid: true } quando o token é válido.
         // Retornamos true para o ProtectedRoute, ou null caso inválido.
-        return data && data.valid ? true : null;
+        if (data.valid) {
+            return { valid: true, role: data.role}
+        } else {
+            return null;
+        }
+        
     } catch(err) {
         removeToken();
         return null;

@@ -70,7 +70,7 @@ function DashboardMentorContent() {
 
 export default function DashboardMentor() {
     return (
-        <ProtectedRoute>
+        <ProtectedRoute role="mentor">
             <DashboardMentorContent />
         </ProtectedRoute>
     );
