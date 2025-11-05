@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { setToken } from "./auth.js";
-import styles from "./login.module.css";
+import { setToken } from "../auth.js";
+import styles from "./page.module.css";
 import Image from "next/image";
-import empathizeLogo from "../assets/empathizeLogo-removebg-preview.png";
+import empathizeLogo from "../../assets/empathizeLogo-removebg-preview.png";
 
-export default function Login() {
-    const [registerStudent, setRegisterStudent] = useState("");
+export default function LoginMentor() {
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -19,13 +19,13 @@ export default function Login() {
         setIsLoading(true);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signin`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/loginMentor`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    "RA": registerStudent,
+                    "email": email,
                     "password": password
                 })
             });
@@ -40,7 +40,7 @@ export default function Login() {
 
             const data = await res.json();
             setToken(data.token);
-            router.push("/dashboardStudent");
+            router.push("/dashboardMentor");
         } catch(err) {
             console.error("Erro: ", err);
             alert("Erro ao conectar com o servidor");
@@ -72,14 +72,14 @@ export default function Login() {
 
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.inputGroup}>
-                        <label htmlFor="fieldRA">Registro Acadêmico</label>
+                        <label htmlFor="fieldRA">Email do mentor</label>
                         <input 
-                            type="text" 
+                            type="email" 
                             id="fieldRA"
                             name="fieldRA" 
-                            placeholder="Digite seu RA" 
-                            value={registerStudent}
-                            onChange={(ev) => setRegisterStudent(ev.target.value)}
+                            placeholder="Digite seu email" 
+                            value={email}
+                            onChange={(ev) => setEmail(ev.target.value)}
                             required
                             disabled={isLoading}
                         />
@@ -124,7 +124,7 @@ export default function Login() {
                 </form>
 
                 <div className={styles.footer}>
-                    <p><a href="/login/mentor">Sou mentor</a></p>
+                    <p><a href="/login">Sou estudante</a></p>
                     <p><a href="#">Sou admin</a></p>
                 </div>
             </div>
