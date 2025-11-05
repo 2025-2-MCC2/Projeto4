@@ -1,0 +1,118 @@
+.container {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    padding: 2rem 3rem;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    box-sizing: border-box;
+}
+
+.mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.welcomeSection {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.welcomeText h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #065f46;
+    margin: 0 0 0.5rem 0;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.welcomeText p {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.sidebar {
+    width: 380px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    max-height: calc(100vh - 4rem);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+    }
+
+    .cardsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .welcomeSection {
+        padding: 1.5rem;
+    }
+
+    .welcomeText h1 {
+        font-size: 1.5rem;
+    }
+
+    .cardsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .welcomeSection {
+        padding: 1.25rem;
+    }
+
+    .welcomeText h1 {
+        font-size: 1.25rem;
+    }
+
+    .welcomeText p {
+        font-size: 0.9rem;
+    }
+
+    .cardsGrid {
+        gap: 1rem;
+    }
+}
