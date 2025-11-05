@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./style.module.css";
+import styles from "./Nav.module.css";
 import menuIcon from "../../assets/menu-hamburguer.svg";
 import homeIcon from "../../assets/casa.svg";
 import pranchetaIcon from "../../assets/prancheta.svg";
@@ -10,7 +10,7 @@ import Integrantes from "../../assets/users-alt.svg";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Navigator() {
+export default function NavigatorMentor() {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
