@@ -4,9 +4,9 @@ import { useState } from "react";
 import styles from "./Nav.module.css";
 import menuIcon from "../../assets/menu-hamburguer.svg";
 import homeIcon from "../../assets/casa.svg";
-import pranchetaIcon from "../../assets/prancheta.svg";
+import iconValidate from "../../assets/vote-sim.png";
 import logOut from "../../assets/exit.svg";
-import Integrantes from "../../assets/users-alt.svg";
+import iconAccount from "../../assets/do-utilizador.png";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -27,7 +27,7 @@ export default function NavigatorMentor() {
 
                     <ul>
                         <li className={styles.itemMenu}>
-                            <Link href={"/dashboardStudent"} className={styles.theLinks}>
+                            <Link href={"/dashboardMentor"} className={styles.theLinks}>
                                 <span className="icon">
                                     <Image src={homeIcon} alt="Home icon" className={styles.icons} />
                                 </span>
@@ -35,20 +35,20 @@ export default function NavigatorMentor() {
                             </Link>
                         </li>
                         <li className={styles.itemMenu}>
-                            <Link href={"/dashboardStudent/projects"} className={styles.theLinks}>
+                            <Link href={"/dashboardMentor/validate"} className={styles.theLinks}>
                                 <span className="icon">
-                                    <Image src={pranchetaIcon} alt="Prancheta icon" className={styles.icons}/>
+                                    <Image src={iconValidate} alt="Validate icon" className={styles.icons}/>
                                 </span>
-                                <span className={styles.txtLink}>Projetos</span>
+                                <span className={styles.txtLink}>Arrecadações</span>
                             </Link>
                         </li>
 
                         <li className={styles.itemMenu}>
-                            <Link href={"/dashboardStudent/team"} className={styles.theLinks}>
+                            <Link href={"/dashboardMentor/account"} className={styles.theLinks}>
                                 <span className="icon"> 
-                                    <Image src={Integrantes} alt="Integrantes icon" className={styles.icons}/>
+                                    <Image src={iconAccount} alt="Account icon" className={styles.icons}/>
                                 </span>
-                                <span className={styles.txtLink}>Integrantes</span>
+                                <span className={styles.txtLink}>Conta</span>
                             </Link>
                         </li>
                 
