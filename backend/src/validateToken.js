@@ -23,7 +23,7 @@ export async function validateToken(req, res) {
 
     if (token.role === "mentor") {
         try {
-            const [mentor] = await pool.query("SELECT id FROM mentor WHERE id = ?", [token.id]);
+            const [mentor] = await pool.query("SELECT id FROM mentor WHERE id = ?", [token.idMentor]);
 
             if (mentor.length === 0) return res.status(404).json({ message: "Mentor não encontrado"});
 

@@ -15,13 +15,25 @@ export default async function authMiddleware(req, res, next) {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        const [user] = await pool.query("SELECT id FROM student WHERE id = ?", [decoded.id]);
-        if (user.length === 0) {
-            return res.status(404).json({ message: "Usuário não encontrado"});
+        if (decoded.role === "student") {
+            const [user] = await pool.query("SELECT id FROM student WHERE id = ?", [decoded.id]);
+            if (user.length === 0) {
+                return res.status(404).json({ message: "Usuário não encontrado"});
+            }
+
+            req.user = decoded;
+            next();
         }
 
-        req.user = decoded;
-        next();
+        if (decoded.role === "mentor") {
+            const [user] = await pool.query("SELECT id FROM mentor WHERE id = ?", [decoded.idMentor]);
+            if (user.length === 0) {
+                return res.status(404).json({ message: "Usuário não encontrado"});
+            }
+
+            req.user = decoded;
+            next();
+        }
     } catch(err) {
         return res.status(401).json({ message: 'Invalid token!' })
     }
