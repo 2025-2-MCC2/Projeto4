@@ -22,10 +22,9 @@ export async function getDashboardMentorData(req, res) {
             informationsGroup,
             informationsCollections,
             informationsProjects,
-            informationsCollections
+            informationsMentor
         })
     } catch(err) {
-        console.error("Deu erro no DashboardController: ", err);
-        res.status(500).json({ message: "DashboardStudent error"});
+        res.status(500).json({ message: "DashboardMentor error"});
     }
 }

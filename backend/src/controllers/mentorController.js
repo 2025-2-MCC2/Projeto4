@@ -60,7 +60,7 @@ const mentorController = {
         try {
             const [mentor] = await pool.query("SELECT id, name_mentor FROM mentor WHERE id = ?", [idMentor]);
 
-            res.status(200).json({mentor});
+            return mentor;
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});

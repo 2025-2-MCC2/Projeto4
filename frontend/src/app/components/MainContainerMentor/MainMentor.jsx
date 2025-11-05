@@ -12,7 +12,7 @@ export default function MainContainerMentor(props) {
     const totalCollections = informations?.informationsCollections?.length ?? 0;
     const totalProjects = informations?.informationsProjects?.length ?? 0;
     const groupName = informations?.informationsGroup?.groupName ?? 'Grupo';
-    const mentorName = informations?.informationsMentor?.name_mentor;
+    const mentorName = informations?.informationsMentor[0]?.name_mentor;
     
     // Calcular total de kg arrecadados
     const totalKg = informations?.informationsCollections?.reduce((acc, collection) => {
