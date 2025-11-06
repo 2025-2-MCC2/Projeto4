@@ -35,11 +35,11 @@ const collectionController = {
             const options = ["Aprovado", "Reprovado"];
 
             if (option === 0) {
-                await pool.query("INSERT INTO collection(status) VALUES(?) WHERE id = ?", [options[option], id]);
+                await pool.query("UPDATE collection SET status = ? WHERE id = ?", [options[option], id]);
                 res.status(201).json({ message: "Arrecadação avalida com sucesso!"});
             }
             if (option === 1) {
-                await pool.query("INSERT INTO collection(status, jus_reject) VALUES(?, ?) WHERE id = ?", [options[option], justify, id]);
+                await pool.query("UPDATE collection SET status = ?, jus_reject = ? WHERE id = ?", [options[option], justify, id]);
                 res.status(201).json({ message: "Arrecadação avalida com sucesso!"});
             }
         } catch(err) {
