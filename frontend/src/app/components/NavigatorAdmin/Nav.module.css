@@ -1,0 +1,191 @@
+.icons {
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.menuLateral {
+    width: 70px;
+    height: 100vh;
+    background: linear-gradient(180deg, #059669 0%, #047857 100%);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1000;
+}
+
+.menuLateral::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #10b981, #34d399, #10b981);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menuLateral.menuOpen {
+    width: 220px;
+}
+
+.menuLateral.menuOpen::before {
+    opacity: 1;
+}
+
+.menuLateral.menuOpen .txtLink {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.menuLateral.menuOpen .btnExpandir .icons {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.btnExpandir {
+    width: 100%;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btnExpandir:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btnExpandir:active {
+    transform: scale(0.95);
+}
+
+.btnExpandir .icons {
+    margin: 0;
+}
+
+.menuLateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.itemMenu {
+    transition: all 0.3s ease;
+    margin: 0.5rem 0;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.itemMenu::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #10b981;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.itemMenu:hover {
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.2) 0%, transparent 100%);
+}
+
+.itemMenu:hover::before {
+    transform: scaleY(1);
+}
+
+.itemMenu:hover .icons {
+    transform: scale(1.1);
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
+}
+
+.itemMenu:active {
+    transform: scale(0.98);
+}
+
+#logOut {
+    position: absolute;
+    bottom: 1rem;
+    width: calc(100% - 1rem);
+    margin: 0 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+}
+
+#logOut:hover {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.2) 0%, transparent 100%);
+}
+
+#logOut:hover .icons {
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
+}
+
+.theLinks {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.theLinks:hover {
+    color: #d1fae5;
+}
+
+.txtLink {
+    margin-left: 1rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.itemMenu .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 999;
+}
+
+@media (max-width: 768px) {
+    .menuLateral.menuOpen {
+        width: 260px;
+        box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .overlay {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(2px);
+    }
+}

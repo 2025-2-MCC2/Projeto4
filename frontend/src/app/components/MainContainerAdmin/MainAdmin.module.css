@@ -1,0 +1,117 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+    padding: 2rem 3rem;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    box-sizing: border-box;
+}
+
+.mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.sidebar {
+    width: 380px; 
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    max-height: calc(100vh - 4rem);
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+}
+
+
+.welcomeSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.welcomeText h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.welcomeText p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.highlight {
+  color: #5b3fd1;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.rankingCard {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.rankingCard:hover {
+  transform: translateY(-2px);
+}
+
+.rankingHeader h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.rankingList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rankingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9f9ff;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  transition: background 0.2s ease-in-out;
+}
+
+.rankingItem:hover {
+  background: #f2f1ff;
+}
+
+.rankingPosition {
+  font-weight: 700;
+  color: #5b3fd1;
+  width: 2rem;
+}
+
+.rankingName {
+  flex: 1;
+  color: #444;
+  font-weight: 500;
+}
+
+.rankingValue {
+  font-weight: 600;
+  color: #222;
+}
