@@ -9,6 +9,7 @@ import projectsController from "./controllers/projectController.js";
 import authMiddleware from "./middlewares/authMiddleware.js";
 import { getDashboardData } from "./controllers/dashboardStudentController.js";
 import { validateToken } from "./validateToken.js";
+import { getDashboardMentorData } from "./controllers/dashboardMentorController.js";
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.get("/user/:id", usersController.userByID);
 router.get("/userRA/:RA", usersController.userByRA);
 
 router.get("/allMentors", mentorController.allMentors);
-router.get("/mentorByID/:id", mentorController.mentorByID);
+router.get("/dashboardMentor", authMiddleware, getDashboardMentorData);
 
 router.get("/allEditions", editionsController.allEditions);
 router.get("/editionByID/:id", editionsController.editionByID);

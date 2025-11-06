@@ -313,7 +313,7 @@ function EditProjectModal({ project, onClose, onUpdate }) {
 
 export default function Projects() {
     return (
-        <ProtectedRoute>
+        <ProtectedRoute role="student">
             <ProjectsModel />
         </ProtectedRoute>
     );

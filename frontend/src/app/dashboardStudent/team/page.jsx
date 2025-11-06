@@ -104,7 +104,7 @@ function Integrantes() {
 
 export default function Team() {
     return (
-        <ProtectedRoute>
+        <ProtectedRoute role="student">
             <Integrantes />
         </ProtectedRoute>
     );

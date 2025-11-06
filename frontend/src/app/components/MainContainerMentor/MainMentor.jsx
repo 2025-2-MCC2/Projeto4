@@ -12,6 +12,7 @@ export default function MainContainerMentor(props) {
     const totalCollections = informations?.informationsCollections?.length ?? 0;
     const totalProjects = informations?.informationsProjects?.length ?? 0;
     const groupName = informations?.informationsGroup?.groupName ?? 'Grupo';
+    const mentorName = informations?.informationsMentor[0]?.name_mentor;
     
     // Calcular total de kg arrecadados
     const totalKg = informations?.informationsCollections?.reduce((acc, collection) => {
@@ -28,7 +29,7 @@ export default function MainContainerMentor(props) {
             <div className={styles.mainContent}> 
                 <div className={styles.welcomeSection}>
                     <div className={styles.welcomeText}>
-                        <h1>Olá, <span className={styles.highlight}>Mentor</span>! 👋</h1>
+                        <h1>Olá, <span className={styles.highlight}>{mentorName}</span>! 👋</h1>
                         <p>Acompanhe o desempenho do grupo <strong>{groupName}</strong></p>
                     </div>
                 </div>
