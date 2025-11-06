@@ -62,7 +62,7 @@ export default function MainContainer(props) {
             </div>
 
             <div className={styles.sidebar}>
-                <MessagePanel />
+                <MessagePanel data={props.data}/>
             </div>
         </div>     
     );
