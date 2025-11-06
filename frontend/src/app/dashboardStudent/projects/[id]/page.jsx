@@ -444,7 +444,7 @@ function CreateCollectionModal({ projectId, onClose, onCollectionCreated }) {
 
 export default function ProjectDetail() {
     return (
-        <ProtectedRoute>
+        <ProtectedRoute role="student">
             <ProjectDetailContent />
         </ProtectedRoute>
     );

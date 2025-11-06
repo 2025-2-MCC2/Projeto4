@@ -74,7 +74,7 @@ function DashboardStudentContent() {
 
 export default function DashboardStudent() {
     return (
-        <ProtectedRoute>
+        <ProtectedRoute role="student">
             <DashboardStudentContent />
         </ProtectedRoute>
     );
