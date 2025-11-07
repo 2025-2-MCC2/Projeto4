@@ -5,22 +5,24 @@ import iconFood from "../../assets/tigela-de-macarrao-com-pauzinhos.svg";
 import iconGoals from "../../assets/seta-de-alvo.svg";
 
 export default function MainContainerAdmin({ data }) {
+
   const informations = data || {};
 
-  const totalKg =
-    informations?.collections?.reduce(
-      (acc, collection) => acc + (parseFloat(collection.quantity_kg) || 0),
-      0
-    ) || 0;
+  const totalKg = informations.totalKg
+    ? `${informations.totalKg.toFixed(1)} kg`
+    : "0 kg";
 
-  const totalProjects = informations?.projects?.length ?? 0;
-  const totalPontuation = informations?.pontuation ?? "-";
+  const totalGroups =
+    typeof informations.totalGroups === "number"
+      ? informations.totalGroups
+      : 0;
 
-  const rankingMock = [
-    { name: "Grupo Alpha", score: 1280 },
-    { name: "Grupo Beta", score: 1195 },
-    { name: "Grupo Delta", score: 1110 },
-  ];
+  const remainingDays =
+    informations.daysRemaining && informations.daysRemaining !== "-"
+      ? `${informations.daysRemaining} dias`
+      : "0 dias";
+
+  const topGroups = informations.topGroups || [];
 
   return (
     <div className={styles.container}>
@@ -36,23 +38,25 @@ export default function MainContainerAdmin({ data }) {
 
         <div className={styles.cardsGrid}>
           <BoxComponent
-            pontuation={`${totalKg.toFixed(1)}kg`}
+            pontuation={totalKg}
             title="Arrecadação Total"
             subtitle="Soma de todas as doações"
             icon={iconFood}
             color="orange"
           />
+
           <BoxComponent
-            pontuation={totalProjects}
-            title="Projetos"
-            subtitle="Projetos cadastrados"
+            pontuation={totalGroups}
+            title="Grupos Cadastrados"
+            subtitle="Total de grupos ativos no sistema"
             icon={iconGoals}
             color="blue"
           />
+
           <BoxComponent
-            pontuation={totalPontuation}
-            title="Pontuação"
-            subtitle="Média geral dos grupos"
+            pontuation={remainingDays}
+            title="Dias Restantes"
+            subtitle="Até o fim da edição atual"
             icon={iconRanking}
             color="purple"
           />
@@ -65,13 +69,21 @@ export default function MainContainerAdmin({ data }) {
             <h3>🏆 Top 3 Grupos</h3>
           </div>
           <ul className={styles.rankingList}>
-            {rankingMock.map((item, index) => (
-              <li key={index} className={styles.rankingItem}>
-                <span className={styles.rankingPosition}>{index + 1}º</span>
-                <span className={styles.rankingName}>{item.name}</span>
-                <span className={styles.rankingValue}>{item.score} pts</span>
-              </li>
-            ))}
+            {topGroups.length > 0 ? (
+              topGroups.map((item, index) => (
+                <li key={item.id || index} className={styles.rankingItem}>
+                  <span className={styles.rankingPosition}>{index + 1}º</span>
+                  <span className={styles.rankingName}>
+                    {item.name || "Sem nome"}
+                  </span>
+                  <span className={styles.rankingValue}>
+                    {item.points ?? 0} pts
+                  </span>
+                </li>
+              ))
+            ) : (
+              <li className={styles.emptyRanking}>Nenhum grupo cadastrado ainda.</li>
+            )}
           </ul>
         </div>
       </div>

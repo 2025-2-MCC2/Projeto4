@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import styles from "./dashboard.module.css"; 
 import NavigatorAdmin from "../components/NavigatorAdmin/index";
@@ -14,14 +14,49 @@ export default function DashboardAdmin() {
     const fetchDashboard = async () => {
       try {
         const token = getToken();
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dashboardAdmin`, {
-          headers: { 'Authorization': `Bearer ${token}` },
+
+        const resGroups = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/groups/all`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
+        const groupsData = await resGroups.json();
 
-        if (!res.ok) throw new Error('Erro ao carregar o dashboard');
+        const resEditions = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/edition/all`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const editionsData = await resEditions.json();
+        const editions = editionsData?.editions || [];
+        const latestEdition = editions[editions.length - 1];
 
-        const result = await res.json();
-        setData(result);
+        const resCollections = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collections/all`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const collectionsData = await resCollections.json();
+
+        const totalKg =
+          collectionsData?.collections?.reduce(
+            (acc, c) => acc + (parseFloat(c.quantity_kg) || 0),
+            0
+          ) || 0;
+
+        const groups = groupsData?.groups || [];
+        const topGroups = [...groups]
+          .sort((a, b) => (b.points || 0) - (a.points || 0))
+          .slice(0, 3);
+
+        let daysRemaining = "-";
+        if (latestEdition?.end_date) {
+          const end = new Date(latestEdition.end_date);
+          const now = new Date();
+          const diff = Math.ceil((end - now) / (1000 * 60 * 60 * 24));
+          daysRemaining = diff > 0 ? diff : 0;
+        }
+
+        setData({
+          totalGroups: groups.length,
+          daysRemaining,
+          totalKg,
+          topGroups,
+        });
       } catch (err) {
         console.error(err);
       } finally {
