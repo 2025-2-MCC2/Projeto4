@@ -10,8 +10,11 @@ import { getToken } from '../../login/auth.js';
 
 export default function GroupsPage() {
   const [groups, setGroups] = useState([]);
+  const [filteredGroups, setFilteredGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [expandedGroup, setExpandedGroup] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchGroups = async () => {
@@ -29,7 +32,24 @@ export default function GroupsPage() {
 
         const data = await res.json();
         const groupsData = data?.groups || [];
-        setGroups(groupsData);
+
+        const grouped = [];
+        groupsData.forEach((g) => {
+          let existing = grouped.find((x) => x.group_name === g.group_name);
+          if (!existing) {
+            grouped.push({
+              group_name: g.group_name,
+              mentor: g.name_mentor,
+              pontuation: g.pontuation,
+              students: [g.full_name],
+            });
+          } else {
+            existing.students.push(g.full_name);
+          }
+        });
+
+        setGroups(grouped);
+        setFilteredGroups(grouped);
       } catch (err) {
         console.error(err);
         setError(err.message);
@@ -40,6 +60,21 @@ export default function GroupsPage() {
 
     fetchGroups();
   }, []);
+
+  useEffect(() => {
+    const term = searchTerm.toLowerCase();
+    const filtered = groups.filter(
+      (group) =>
+        group.group_name.toLowerCase().includes(term) ||
+        group.students.some((s) => s.toLowerCase().includes(term)) ||
+        group.mentor?.toLowerCase().includes(term)
+    );
+    setFilteredGroups(filtered);
+  }, [searchTerm, groups]);
+
+  const toggleExpand = (name) => {
+    setExpandedGroup((prev) => (prev === name ? null : name));
+  };
 
   return (
     <div className={layoutStyles.dashboard}>
@@ -62,6 +97,19 @@ export default function GroupsPage() {
           </div>
         </div>
 
+        <div className={styles.searchBar}>
+          <div className={styles.searchWrapper}>
+            <span className={styles.searchIcon}>🔍</span>
+            <input
+              type="text"
+              placeholder="Pesquisar por grupo, integrante ou mentor..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={styles.searchInput}
+            />
+          </div>
+        </div>
+
         {isLoading ? (
           <div className={styles.loadingState}>
             <div className={styles.loadingSpinner}></div>
@@ -69,29 +117,33 @@ export default function GroupsPage() {
           </div>
         ) : error ? (
           <p className={styles.errorMsg}>Erro ao carregar grupos 😢</p>
-        ) : groups.length === 0 ? (
+        ) : filteredGroups.length === 0 ? (
           <div className={styles.emptyState}>
-            <p>Nenhum grupo cadastrado ainda.</p>
-            <span>Os grupos aparecerão aqui quando forem criados.</span>
+            <p>Nenhum grupo encontrado com esse nome.</p>
           </div>
         ) : (
           <div className={styles.groupsList}>
-            {groups.map((group) => (
-              <div key={group._id} className={styles.groupItem}>
-                <div className={styles.groupHeader}>
-                  <span className={styles.groupName}>
-                    {group.group_name || group.name}
-                  </span>
+            {filteredGroups.map((group) => (
+              <div key={group.group_name} className={styles.groupItem}>
+                <div
+                  className={styles.groupHeader}
+                  onClick={() => toggleExpand(group.group_name)}
+                >
+                  <span className={styles.groupName}>{group.group_name}</span>
                   <span className={styles.groupKg}>
-                    {parseFloat(group.total_kg || 0).toFixed(2)} kg
+                    {group.pontuation ? `${group.pontuation} kg` : '0 kg'}
                   </span>
                 </div>
 
-                {group.students?.length > 0 && (
+                {expandedGroup === group.group_name && (
                   <div className={styles.studentsList}>
-                    {group.students.map((student, i) => (
-                      <p key={i}>{student}</p>
-                    ))}
+                    <p><strong>Mentor:</strong> {group.mentor}</p>
+                    <strong>Integrantes:</strong>
+                    {group.students?.length > 0 ? (
+                      group.students.map((s, i) => <p key={i}>{s}</p>)
+                    ) : (
+                      <p>Nenhum integrante registrado.</p>
+                    )}
                   </div>
                 )}
               </div>

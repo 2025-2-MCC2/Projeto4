@@ -5,7 +5,6 @@ import iconFood from "../../assets/tigela-de-macarrao-com-pauzinhos.svg";
 import iconGoals from "../../assets/seta-de-alvo.svg";
 
 export default function MainContainerAdmin({ data }) {
-
   const informations = data || {};
 
   const totalKg = informations.totalKg
@@ -22,7 +21,7 @@ export default function MainContainerAdmin({ data }) {
       ? `${informations.daysRemaining} dias`
       : "0 dias";
 
-  const topGroups = informations.topGroups || [];
+  const topGroups = informations.topGroups;
 
   return (
     <div className={styles.container}>
@@ -68,16 +67,19 @@ export default function MainContainerAdmin({ data }) {
           <div className={styles.rankingHeader}>
             <h3>🏆 Top 3 Grupos</h3>
           </div>
+
           <ul className={styles.rankingList}>
-            {topGroups.length > 0 ? (
+            {topGroups === null ? (
+              <li className={styles.emptyRanking}>Sem pontuação</li>
+            ) : topGroups.length > 0 ? (
               topGroups.map((item, index) => (
-                <li key={item.id || index} className={styles.rankingItem}>
+                <li key={index} className={styles.rankingItem}>
                   <span className={styles.rankingPosition}>{index + 1}º</span>
                   <span className={styles.rankingName}>
-                    {item.name || "Sem nome"}
+                    {item.group_name || "Sem nome"}
                   </span>
                   <span className={styles.rankingValue}>
-                    {item.points ?? 0} pts
+                    {item.points || "0 pts"}
                   </span>
                 </li>
               ))

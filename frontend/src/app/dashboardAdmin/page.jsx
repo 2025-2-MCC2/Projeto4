@@ -15,22 +15,33 @@ export default function DashboardAdmin() {
       try {
         const token = getToken();
 
-        const resGroups = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/groups/all`, {
+        const resGroups = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allGroups`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const groupsData = await resGroups.json();
 
-        const resEditions = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/edition/all`, {
+        const resEditions = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allEditions`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const editionsData = await resEditions.json();
-        const editions = editionsData?.editions || [];
-        const latestEdition = editions[editions.length - 1];
 
-        const resCollections = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collections/all`, {
+        const resCollections = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allCollections`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const collectionsData = await resCollections.json();
+
+        console.log("Groups:", groupsData);
+        console.log("Editions:", editionsData);
+        console.log("Collections:", collectionsData);
+
+        const rawGroups = groupsData?.groups || [];
+        const groups = rawGroups.filter(
+          (group, index, self) =>
+            index === self.findIndex((g) => g.group_name === group.group_name)
+        );
+
+        const editions = editionsData?.editions || [];
+        const latestEdition = editions[editions.length - 1];
 
         const totalKg =
           collectionsData?.collections?.reduce(
@@ -38,10 +49,18 @@ export default function DashboardAdmin() {
             0
           ) || 0;
 
-        const groups = groupsData?.groups || [];
-        const topGroups = [...groups]
-          .sort((a, b) => (b.points || 0) - (a.points || 0))
-          .slice(0, 3);
+        const rankedGroups = [...groups].sort((a, b) => (b.points || 0) - (a.points || 0));
+        const hasPoints = rankedGroups.some((g) => g.points && g.points > 0);
+
+        let topGroups = [];
+        if (hasPoints) {
+          topGroups = rankedGroups.slice(0, 3).map((g) => ({
+            group_name: g.group_name || "Sem nome",
+            points: `${g.points} pts`,
+          }));
+        } else {
+          topGroups = null; 
+        }
 
         let daysRemaining = "-";
         if (latestEdition?.end_date) {
@@ -58,7 +77,7 @@ export default function DashboardAdmin() {
           topGroups,
         });
       } catch (err) {
-        console.error(err);
+        console.error("Erro ao carregar dados do dashboard:", err);
       } finally {
         setIsLoading(false);
       }

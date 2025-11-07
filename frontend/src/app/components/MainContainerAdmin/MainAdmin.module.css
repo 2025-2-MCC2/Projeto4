@@ -115,3 +115,14 @@
   font-weight: 600;
   color: #222;
 }
+
+.emptyRanking {
+  text-align: center;
+  font-size: 1rem;
+  color: #777;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
