@@ -19,7 +19,7 @@ export default function LoginMentor() {
         setIsLoading(true);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/loginMentor`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signin/admin`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export default function LoginMentor() {
 
             const data = await res.json();
             setToken(data.token);
-            router.push("/dashboardMentor");
+            router.push("/dashboardAdmin");
         } catch(err) {
             console.error("Erro: ", err);
             alert("Erro ao conectar com o servidor");
@@ -72,7 +72,7 @@ export default function LoginMentor() {
 
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.inputGroup}>
-                        <label htmlFor="fieldRA">Email do mentor</label>
+                        <label htmlFor="fieldRA">Email do admin</label>
                         <input 
                             type="email" 
                             id="fieldRA"
@@ -125,7 +125,7 @@ export default function LoginMentor() {
 
                 <div className={styles.footer}>
                     <p><a href="/login">Sou estudante</a></p>
-                    <p><a href="/login/admin">Sou admin</a></p>
+                    <p><a href="/login/mentor">Sou mentor</a></p>
                 </div>
             </div>
         </div>

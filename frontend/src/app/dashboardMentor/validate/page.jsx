@@ -143,8 +143,8 @@ function ValidateContent() {
                                     Aprovadas ({approvedCount})
                                 </button>
                                 <button
-                                    className={`${styles.filterBtn} ${filterStatus === 'rejeitado' ? styles.active : ''}`}
-                                    onClick={() => setFilterStatus('rejeitado')}
+                                    className={`${styles.filterBtn} ${filterStatus === 'reprovado' ? styles.active : ''}`}
+                                    onClick={() => setFilterStatus('reprovado')}
                                 >
                                     Rejeitadas ({rejectedCount})
                                 </button>
