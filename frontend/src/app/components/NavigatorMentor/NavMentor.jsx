@@ -6,6 +6,7 @@ import menuIcon from "../../assets/menu-hamburguer.svg";
 import homeIcon from "../../assets/casa.svg";
 import iconValidate from "../../assets/vote-sim.png";
 import logOut from "../../assets/exit.svg";
+import iconTeam from "../../assets/users-alt.svg";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -39,6 +40,15 @@ export default function NavigatorMentor() {
                                     <Image src={iconValidate} alt="Validate icon" className={styles.icons}/>
                                 </span>
                                 <span className={styles.txtLink}>Arrecadações</span>
+                            </Link>
+                        </li>
+
+                        <li className={styles.itemMenu}>
+                            <Link href={"/dashboardMentor/team"} className={styles.theLinks}>
+                                <span className="icon">
+                                    <Image src={iconTeam} alt="Team icon" className={styles.icons}/>
+                                </span>
+                                <span className={styles.txtLink}>Integrantes</span>
                             </Link>
                         </li>
                 

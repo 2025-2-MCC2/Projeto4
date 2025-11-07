@@ -6,6 +6,8 @@ import MainContainerMentor from "../components/MainContainerMentor/MainMentor.js
 import { useEffect, useState } from "react";
 import { getToken } from "../login/auth.js";
 import ProtectedRoute from "../components/ProtectedRoute.js";
+import iconDashboard from "../assets/painel-de-controle.png";
+import Image from "next/image";
 
 function DashboardMentorContent() {
     const [data, setData] = useState(null);
@@ -46,7 +48,9 @@ function DashboardMentorContent() {
             <div className={styles.mainContainer}>
                 <div className={styles.headerSection}>
                     <div className={styles.breadcrumb}>
-                        <span className={styles.breadcrumbIcon}>🏠</span>
+                        <span className={styles.breadcrumbIcon}>
+                            <Image src={iconDashboard} alt="Icon dashboard" className={styles.iconDash}/>
+                        </span>
                         <span className={styles.breadcrumbText}>Dashboard</span>
                     </div>
                     <div className={styles.pageTitle}>

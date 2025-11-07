@@ -68,20 +68,6 @@ export default function Home() {
                                 Saiba Mais
                             </a>
                         </div>
-                        <div className={styles.heroStats}>
-                            <div className={styles.statItem}>
-                                <span className={styles.statNumber}>500+</span>
-                                <span className={styles.statLabel}>Grupos Ativos</span>
-                            </div>
-                            <div className={styles.statItem}>
-                                <span className={styles.statNumber}>10k+</span>
-                                <span className={styles.statLabel}>Kg Arrecadados</span>
-                            </div>
-                            <div className={styles.statItem}>
-                                <span className={styles.statNumber}>1000+</span>
-                                <span className={styles.statLabel}>Famílias Ajudadas</span>
-                            </div>
-                        </div>
                     </div>
                     <div className={styles.heroImage}>
                         <div className={styles.heroCard}>
@@ -230,16 +216,6 @@ export default function Home() {
                                 representa uma família ajudada, uma vida transformada. O Empathize 
                                 System potencializa o impacto de ações sociais através da tecnologia.
                             </p>
-                            <div className={styles.impactMetrics}>
-                                <div className={styles.metricBox}>
-                                    <span className={styles.metricValue}>10 toneladas</span>
-                                    <span className={styles.metricLabel}>de alimentos doados</span>
-                                </div>
-                                <div className={styles.metricBox}>
-                                    <span className={styles.metricValue}>50+ comunidades</span>
-                                    <span className={styles.metricLabel}>impactadas</span>
-                                </div>
-                            </div>
                         </div>
                         <div className={styles.impactVisual}>
                             <div className={styles.impactCard}>
@@ -290,13 +266,6 @@ export default function Home() {
                             <li><a href="#recursos">Recursos</a></li>
                             <li><a href="#impacto">Impacto</a></li>
                             <li><Link href="/register">Registrar</Link></li>
-                        </ul>
-                    </div>
-                    <div className={styles.footerSection}>
-                        <h4>Contato</h4>
-                        <ul className={styles.footerLinks}>
-                            <li>📧 contato@empathize.com</li>
-                            <li>📱 (11) 9999-9999</li>
                         </ul>
                     </div>
                 </div>
