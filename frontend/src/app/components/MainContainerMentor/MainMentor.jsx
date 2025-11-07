@@ -36,7 +36,7 @@ export default function MainContainerMentor(props) {
 
                 <div className={styles.cardsGrid}> 
                     <BoxComponent 
-                        pontuation={`${totalKg.toFixed(1)}kg`}
+                        pontuation={`${totalKg}kg`}
                         title="Arrecadação" 
                         subtitle="Total arrecadado"
                         icon={iconFood}
