@@ -1,0 +1,52 @@
+.groupsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.groupItem {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.groupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.groupKg {
+  color: #00856f;
+  font-weight: 600;
+}
+
+.studentsList {
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+.emptyState {
+  text-align: center;
+  margin-top: 4rem;
+  color: #777;
+  font-size: 1rem;
+}
+
+.loadingState {
+  text-align: center;
+  margin-top: 4rem;
+  color: #777;
+}
+
+.errorMsg {
+  color: red;
+  text-align: center;
+  margin-top: 2rem;
+}
