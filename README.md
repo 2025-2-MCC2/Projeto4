@@ -21,17 +21,17 @@ Vide tutoriais do PI.
 ## Descrição
 
 <p align="center">
-<img src="imagens/Logo.jpg" alt="Empathize System"><br>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/2067c6Kd/empathize-Logo-removebg-preview.png" alt="empathize" border="0"></a><br>
   Feito por: <a href="https://github.com/2025-2-MCC2/Projeto4">Acoplados</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
 </p>
 
 <br>
-O sistema desenvolvido se trata de uma aplicação web direcionada para o projeto Lideranças Empáticas, as principais tecnologias utilizadas foram: HTML5, CSS3, React, Node.js e MySQL.<br>
-Focando principalmente em questoes de organização, praticidade e controle de arrecadações conquistadas durante todo o projeto. Facilitando a comunicação entre alunos e mentores, promovendo o autoaperfeiçoamento dos participantes. Podendo documentar todas as alterações que são feitas durante cada edição.
+O sistema desenvolvido se trata de uma aplicação web direcionada para o projeto Lideranças Empáticas, as principais tecnologias utilizadas foram: HTML5, CSS3, React, Node.js, Next e MySQL.<br>
+Focando principalmente em questões de organização, praticidade e controle de arrecadações conquistadas durante todo o projeto. Facilitando a comunicação entre alunos e mentores, promovendo o autoaperfeiçoamento dos participantes. Podendo documentar todas as alterações que são feitas durante cada edição.
 O projeto também serve como ferramenta educacional, permitindo os alunos de receberem orientações de seus mentores, em conjunto com a total análise de um adminitrador sobre os grupos. 
 <br><br>
 May the force be with you!
-<br><br>
+<br>
 
 ## 🛠 Estrutura de pastas
 
@@ -39,15 +39,12 @@ May the force be with you!
 |-->documentos<br>
   &emsp;|Entrega 1<br>
   &emsp;|Entrega 2<br>
-  &emsp;&emsp;|--> Read.me Banco de dados<br>
+  &emsp;&emsp;|--> <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%202/Projeto%20Banco%20de%20Dados/README.md"> Read.me Banco de dados</a><br>
   &emsp;|Banner Acoplados <br>
   &emsp;|Documento Projeto de Extensão <br>
-|-->executáveis<br>
-  &emsp;|-->HTML<br>
 |-->imagens<br>
-|-->src<br>
-  &emsp;|-->Backend<br>
-  &emsp;|-->Frontend<br>
+|-->Backend<br>
+|-->Frontend<br>
 |readme.md<br>
 
 # Entregas
@@ -56,7 +53,7 @@ May the force be with you!
 | :-------: | :------: | :-------: |
 | Web FullStack | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Web%20Full%20Stack/Deploy">Deploy</a> | x |   
 | Cálculo II | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/C%C3%A1lculo%202/Projeto%20Polin%C3%B4mio%20de%20Taylor%202025-2.pdf">Polinômio de Taylor</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%202/Cálculo%202/Entrega%202%20de%20Cálculo%20II.pdf"> Máximos e mínimos </a> |    
-| Banco de Dados | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Banco%20de%20Dados/Entrega%20Banco%20de%20Dados%20DER.pdf">DER</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%202/Projeto%20Banco%20de%20Dados/README.md"> Descrição das tabelas do BD</a> |  
+| Banco de Dados | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Banco%20de%20Dados/Entrega%20Banco%20de%20Dados%20DER.pdf">DER</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/tree/main/documentos/Entrega%202/Projeto%20Banco%20de%20Dados"> Descrição das tabelas do BD</a> |  
 | Gestão Empresarial | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Gest%C3%A3o%20Empresarial%20e%20Din%C3%A2micas%20das%20Organiza%C3%A7%C3%B5es/Entrega%20de%20Gest%C3%A3o%20Empresarial.pdf">Missão, Visão, Valores</a>| <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%202/Gestão%20Empresarial%20e%20Dinâmicas%20das%20Organizações/Entrega%202%20de%20Gestão%20Empresarial.pdf">Fluxograma e Highlights </a>|  
 | Projeto Interdisciplinar | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Interdisciplinar%20Programa%C3%A7%C3%A3o%20Web/Figma%20Empathize">Figma</a>| <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Interdisciplinar%20Programa%C3%A7%C3%A3o%20Web/Figma%20Empathize">Especificação de Requisitos</a> |   
 | Extras | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Acoplados.pdf">Banner</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Documento%20projeto%20de%20Extens%C3%A3o%20-%20COM%20EMPRESA.pdf"> Projeto de Extensão
@@ -66,7 +63,7 @@ May the force be with you!
 <b>HTML:</b>
 
 Não há instalação!
-Encontre o index.html na pasta executáveis e execute-o como uma página WEB (através de algum browser).
+Entre no seguinte link para acessar o projeto <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%202/Projeto%20Banco%20de%20Dados/README.md">Empathize System </a>.
 
 
 ## 📋 Licença/License
