@@ -53,7 +53,6 @@ router.post("/loginMentor", mentorController.loginMentor);
 router.post("/createEdition", editionsController.createEdition);
 
 router.post("/createCollection", collectionController.createCollection);
-router.post("/evaluateCollection", collectionController.evaluateCollection);
 
 router.post("/createProject", projectsController.createProject);
 
@@ -69,6 +68,8 @@ router.put("/updateEdition/:id", editionsController.editionByID);
 router.put("/updateGroup/:id", groupsController.updateGroup);
 
 router.put("/updateProject/:id", projectsController.updateProject);
+
+router.put("/evaluateCollection/:id", collectionController.evaluateCollection);
 // Rotas DELETE
 router.delete("/deleteUser/:id", usersController.deleteUser);
 
