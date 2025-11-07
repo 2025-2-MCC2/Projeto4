@@ -125,7 +125,7 @@ export default function Login() {
 
                 <div className={styles.footer}>
                     <p><a href="/login/mentor">Sou mentor</a></p>
-                    <p><a href="#">Sou admin</a></p>
+                    <p><a href="/login/admin">Sou admin</a></p>
                 </div>
             </div>
         </div>

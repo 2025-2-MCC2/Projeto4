@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
 import { pool } from "../db.js";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 export const adminController = {
     // POST para criar um admin
@@ -28,19 +30,17 @@ export const adminController = {
         const { email, password } = req.body;
 
         try {
-            const [adm] = await pool.query("SELECT email, password FROM adm WHERE email = ?", [email]);
+            const [adm] = await pool.query("SELECT id, name_adm, email, password FROM adm WHERE email = ?", [email]);
 
-            if (adm.length === 0) {
+            const isValidPassword = bcrypt.compareSync(password, adm[0].password);
+            if (adm.length === 0 || !isValidPassword) {
                 res.status(401).json({ message: "Credenciais inválidas!"});
             }
 
-            const isValidPassword = bcrypt.compareSync(password, adm[0].password);
+            const payload = {id: adm[0].id, nameMentor: adm[0].name_adm};
 
-            if (!isValidPassword) {
-                res.status(401).json({ message: "Credenciais erradas!"});
-            }
-
-            res.status(201).json({ message: "Login efetuado!"});
+            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d1;"})
+            res.status(201).json({ token });
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});
