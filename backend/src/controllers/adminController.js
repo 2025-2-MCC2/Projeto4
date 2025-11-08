@@ -6,7 +6,7 @@ import "dotenv/config";
 export const adminController = {
     // POST para criar um admin
     createAdmin: async (req, res) => {
-        const { name_adm, email, password } = req.body;
+        const { nameAdm, email, password } = req.body;
 
         try {
             const [adm] = await pool.query("SELECT email FROM adm WHERE email = ?", [email]);
@@ -37,9 +37,9 @@ export const adminController = {
                 res.status(401).json({ message: "Credenciais inválidas!"});
             }
 
-            const payload = {id: adm[0].id, nameMentor: adm[0].name_adm};
+            const payload = {idAdm: adm[0].id, nameAdm: adm[0].name_adm, role: "adm"};
 
-            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d1;"})
+            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d"})
             res.status(201).json({ token });
         } catch(err) {
             console.error(err);
@@ -59,7 +59,7 @@ export const adminController = {
     },
     // GET para buscar um admin pelo id
     adminByID: async (req, res) => {
-        const { id } = req.params;
+        const id = req.user && req.user.idAdm;
 
         try {
             const [admin] = await pool.query("SELECT id, name_adm FROM adm WHERE id = ?", [id]);

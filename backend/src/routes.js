@@ -28,7 +28,7 @@ router.get("/dashboardStudent", authMiddleware, getDashboardData);
 router.get("/validate", authMiddleware, validateToken);
 
 router.get("/allAdmins", adminController.allAdmins);
-router.get("/adminByID/:id", adminController.adminByID);
+router.get("/adminByID", authMiddleware, adminController.adminByID);
 
 router.get("/groupName", groupsController.groupByName);
 router.get("/allGroups", groupsController.allGroups);
