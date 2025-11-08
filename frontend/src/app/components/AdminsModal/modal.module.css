@@ -1,0 +1,155 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(3px); 
+  animation: fadeIn 0.3s ease;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: slideUp 0.3s ease; 
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #555;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.closeBtn:hover {
+  transform: rotate(90deg);
+  color: #dc2626;
+}
+
+.adminList {
+  list-style: none;
+  margin-top: 1rem;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto; 
+  scrollbar-width: thin;
+}
+
+.adminList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  transition: background 0.2s ease;
+}
+
+.adminList li:hover {
+  background: #f3f4f6;
+}
+
+.addBtn {
+  background: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.2rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.addBtn:hover {
+  background: #5b21b6;
+  transform: translateY(-2px);
+}
+
+.deleteBtn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.deleteBtn:hover {
+  background: #b91c1c;
+  transform: scale(1.05);
+}
+
+.form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.form input {
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input:focus {
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 2px rgba(109, 40, 217, 0.15);
+}
+
+.submitBtn {
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.submitBtn:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+.message {
+  margin-top: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.error {
+  color: #dc2626;
+}
+
+.success {
+  color: #059669;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

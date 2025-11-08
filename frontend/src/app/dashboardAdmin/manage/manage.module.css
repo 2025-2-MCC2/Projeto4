@@ -1,0 +1,152 @@
+.dashboard {
+  display: flex;
+  background: #f9fafc;
+  min-height: 100vh;
+}
+
+.nav {
+  width: auto;
+}
+
+
+.mainContainer {
+  flex: 1;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerSection {
+  margin-bottom: 3rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  gap: 0.4rem;
+}
+
+.pageTitle h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.4rem;
+}
+
+.pageTitle p {
+  color: #555;
+  font-size: 1rem;
+}
+
+.cardsGrid {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.card {
+  flex: 1;
+  min-width: 320px;
+  max-width: 450px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  padding: 2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  color: #111;
+  margin-bottom: 0.4rem;
+}
+
+.card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.manageButton {
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1.3rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s ease, transform 0.1s ease;
+  align-self: flex-start;
+}
+
+.manageButton:hover {
+  background: #5851d8;
+  transform: translateY(-2px);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 500px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton {
+  background: #ff5a5f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.closeButton:hover {
+  background: #d94b50;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1024px) {
+  .mainContainer {
+    padding: 2rem;
+  }
+
+  .cardsGrid {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .card {
+    width: 100%;
+  }
+}

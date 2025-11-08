@@ -17,7 +17,7 @@ export const adminController = {
 
             const hashPassword = bcrypt.hashSync(password, 10);
 
-            await pool.query("INSERT INTO adm(name_adm, email, password) VALUES(?, ?, ?)", [name, email, hashPassword]);
+            await pool.query("INSERT INTO adm(name_adm, email, password) VALUES(?, ?, ?)", [name_adm, email, hashPassword]);
 
             res.status(201).json({ message: "Admin criado com sucesso!"});
         } catch(err) {
@@ -49,7 +49,7 @@ export const adminController = {
     // GET para buscar todos os admins
     allAdmins: async (req, res) => {
         try {
-            const [admins] = await pool.query("SELECT name_adm FROM adm");
+            const [admins] = await pool.query("SELECT id, name_adm, email FROM adm"); // nao estava chamando pelo id, só adicionei isso
 
             res.status(200).json({ admins });
         } catch(err) {

@@ -22,11 +22,12 @@
     width: calc(100vw - 70px);
     max-width: calc(100vw - 70px);
     overflow-x: hidden;
+    padding: 0 2rem 2rem 2rem;
 }
 
 .headerSection {
     background: white;
-    padding: 2rem 3rem;
+    padding: 2rem 2rem; 
     border-bottom: 1px solid #e5e7eb;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -126,6 +127,7 @@
         margin-left: 60px;
         width: calc(100vw - 60px);
         max-width: calc(100vw - 60px);
+        padding: 0 1.5rem 2rem 1.5rem;
     }
 
     .headerSection {
@@ -154,6 +156,7 @@
         margin-left: 70px;
         width: calc(100vw - 70px);
         max-width: calc(100vw - 70px);
+        padding: 0 1rem 2rem 1rem;
     }
 
     .headerSection {

@@ -86,6 +86,7 @@ export const editionsController = {
             }
 
             await pool.query("DELETE FROM edition WHERE id = ?", [id]);
+            return res.status(200).json({ message: "Edição excluída com sucesso!" }); // adicionei o retorno de sucesso para confirmar exclusao no front-end
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});
