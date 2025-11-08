@@ -41,7 +41,6 @@ export default function ManagePage() {
             </button>
           </div>
 
-          {/* card de edições */}
           <div className={styles.card}>
             <h2>Edições</h2>
             <p>Visualize e gerencie as edições ativas do projeto.</p>
