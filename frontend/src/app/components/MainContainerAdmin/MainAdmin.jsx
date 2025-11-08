@@ -23,15 +23,17 @@ export default function MainContainerAdmin({ data }) {
 
   const topGroups = informations.topGroups;
 
+  const nameAdm = informations?.informationsAdm?.admin[0].name_adm;
+
   return (
     <div className={styles.container}>
       <div className={styles.mainContent}>
         <div className={styles.welcomeSection}>
           <div className={styles.welcomeText}>
             <h1>
-              Olá, <span className={styles.highlight}>Administrador(a)</span>! 👋
+              Olá, <span className={styles.highlight}>{nameAdm}</span>! 👋
             </h1>
-            <p>Visão geral global do progresso atual do projeto.</p>
+            <p>Visão geral do progresso atual da edição.</p>
           </div>
         </div>
 

@@ -34,6 +34,16 @@ export default async function authMiddleware(req, res, next) {
             req.user = decoded;
             next();
         }
+
+        if (decoded.role === "adm") {
+            const [user] = await pool.query("SELECT id FROM adm WHERE id = ?", [decoded.idAdm]);
+            if (user.length === 0) {
+                return res.status(404).json({ message: "Usuário não encontrado"});
+            }
+
+            req.user = decoded;
+            next();
+        }
     } catch(err) {
         return res.status(401).json({ message: 'Invalid token!' })
     }

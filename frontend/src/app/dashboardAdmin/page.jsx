@@ -5,8 +5,9 @@ import NavigatorAdmin from "../components/NavigatorAdmin/index";
 import MainContainerAdmin from "../components/MainContainerAdmin/MainAdmin.jsx";
 import { useEffect, useState } from "react";
 import { getToken } from "../login/auth.js";
+import ProtectedRoute from "../components/ProtectedRoute.js";
 
-export default function DashboardAdmin() {
+function DashboardAdmin() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,24 +16,25 @@ export default function DashboardAdmin() {
       try {
         const token = getToken();
 
-        const resGroups = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allGroups`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const resAdm = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/adminByID`, {
+          headers: { Authorization: `Bearer ${token}`}
+        })
+
+        const resGroups = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allGroups`);
         const groupsData = await resGroups.json();
 
-        const resEditions = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allEditions`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const resEditions = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allEditions`);
         const editionsData = await resEditions.json();
 
-        const resCollections = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allCollections`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const resCollections = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allCollections`);
         const collectionsData = await resCollections.json();
+
+        const infoAdm = await resAdm.json();
 
         console.log("Groups:", groupsData);
         console.log("Editions:", editionsData);
         console.log("Collections:", collectionsData);
+        console.log("Dados mentor:", infoAdm)
 
         const rawGroups = groupsData?.groups || [];
         const groups = rawGroups.filter(
@@ -75,6 +77,7 @@ export default function DashboardAdmin() {
           daysRemaining,
           totalKg,
           topGroups,
+          informationsAdm: infoAdm
         });
       } catch (err) {
         console.error("Erro ao carregar dados do dashboard:", err);
@@ -114,5 +117,13 @@ export default function DashboardAdmin() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ExportDashboardAdmin() {
+  return (
+    <ProtectedRoute role="adm">
+      <DashboardAdmin />
+    </ProtectedRoute>
   );
 }

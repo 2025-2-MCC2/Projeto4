@@ -33,4 +33,17 @@ export async function validateToken(req, res) {
             res.status(500).json({ message: "Fail database"});
         }
     }
+
+    if (token.role === "adm") {
+        try {
+            const [adm] = await pool.query("SELECT id FROM adm WHERE id = ?", [token.idAdm]);
+
+            if (adm.length === 0) return res.status(404).json({ message: "Admin não encontrado"});
+
+            res.json({ valid: true, role: "adm" });
+        } catch(err) {
+            console.error("O erro: ", err);
+            res.status(500).json({ message: "Fail database"});
+        }
+    }
 }

@@ -22,10 +22,6 @@ export default function ProtectedRoute({ children, role }) {
                     setTheReturn(children);
                     setIsAuthenticated(true);
                 }
-                if (role === data.role) {
-                    setTheReturn(children);
-                    setIsAuthenticated(true);
-                }
             } catch (err) {
                 router.push("/login");
             } finally {
