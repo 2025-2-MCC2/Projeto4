@@ -17,7 +17,7 @@ export const adminController = {
 
             const hashPassword = bcrypt.hashSync(password, 10);
 
-            await pool.query("INSERT INTO adm(name_adm, email, password) VALUES(?, ?, ?)", [name_adm, email, hashPassword]);
+            await pool.query("INSERT INTO adm(name_adm, email, password) VALUES(?, ?, ?)", [nameAdm, email, hashPassword]);
 
             res.status(201).json({ message: "Admin criado com sucesso!"});
         } catch(err) {
