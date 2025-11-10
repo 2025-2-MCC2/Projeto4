@@ -51,7 +51,7 @@ May the force be with you!
 
 | Disciplina | Entrega 1 | Entrega 2 |  
 | :-------: | :------: | :-------: |
-| Web FullStack | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Web%20Full%20Stack/Deploy">Deploy</a> | x |   
+| Web FullStack | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Web%20Full%20Stack/Deploy">Deploy</a> | <a href ="https://empathize-system.vercel.app/">Deploy final</a>|   
 | Cálculo II | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/C%C3%A1lculo%202/Projeto%20Polin%C3%B4mio%20de%20Taylor%202025-2.pdf">Polinômio de Taylor</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%202/Cálculo%202/Entrega%202%20de%20Cálculo%20II.pdf"> Máximos e mínimos </a> |    
 | Banco de Dados | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Banco%20de%20Dados/Entrega%20Banco%20de%20Dados%20DER.pdf">DER</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/tree/main/documentos/Entrega%202/Projeto%20Banco%20de%20Dados"> Descrição das tabelas do BD</a> |  
 | Gestão Empresarial | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Gest%C3%A3o%20Empresarial%20e%20Din%C3%A2micas%20das%20Organiza%C3%A7%C3%B5es/Entrega%20de%20Gest%C3%A3o%20Empresarial.pdf">Missão, Visão, Valores</a>| <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%202/Gestão%20Empresarial%20e%20Dinâmicas%20das%20Organizações/Entrega%202%20de%20Gestão%20Empresarial.pdf">Fluxograma e Highlights </a>|  
