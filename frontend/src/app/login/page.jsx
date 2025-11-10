@@ -12,8 +12,14 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [notAuthenticated, setNotAuthenticated] = useState(false);
     const router = useRouter();
 
+    function invalidMessage() {
+        return (
+            <p>Credenciais inválidas</p>
+        );
+    }
     async function handleSubmit(ev) {
         ev.preventDefault();
         setIsLoading(true);
@@ -31,10 +37,8 @@ export default function Login() {
             });
 
             if (!res.ok) {
-                const err = await res.json().catch(() => ({ error: "Unknown error"}));
-                console.log("Error: ", err);
-                alert("Credenciais inválidas!");
                 setIsLoading(false);
+                setNotAuthenticated(true);
                 return;
             }
 
@@ -110,6 +114,8 @@ export default function Login() {
                         </div>
                     </div>
 
+                    {notAuthenticated && invalidMessage()}
+                    
                     <button 
                         type="submit" 
                         className={styles.submitButton}

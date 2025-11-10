@@ -269,6 +269,11 @@
     text-decoration: underline;
 }
 
+.form > p {
+    color: #ff00008b;
+    margin-left: 8.5rem;
+}
+
 /* Responsividade */
 @media (max-width: 480px) {
     .container {
@@ -282,5 +287,9 @@
     .logoContainer {
         width: 150px;
         height: 80px;
+    }
+
+    .form > p {
+        margin-left: 5rem;
     }
 }
