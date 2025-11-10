@@ -29,7 +29,6 @@ export default function Home() {
                             alt="Empathize Logo" 
                             className={styles.logoImage}
                         />
-                        <span className={styles.logoText}>Empathize</span>
                     </div>
                     <nav className={styles.nav}>
                         <a href="#sobre" className={styles.navLink}>Sobre</a>
