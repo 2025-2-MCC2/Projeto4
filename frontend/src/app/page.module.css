@@ -766,8 +766,9 @@ display: none;
 font-size: 1.25rem;
 }
 .logoImage {
-    width: 50rem;
-    height: 50rem;
+    width: 50%;
+    height: 50%;
+    margin-left: 6rem;
 }
 
 .heroTitle {
