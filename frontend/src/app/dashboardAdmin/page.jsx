@@ -17,8 +17,8 @@ function DashboardAdmin() {
         const token = getToken();
 
         const resAdm = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/adminByID`, {
-          headers: { Authorization: `Bearer ${token}`}
-        })
+          headers: { Authorization: `Bearer ${token}` }
+        });
 
         const resGroups = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allGroups`);
         const groupsData = await resGroups.json();
@@ -34,7 +34,7 @@ function DashboardAdmin() {
         console.log("Groups:", groupsData);
         console.log("Editions:", editionsData);
         console.log("Collections:", collectionsData);
-        console.log("Dados mentor:", infoAdm)
+        console.log("Admin data:", infoAdm);
 
         const rawGroups = groupsData?.groups || [];
         const groups = rawGroups.filter(
@@ -45,24 +45,36 @@ function DashboardAdmin() {
         const editions = editionsData?.editions || [];
         const latestEdition = editions[editions.length - 1];
 
+        const allCollections = collectionsData?.collections || [];
+        const approvedCollections = allCollections.filter(c => c.status === "Aprovado");
+
         const totalKg =
-          collectionsData?.collections?.reduce(
+          approvedCollections.reduce(
             (acc, c) => acc + (parseFloat(c.quantity_kg) || 0),
             0
           ) || 0;
 
-        const rankedGroups = [...groups].sort((a, b) => (b.points || 0) - (a.points || 0));
-        const hasPoints = rankedGroups.some((g) => g.points && g.points > 0);
+        const groupTotals = approvedCollections.reduce((acc, curr) => {
+          const groupId = curr.id_group;
+          if (!acc[groupId]) {
+            acc[groupId] = { id_group: groupId, total_kg: 0 };
+          }
+          acc[groupId].total_kg += parseFloat(curr.quantity_kg) || 0;
+          return acc;
+        }, {});
 
-        let topGroups = [];
-        if (hasPoints) {
-          topGroups = rankedGroups.slice(0, 3).map((g) => ({
-            group_name: g.group_name || "Sem nome",
-            points: `${g.points} pts`,
-          }));
-        } else {
-          topGroups = null; 
-        }
+      const mergedGroups = Object.values(groupTotals).map((g) => {
+        const groupInfo = groups.find((grp) => Number(grp.id) === Number(g.id_group));
+
+        return {
+          group_name: groupInfo
+            ? `${groupInfo.group_name}`
+            : `Grupo ${g.id_group} (desconhecido)`,
+          total_kg: g.total_kg,
+        };
+      });
+
+        const topGroups = mergedGroups.sort((a, b) => b.total_kg - a.total_kg).slice(0, 3);
 
         let daysRemaining = "-";
         if (latestEdition?.end_date) {

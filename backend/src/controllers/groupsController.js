@@ -97,7 +97,7 @@ const groupsController = {
     },
     allGroups: async (req, res) => {
         try {
-            const [groups] = await pool.query("SELECT ts.id_student, s.full_name, m.name_mentor, t.group_name, t.pontuation FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id JOIN mentor m ON m.id = t.id_mentor");
+            const [groups] = await pool.query("SELECT t.id AS id, ts.id_student, s.full_name, m.name_mentor, t.group_name, t.pontuation FROM team_student ts JOIN student s ON ts.id_student = s.id JOIN team t ON ts.id_group = t.id LEFT JOIN mentor m ON m.id = t.id_mentor ORDER BY t.id"); // adicionei t.id AS id
 
             res.status(200).json({ groups })
         } catch(err) {

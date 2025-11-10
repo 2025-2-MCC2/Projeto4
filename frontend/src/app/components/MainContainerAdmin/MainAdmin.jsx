@@ -21,9 +21,8 @@ export default function MainContainerAdmin({ data }) {
       ? `${informations.daysRemaining} dias`
       : "0 dias";
 
-  const topGroups = informations.topGroups;
-
-  const nameAdm = informations?.informationsAdm?.admin[0].name_adm;
+  const topGroups = informations.topGroups || [];
+  const nameAdm = informations?.informationsAdm?.admin?.[0]?.name_adm || "Administrador";
 
   return (
     <div className={styles.container}>
@@ -41,7 +40,7 @@ export default function MainContainerAdmin({ data }) {
           <BoxComponent
             pontuation={totalKg}
             title="Arrecadação Total"
-            subtitle="Soma de todas as doações"
+            subtitle="Soma de todas as doações aprovadas"
             icon={iconFood}
             color="orange"
           />
@@ -71,9 +70,9 @@ export default function MainContainerAdmin({ data }) {
           </div>
 
           <ul className={styles.rankingList}>
-            {topGroups === null ? (
-              <li className={styles.emptyRanking}>Sem pontuação</li>
-            ) : topGroups.length > 0 ? (
+            {topGroups.length === 0 ? (
+              <li className={styles.emptyRanking}>Nenhum grupo com arrecadação aprovada ainda.</li>
+            ) : (
               topGroups.map((item, index) => (
                 <li key={index} className={styles.rankingItem}>
                   <span className={styles.rankingPosition}>{index + 1}º</span>
@@ -81,12 +80,10 @@ export default function MainContainerAdmin({ data }) {
                     {item.group_name || "Sem nome"}
                   </span>
                   <span className={styles.rankingValue}>
-                    {item.points || "0 pts"}
+                    {item.total_kg ? `${item.total_kg.toFixed(1)} kg` : "0 kg"}
                   </span>
                 </li>
               ))
-            ) : (
-              <li className={styles.emptyRanking}>Nenhum grupo cadastrado ainda.</li>
             )}
           </ul>
         </div>
