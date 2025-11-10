@@ -5,6 +5,7 @@ import styles from "./manage.module.css";
 import NavigatorAdmin from "../../components/NavigatorAdmin";
 import AdminsModal from "../../components/AdminsModal"; 
 import EditionsModal from "../../components/EditionsModal"; 
+import ProtectedRoute from "../../components/ProtectedRoute.js";
 
 function ManagePage() {
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);

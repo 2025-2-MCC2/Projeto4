@@ -9,7 +9,8 @@ import settingsIcon from "../../assets/settings.svg";
 import logOut from "../../assets/exit.svg";
 import Link from "next/link";
 import Image from "next/image";
-import { removeToken } from "../../login/auth.js"
+import { removeToken } from "../../login/auth.js";
+import iconDashboard from "../../assets/painel-de-controle.png";
 
 export default function NavigatorAdmin() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function NavigatorAdmin() {
             <li className={styles.itemMenu}>
               <Link href="/dashboardAdmin" className={styles.theLinks}>
                 <span className="icon">
-                  <Image src={rankIcon} alt="Visão Geral" className={styles.icons} width={20} height={20}/>
+                  <Image src={iconDashboard} alt="Visão Geral" className={styles.icons} width={20} height={20}/>
                 </span>
                 <span className={styles.txtLink}>Visão Geral</span>
               </Link>

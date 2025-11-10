@@ -7,6 +7,7 @@ import layoutStyles from '../dashboard.module.css';
 import Image from 'next/image';
 import groupIcon from '../../assets/users-alt.svg';
 import { getToken } from '../../login/auth.js';
+import ProtectedRoute from "../../components/ProtectedRoute.js";
 
 function GroupsPage() {
   const [groups, setGroups] = useState([]);
