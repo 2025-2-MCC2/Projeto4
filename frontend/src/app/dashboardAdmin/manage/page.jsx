@@ -6,7 +6,7 @@ import NavigatorAdmin from "../../components/NavigatorAdmin";
 import AdminsModal from "../../components/AdminsModal"; 
 import EditionsModal from "../../components/EditionsModal"; 
 
-export default function ManagePage() {
+function ManagePage() {
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
   const [isEditionModalOpen, setIsEditionModalOpen] = useState(false);
 
@@ -64,5 +64,13 @@ export default function ManagePage() {
         onClose={() => setIsEditionModalOpen(false)}
       />
     </div>
+  );
+}
+
+export default function ExportManagePage() {
+  return (
+    <ProtectedRoute role="adm">
+      <ManagePage />
+    </ProtectedRoute>
   );
 }
