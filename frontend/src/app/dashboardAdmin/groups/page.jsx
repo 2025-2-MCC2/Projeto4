@@ -20,27 +20,43 @@ export default function GroupsPage() {
     const fetchGroups = async () => {
       try {
         const token = getToken();
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allGroups`, {
+
+        const resGroups = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allGroups`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        if (!res.ok) {
-          const text = await res.text();
-          console.error('Resposta do servidor:', text);
-          throw new Error(`Erro ao carregar grupos: ${res.status}`);
+        const resCollections = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allCollections`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!resGroups.ok || !resCollections.ok) {
+          throw new Error('Erro ao carregar dados.');
         }
 
-        const data = await res.json();
-        const groupsData = data?.groups || [];
+        const groupsData = (await resGroups.json())?.groups || [];
+        const collectionsData = (await resCollections.json())?.collections || [];
+
+        const approvedCollections = collectionsData.filter((c) => c.status === 'Aprovado');
+
+        const groupKgTotals = approvedCollections.reduce((acc, c) => {
+          const id = c.id_group;
+          const kg = parseFloat(c.quantity_kg) || 0;
+          acc[id] = (acc[id] || 0) + kg;
+          return acc;
+        }, {});
 
         const grouped = [];
         groupsData.forEach((g) => {
           let existing = grouped.find((x) => x.group_name === g.group_name);
+          const totalKg = groupKgTotals[g.id] || 0;
+
           if (!existing) {
             grouped.push({
+              id: g.id,
               group_name: g.group_name,
               mentor: g.name_mentor,
-              pontuation: g.pontuation,
+              pontuation: g.pontuation || 0,
+              total_kg: totalKg,
               students: [g.full_name],
             });
           } else {
@@ -131,7 +147,7 @@ export default function GroupsPage() {
                 >
                   <span className={styles.groupName}>{group.group_name}</span>
                   <span className={styles.groupKg}>
-                    {group.pontuation ? `${group.pontuation} kg` : '0 kg'}
+                    {(group.total_kg ? group.total_kg.toFixed(1) : 0)} kg • {group.pontuation || 0} pts
                   </span>
                 </div>
 

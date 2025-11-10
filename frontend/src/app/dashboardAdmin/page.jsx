@@ -37,6 +37,8 @@ function DashboardAdmin() {
         console.log("Admin data:", infoAdm);
 
         const rawGroups = groupsData?.groups || [];
+
+        // remove duplicados por nome (mantém o primeiro)
         const groups = rawGroups.filter(
           (group, index, self) =>
             index === self.findIndex((g) => g.group_name === group.group_name)
@@ -54,27 +56,42 @@ function DashboardAdmin() {
             0
           ) || 0;
 
-        const groupTotals = approvedCollections.reduce((acc, curr) => {
+        const groupKgTotals = approvedCollections.reduce((acc, curr) => {
           const groupId = curr.id_group;
-          if (!acc[groupId]) {
-            acc[groupId] = { id_group: groupId, total_kg: 0 };
-          }
-          acc[groupId].total_kg += parseFloat(curr.quantity_kg) || 0;
+          if (!acc[groupId]) acc[groupId] = 0;
+          acc[groupId] += parseFloat(curr.quantity_kg) || 0;
           return acc;
         }, {});
 
-      const mergedGroups = Object.values(groupTotals).map((g) => {
-        const groupInfo = groups.find((grp) => Number(grp.id) === Number(g.id_group));
+        const normalizedGroups = groups.map((g) => {
+          const score =
+            (g.pontuation !== undefined && Number(g.pontuation)) ||
+            (g.pontuacao !== undefined && Number(g.pontuacao)) ||
+            0;
+          const idCandidate = g.id ?? g.id_group ?? g.group_id ?? null;
+          return {
+            raw: g,
+            group_name: g.group_name || g.name || "Sem nome",
+            pontuation: Number(score) || 0,
+            id_candidate: idCandidate,
+          };
+        });
 
-        return {
-          group_name: groupInfo
-            ? `${groupInfo.group_name}`
-            : `Grupo ${g.id_group} (desconhecido)`,
-          total_kg: g.total_kg,
-        };
-      });
+        const mergedForRanking = normalizedGroups.map((g) => {
+          const kg =
+            (g.id_candidate != null && (groupKgTotals[g.id_candidate] || 0)) ||
+            0;
+          return {
+            group_name: g.group_name,
+            pontuation: g.pontuation,
+            total_kg: kg,
+          };
+        });
 
-        const topGroups = mergedGroups.sort((a, b) => b.total_kg - a.total_kg).slice(0, 3);
+        const topGroups = mergedForRanking
+          .filter((g) => g.pontuation && g.pontuation > 0)
+          .sort((a, b) => b.pontuation - a.pontuation)
+          .slice(0, 3);
 
         let daysRemaining = "-";
         if (latestEdition?.end_date) {

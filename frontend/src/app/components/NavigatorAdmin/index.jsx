@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "../NavigatorAdmin/Nav.module.css";
 import menuIcon from "../../assets/menu-hamburguer.svg";
-import rankIcon from "../../assets/estrelas-do-ranking.svg";
+import casinhaAdm from "../../assets/casinhaAdm.svg";
 import IntegrantesIcon from "../../assets/users-alt.svg";
 import settingsIcon from "../../assets/settings.svg";
 import logOut from "../../assets/exit.svg";
@@ -28,7 +28,7 @@ export default function NavigatorAdmin() {
             <li className={styles.itemMenu}>
               <Link href="/dashboardAdmin" className={styles.theLinks}>
                 <span className="icon">
-                  <Image src={rankIcon} alt="Visão Geral" className={styles.icons} width={20} height={20}/>
+                  <Image src={casinhaAdm} alt="Visão Geral" className={styles.icons} width={20} height={20}/>
                 </span>
                 <span className={styles.txtLink}>Visão Geral</span>
               </Link>

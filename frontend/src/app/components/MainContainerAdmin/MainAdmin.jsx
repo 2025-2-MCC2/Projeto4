@@ -80,7 +80,7 @@ export default function MainContainerAdmin({ data }) {
                     {item.group_name || "Sem nome"}
                   </span>
                   <span className={styles.rankingValue}>
-                    {item.total_kg ? `${item.total_kg.toFixed(1)} kg` : "0 kg"}
+                    {item.pontuation ? `${item.pontuation.toFixed(0)} pts`: "0 pts"}
                   </span>
                 </li>
               ))
