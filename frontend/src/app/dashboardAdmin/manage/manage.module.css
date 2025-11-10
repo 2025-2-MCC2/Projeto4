@@ -135,7 +135,6 @@
   background: #d94b50;
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 1024px) {
   .mainContainer {
     padding: 2rem;
