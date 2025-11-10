@@ -52,7 +52,7 @@ export default function AdminsModal({ isOpen, onClose }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name_adm: newAdmin.name,
+          nameAdm: newAdmin.name,
           email: newAdmin.email,
           password: newAdmin.password,
         }),
