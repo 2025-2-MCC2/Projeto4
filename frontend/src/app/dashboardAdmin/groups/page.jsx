@@ -7,8 +7,9 @@ import layoutStyles from '../dashboard.module.css';
 import Image from 'next/image';
 import groupIcon from '../../assets/users-alt.svg';
 import { getToken } from '../../login/auth.js';
+import ProtectedRoute from "../../components/ProtectedRoute.js";
 
-export default function GroupsPage() {
+function GroupsPage() {
   const [groups, setGroups] = useState([]);
   const [filteredGroups, setFilteredGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -168,5 +169,13 @@ export default function GroupsPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ExportGroupsPage() {
+  return (
+    <ProtectedRoute role="adm">
+      <GroupsPage />
+    </ProtectedRoute>
   );
 }

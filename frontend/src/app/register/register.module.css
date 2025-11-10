@@ -170,8 +170,10 @@
 
 .studentFields {
     display: grid;
-    grid-template-columns: 2fr 1fr 1.5fr;
+    grid-template-columns: 1.5fr 1fr 1.5fr; /* proporção mais equilibrada */
     gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* INPUT GROUPS */
@@ -193,6 +195,9 @@
 
 .inputGroup input,
 .inputGroup select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     height: 2.75rem;
     padding: 0 1rem;
     border: 2px solid #d1fae5;
@@ -236,6 +241,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .passwordWrapper input {
@@ -245,20 +251,20 @@
 .togglePassword {
     position: absolute;
     right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%); /* centraliza verticalmente */
     background: none;
     border: none;
     font-size: 1.25rem;
     cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0.25rem;
     opacity: 0.6;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
 .togglePassword:hover {
     opacity: 1;
+    transform: translateY(-50%) scale(1.1);
 }
 
 /* BUTTONS */

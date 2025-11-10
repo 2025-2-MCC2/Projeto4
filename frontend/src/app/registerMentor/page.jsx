@@ -269,17 +269,6 @@ export default function RegisterMentor() {
                             </div>
                         </div>
                     </div>
-
-                    <div className={styles.stats}>
-                        <div className={styles.statBox}>
-                            <span className={styles.statNumber}>500+</span>
-                            <span className={styles.statLabel}>Grupos ativos</span>
-                        </div>
-                        <div className={styles.statBox}>
-                            <span className={styles.statNumber}>100+</span>
-                            <span className={styles.statLabel}>Mentores experientes</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
