@@ -9,6 +9,7 @@ import logOut from "../../assets/exit.svg";
 import Integrantes from "../../assets/users-alt.svg";
 import Link from "next/link";
 import Image from "next/image";
+import { removeToken } from "../../login/auth.js"
 
 export default function Navigator() {
     const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +54,7 @@ export default function Navigator() {
                         </li>
                 
                         <li className={styles.itemMenu} id={styles.logOut}>
-                            <Link href={"/"} className={styles.theLinks}>
+                            <Link href={"/"} className={styles.theLinks} onClick={() => removeToken()}>
                                 <span className="icon">
                                     <Image src={logOut} alt="Sair icon" className={styles.icons}/>
                                 </span>
