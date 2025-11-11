@@ -40,7 +40,7 @@ export const adminController = {
             const payload = {idAdm: adm[0].id, nameAdm: adm[0].name_adm, role: "adm"};
 
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d"})
-            res.status(201).json({ token });
+            return res.status(201).json({ token });
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});

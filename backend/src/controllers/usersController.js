@@ -69,7 +69,7 @@ const usersController = {
             const payload = { id: user[0].id, ra: user[0].RA, idGroup: userGroup[0].id_group, role: "student"};
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d'});
             
-            res.status(200).json({ token });
+            return res.status(200).json({ token });
         } catch(err) {
             res.status(500).json({ message: "Fail database"});
         }

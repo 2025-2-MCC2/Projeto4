@@ -38,7 +38,7 @@ const mentorController = {
             const payload = {idMentor: mentor[0].id, idGroup: team[0].id, role: "mentor"};
 
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d"});
-            res.status(201).json({ token });
+            return res.status(201).json({ token });
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: "Database Error"});
