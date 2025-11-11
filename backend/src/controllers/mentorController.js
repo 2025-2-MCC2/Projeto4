@@ -31,7 +31,7 @@ const mentorController = {
             const [mentor] = await pool.query("SELECT id, email, password FROM mentor WHERE email = ?", [email]);
             const isValidPassword = bcrypt.compareSync(password, mentor[0].password);
             if (mentor.length === 0 || !isValidPassword) {
-                res.status(401).json({ message: "Credenciais erradas!"});
+                return res.status(401).json({ message: "Credenciais erradas!"});
             }
 
             const [team] = await pool.query("SELECT id, id_mentor FROM team WHERE id_mentor = ?", [mentor[0].id]);
@@ -41,7 +41,7 @@ const mentorController = {
             return res.status(201).json({ token });
         } catch(err) {
             console.error(err);
-            res.status(500).json({ message: "Database Error"});
+            return res.status(500).json({ message: "Database Error"});
         }
     },
     // GET para buscar todos os mentores

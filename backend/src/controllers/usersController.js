@@ -62,16 +62,16 @@ const usersController = {
             const [user]  = await pool.query("SELECT id, RA, password FROM student WHERE RA = ?", [RA]);
             const isValidPassword = bcrypt.compareSync(password, user[0].password);
             if (user.length === 0 || !isValidPassword) {
-                res.status(401).json({ message: "Credenciais erradas!"});
+                return res.status(401).json({ message: "Credenciais erradas!"});
             }
             
             const[userGroup] = await pool.query("SELECT id_group FROM team_student WHERE id_student = ?", [user[0].id]);
             const payload = { id: user[0].id, ra: user[0].RA, idGroup: userGroup[0].id_group, role: "student"};
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d'});
             
-            return res.status(200).json({ token });
+            return res.status(201).json({ token });
         } catch(err) {
-            res.status(500).json({ message: "Fail database"});
+            return res.status(500).json({ message: "Fail database"});
         }
     },
     // PUT para atualizar um usuário

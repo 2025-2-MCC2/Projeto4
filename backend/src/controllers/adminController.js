@@ -34,7 +34,7 @@ export const adminController = {
 
             const isValidPassword = bcrypt.compareSync(password, adm[0].password);
             if (adm.length === 0 || !isValidPassword) {
-                res.status(401).json({ message: "Credenciais inválidas!"});
+                return res.status(401).json({ message: "Credenciais inválidas!"});
             }
 
             const payload = {idAdm: adm[0].id, nameAdm: adm[0].name_adm, role: "adm"};
@@ -43,7 +43,7 @@ export const adminController = {
             return res.status(201).json({ token });
         } catch(err) {
             console.error(err);
-            res.status(500).json({ message: "Database Error"});
+            return res.status(500).json({ message: "Database Error"});
         }
     },
     // GET para buscar todos os admins
