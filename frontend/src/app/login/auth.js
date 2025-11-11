@@ -1,5 +1,3 @@
-export const API_URL = 'http://localhost:3001';
-
 export const setToken = (token) => {
     localStorage.setItem('token', token);
 };
@@ -17,7 +15,7 @@ export const validateToken = async () => {
     if (!token) return null;
 
     try {
-        const res = await fetch(`${API_URL}/validate`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/validate`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
