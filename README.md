@@ -58,12 +58,6 @@ May the force be with you!
 | Projeto Interdisciplinar | <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Interdisciplinar%20Programa%C3%A7%C3%A3o%20Web/Figma%20Empathize">Figma</a>| <a href ="https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%201/Projeto%20Interdisciplinar%20Programa%C3%A7%C3%A3o%20Web/Figma%20Empathize">Especificação de Requisitos</a> |   
 | Extras | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Acoplados.pdf">Banner</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Documento%20projeto%20de%20Extens%C3%A3o%20-%20COM%20EMPRESA.pdf"> Projeto de Extensão
 <br/>
-## 🛠 Instalação
-
-<b>HTML:</b>
-
-Não há instalação!
-Entre no seguinte link para acessar o projeto <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Entrega%202/Projeto%20Banco%20de%20Dados/README.md">Empathize System </a>.
 
 
 ## 📋 Licença/License
