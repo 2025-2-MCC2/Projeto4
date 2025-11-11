@@ -59,6 +59,7 @@ May the force be with you!
 | Extras | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Acoplados.pdf">Banner</a> | <a href = "https://github.com/2025-2-MCC2/Projeto4/blob/main/documentos/Documento%20projeto%20de%20Extens%C3%A3o%20-%20COM%20EMPRESA.pdf"> Projeto de Extensão
 <br/>
 
+Conheça o Empathize System -> <a href="https://www.youtube.com/watch?v=bH_BySaClOY">Link do Youtube</a>
 
 ## 📋 Licença/License
 <a href="https://creativecommons.org">Empathize</a> © 2025 by <a href="https://creativecommons.org">Gabriel Diniz, Gian Lemes, Leticia Rodrigues, Said Sales.</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
