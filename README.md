@@ -30,7 +30,7 @@ O sistema desenvolvido se trata de uma aplicação web direcionada para o projet
 Focando principalmente em questões de organização, praticidade e controle de arrecadações conquistadas durante todo o projeto. Facilitando a comunicação entre alunos e mentores, promovendo o autoaperfeiçoamento dos participantes. Podendo documentar todas as alterações que são feitas durante cada edição.
 O projeto também serve como ferramenta educacional, permitindo os alunos de receberem orientações de seus mentores, em conjunto com a total análise de um adminitrador sobre os grupos. 
 <br><br>
-May the force be with you!
+Para acessar o site -> <a href="https://empathize-system.vercel.app/">Empathize System</a>
 <br>
 
 ## 🛠 Estrutura de pastas
